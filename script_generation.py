@@ -9,6 +9,7 @@ import ot as pot
 
 import time
 import os
+import csv
 import pickle as pkl
 import copy
 
@@ -26,6 +27,7 @@ sys.path.append(os.path.join(os.getcwd(), 'Python-Package/base-ForestDiffusion')
 
 from ForestDiffusion import ForestDiffusionModel
 from metrics import test_on_multiple_models, compute_coverage, test_imputation_regression, test_on_multiple_models_classifier
+from vfm_metrics import TabMetrics
 from STaSy.stasy import STaSy_model
 from sdv.single_table import GaussianCopulaSynthesizer, TVAESynthesizer, CTGANSynthesizer, CopulaGANSynthesizer
 from sdv.metadata import SingleTableMetadata
@@ -43,18 +45,18 @@ def str2bool(v):
         raise argparse.ArgumentTypeError('Boolean value expected.')
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--out_path', type=str, default='jolicoea/tabular_generation_results.txt',
+parser.add_argument('--out_path', type=str, default='jolicoea/tabular_generation_results.csv',
                     help='filename for the results')
 
 parser.add_argument("--restore_from_name", type=str2bool, default=False, help="if True, restore session based on name")
 parser.add_argument("--name", type=str, default='my_exp', help="used when restoring from crashed instances")
 
 parser.add_argument("--methods", type=str, nargs='+', default=['oracle', 'CTGAN', 'GaussianCopula', 'TVAE', 'CopulaGAN', 'CTABGAN', 'stasy', 'TabDDPM', 'forest_diffusion'], help="oracle, CTGAN, GaussianCopula, TVAE, CopulaGAN, CTABGAN, stasy, TabDDPM, forest_diffusion")
-parser.add_argument('--nexp', type=int, default=3,
+parser.add_argument('--nexp', type=int, default=1,
                     help='number of experiences per parameter setting')
 parser.add_argument('--ngen', type=int, default=5,
                     help='number of generations per method')
-parser.add_argument('--n_tries', type=int, default=5,
+parser.add_argument('--n_tries', type=int, default=1,
                     help='number of models trained with different seeds in the metrics')
 parser.add_argument('--datasets', nargs='+', type=str, default=['iris', 'wine', 'parkinsons', 'climate_model_crashes', 'concrete_compression', 'yacht_hydrodynamics', 'airfoil_self_noise', 'connectionist_bench_sonar', 'ionosphere', 'qsar_biodegradation', 'seeds', 'glass', 'ecoli', 'yeast', 'libras', 'planning_relax', 'blood_transfusion', 'breast_cancer_diagnostic', 'connectionist_bench_vowel', 'concrete_slump', 'wine_quality_red', 'wine_quality_white', 'california', 'bean', 'tictactoe','congress','car'],
                     help='datasets on which to run the experiments')
@@ -150,6 +152,12 @@ if __name__ == "__main__":
         coverage_rate = {}
         AW = {}
         f1_class = {}
+        
+        # New metrics
+        density_val = {}
+        mle_val = {}
+        c2st_val = {}
+
         for method in args.methods:
             score_W1_test[method] = 0.0
             score_W1_train[method] = 0.0
@@ -160,6 +168,10 @@ if __name__ == "__main__":
             coverage_rate[method] = 0.0
             AW[method] = 0.0
             f1_class[method] = []
+            
+            density_val[method] = {'Shape': 0.0, 'Trend': 0.0, 'Overall': 0.0}
+            mle_val[method] = 0.0
+            c2st_val[method] = 0.0
 
         R2 = {}
         f1 = {}
@@ -445,6 +457,64 @@ if __name__ == "__main__":
 
                     Xy_fake_i = Xy_fake[gen_i]
 
+                    # New metrics calculation (density, mle, c2st)
+                    # Construct info object
+                    if gen_i == 0: # Do it once per experiment to save time on metadata detection
+                        data_pd = pd.DataFrame(Xy_train, columns = [str(i) for i in range(Xy_train.shape[1])])
+                        # indicate which column is categorical
+                        for column_k in bin_indexes + cat_indexes:
+                            if str(column_k) in data_pd.columns:
+                                data_pd[str(column_k)] = data_pd[str(column_k)].astype('category')
+                        metadata = SingleTableMetadata()
+                        metadata.detect_from_dataframe(data=data_pd)
+                        info_metadata = metadata.to_dict()
+                        
+                        # Determine task type
+                        if cat_y:
+                            task_type = 'multiclass'
+                        elif bin_y:
+                            task_type = 'binclass'
+                        else:
+                            task_type = 'regression'
+                            
+                        # Indices
+                        all_indices = set(range(Xy_train.shape[1]))
+                        cat_indices_set = set(bin_indexes + cat_indexes)
+                        target_idx = Xy_train.shape[1] - 1
+                        
+                        # Remove target from feature indices lists
+                        num_col_idx = list(all_indices - cat_indices_set - {target_idx})
+                        cat_col_idx = list(cat_indices_set - {target_idx})
+                        target_col_idx = [target_idx]
+                        
+                        info = {
+                            'num_col_idx': sorted(num_col_idx),
+                            'cat_col_idx': sorted(cat_col_idx),
+                            'target_col_idx': target_col_idx,
+                            'task_type': task_type,
+                            'metadata': info_metadata
+                        }
+                        
+                        # Prepare DataFrames for TabMetrics
+                        df_train = pd.DataFrame(Xy_train, columns=range(Xy_train.shape[1]))
+                        df_test = pd.DataFrame(Xy_test, columns=range(Xy_test.shape[1]))
+
+                    # Evaluate
+                    # Xy_fake_i is numpy array
+                    df_fake = pd.DataFrame(Xy_fake_i, columns=range(Xy_fake_i.shape[1]))
+                    
+                    try:
+                        tab_metrics = TabMetrics(real_data=df_train, test_data=df_test, val_data=None, info=info, metric_list=['density', 'mle', 'c2st'])
+                        metrics_res, _ = tab_metrics.evaluate(df_fake)
+                        
+                        density_val[method]['Shape'] += metrics_res.get('density/Shape', 0.0) / (args.nexp*args.ngen)
+                        density_val[method]['Trend'] += metrics_res.get('density/Trend', 0.0) / (args.nexp*args.ngen)
+                        density_val[method]['Overall'] += metrics_res.get('density/Overall', 0.0) / (args.nexp*args.ngen)
+                        mle_val[method] += metrics_res.get('mle', 0.0) / (args.nexp*args.ngen)
+                        c2st_val[method] += metrics_res.get('c2st', 0.0) / (args.nexp*args.ngen)
+                    except Exception as e:
+                        print(f"Error calculating vfm metrics: {e}")
+
                     # Mixed data is tricky, nearest neighboors (for the coverage) and Wasserstein distance (based on L2) are not scale invariant
                     # To ensure that the scaling between variables is relatively uniformized, we take inspiration from the Gower distance used in mixed-data KNNs: https://medium.com/analytics-vidhya/the-ultimate-guide-for-clustering-mixed-data-1eefa0b4743b
                     # Continuous: we do min-max normalization (to use Gower |x1-x2|/(max-min) as distance)
@@ -521,15 +591,84 @@ if __name__ == "__main__":
                     method_str += f"num_leaves={args.num_leaves} n_trees={args.n_estimators} lr={args.eta} "
             else:
                 method_str = f"{method} "
+            header_cols = ["dataset"]
+            if args.add_missing_data:
+                header_cols.append("mask")
+            header_cols += [
+                "method",
+                "score_W1_train",
+                "score_W1_test",
+                "R2_real_mean",
+                "R2_fake_mean",
+                "R2_both_mean",
+                "f1_real_mean",
+                "f1_fake_mean",
+                "f1_both_mean",
+                "coverage_train",
+                "coverage_test",
+                "percent_bias",
+                "coverage_rate",
+                "AW",
+                "f1_class",
+                "time_taken",
+                "density_shape",
+                "density_trend",
+                "density_overall",
+                "mle",
+                "c2st",
+            ]
+            for key in ['lin', 'linboost', 'tree', 'treeboost']:
+                header_cols += [
+                    f"R2_real_{key}",
+                    f"R2_fake_{key}",
+                    f"R2_both_{key}",
+                    f"f1_real_{key}",
+                    f"f1_fake_{key}",
+                    f"f1_both_{key}",
+                ]
+            row = []
+            row.append(dataset)
             if args.add_missing_data:
                 mask_str = f"MCAR({args.p} {args.imputation_method}) "
-                csv_str = f"{dataset} , " + f"{mask_str}, " + method_str + f", {score_W1_train[method]} , {score_W1_test[method]} , {R2[method]['real']['mean']} , {R2[method]['fake']['mean']} , {R2[method]['both']['mean']} , {f1[method]['real']['mean']} , {f1[method]['fake']['mean']} , {f1[method]['both']['mean']} , {coverage[method]} , {coverage_test[method]} , {percent_bias[method]} , {coverage_rate[method]} , {AW[method]} , {f1_class[method]}  , {time_taken[method]} "
+                row += [mask_str, method_str]
             else:
-                csv_str = f"{dataset} , " + method_str + f", {score_W1_train[method]} , {score_W1_test[method]} , {R2[method]['real']['mean']} , {R2[method]['fake']['mean']} , {R2[method]['both']['mean']} , {f1[method]['real']['mean']} , {f1[method]['fake']['mean']} , {f1[method]['both']['mean']} , {coverage[method]} , {coverage_test[method]} , {percent_bias[method]} , {coverage_rate[method]} , {AW[method]} , {f1_class[method]}  , {time_taken[method]} "
-            for key in['lin', 'linboost', 'tree', 'treeboost']:
-                csv_str += f", {R2[method]['real'][key]} , {R2[method]['fake'][key]} , {R2[method]['both'][key]} , {f1[method]['real'][key]} , {f1[method]['fake'][key]} , {f1[method]['both'][key]} "
-            csv_str += f"\n"
-            print(csv_str)
-            with open(args.out_path, 'a+') as f: # where we keep track of the results
-                f.write(csv_str)
+                row.append(method_str)
+            row += [
+                score_W1_train[method],
+                score_W1_test[method],
+                R2[method]['real']['mean'],
+                R2[method]['fake']['mean'],
+                R2[method]['both']['mean'],
+                f1[method]['real']['mean'],
+                f1[method]['fake']['mean'],
+                f1[method]['both']['mean'],
+                coverage[method],
+                coverage_test[method],
+                percent_bias[method],
+                coverage_rate[method],
+                AW[method],
+                f1_class[method],
+                time_taken[method],
+                density_val[method]['Shape'],
+                density_val[method]['Trend'],
+                density_val[method]['Overall'],
+                mle_val[method],
+                c2st_val[method],
+            ]
+            for key in ['lin', 'linboost', 'tree', 'treeboost']:
+                row += [
+                    R2[method]['real'][key],
+                    R2[method]['fake'][key],
+                    R2[method]['both'][key],
+                    f1[method]['real'][key],
+                    f1[method]['fake'][key],
+                    f1[method]['both'][key],
+                ]
+            print(row)
+            write_header = (not os.path.isfile(args.out_path)) or os.path.getsize(args.out_path) == 0
+            with open(args.out_path, 'a+', newline='') as f: # where we keep track of the results
+                writer = csv.writer(f)
+                if write_header:
+                    writer.writerow(header_cols)
+                writer.writerow(row)
         method_index_start = 0 #  so we loop back again

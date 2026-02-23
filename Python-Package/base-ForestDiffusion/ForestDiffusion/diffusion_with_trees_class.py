@@ -68,6 +68,8 @@ class ForestDiffusionModel():
     else:
       self.p_in_one = False
     
+    self.diffusion_type = diffusion_type
+
     if diffusion_type == 'mixed-flow':
         self.p_in_one = False # Mixed flow requires separating numerical and categorical models
 
@@ -104,9 +106,19 @@ class ForestDiffusionModel():
                         self.cat_group_dict[idx] = group_id
 
 
-    # min-max normalization, this applies to dummy-coding too to ensure that they become -1 or +1
-    self.scaler = MinMaxScaler(feature_range=(-1, 1))
-    X = self.scaler.fit_transform(X)
+    # For mixed-flow: only scale numerical columns, leave dummy cols as {0,1}
+    # to align with fm_notebook.ipynb where one-hot values stay in {0,1}.
+    if diffusion_type == 'mixed-flow' and len(self.cat_group_dict) > 0:
+      self._num_cols = sorted([i for i in range(X.shape[1]) if i not in self.cat_group_dict])
+      self.scaler = MinMaxScaler(feature_range=(-1, 1))
+      if len(self._num_cols) > 0:
+        X[:, self._num_cols] = self.scaler.fit_transform(X[:, self._num_cols])
+      else:
+        self.scaler = None
+    else:
+      self._num_cols = None
+      self.scaler = MinMaxScaler(feature_range=(-1, 1))
+      X = self.scaler.fit_transform(X)
 
     X1 = X
     self.X_covs = X_covs
@@ -137,7 +149,6 @@ class ForestDiffusionModel():
     if model == 'random_forest' and np.sum(np.isnan(X1)) > 0:
       raise Error('The dataset must not contain missing data in order to use model=random_forest')
 
-    self.diffusion_type = diffusion_type
     self.sde = None
     self.eps = eps
     self.beta_min = beta_min
@@ -146,6 +157,12 @@ class ForestDiffusionModel():
       self.sde = VPSDE(beta_min=self.beta_min, beta_max=self.beta_max, N=n_t)
 
     self.n_batch = n_batch
+    # mixed-flow needs per-dimension classification models for categorical groups.
+    # The iterator path uses xgb.train and returns Booster objects, which do not
+    # expose predict_proba required at sampling time. Force the non-iterator path.
+    if self.diffusion_type == 'mixed-flow' and self.n_batch > 0:
+      print("Warning: mixed-flow requires per-dimension classification models for categorical groups. Forcing n_batch=0.")
+      self.n_batch = 0
     if self.n_batch == 0: 
       if duplicate_K > 1: # we duplicate the data multiple times, so that X0 is k times bigger so we have more room to learn
         X1 = np.tile(X1, (duplicate_K, 1))
@@ -309,13 +326,10 @@ class ForestDiffusionModel():
         group_id = self.cat_group_dict[k]
         if k != group_id:
             return None # Follower, skip training
-        # Leader: Reconstruct labels
         group_cols = self.cat_groups[group_id]
         subset = y_matrix[:, group_cols]
-        # Logic: 0 if all 0, else argmax+1
-        has_one = np.sum(subset, axis=1) > 0.5
-        labels = np.zeros(subset.shape[0], dtype=int)
-        labels[has_one] = np.argmax(subset[has_one], axis=1) + 1
+        # Full one-hot {0,1}: labels = argmax
+        labels = np.argmax(subset, axis=1).astype(int)
         return labels
     return y_matrix[:, k]
 
@@ -329,7 +343,7 @@ class ForestDiffusionModel():
         group_id = self.cat_group_dict[k]
         # Ensure we are training the leader
         if k == group_id:
-            num_classes = len(self.cat_groups[group_id]) + 1
+            num_classes = len(self.cat_groups[group_id])
             if self.model == 'xgboost':
                 out = xgb.XGBClassifier(n_estimators=self.n_estimators, objective='multi:softprob', 
                                       num_class=num_classes, eta=self.eta, max_depth=self.max_depth,
@@ -342,7 +356,7 @@ class ForestDiffusionModel():
                  # Fallback or error? Only xgboost supported for now as per user request context (usually)
                  # But let's support others if possible? RandomForestClassifier?
                  # For now, stick to XGBoost as primary request context implies forest flow mixed loss which used XGB
-                 pass
+                 raise Exception("model value does not exists")
 
     if self.model == 'random_forest':
       out = RandomForestRegressor(n_estimators=self.n_estimators, max_depth=self.max_depth, random_state=self.seed)
@@ -365,37 +379,45 @@ class ForestDiffusionModel():
       out.fit(X_train, y_train)
 
     return out
+
+  def dummify(self, X):
     df = pd.DataFrame(X, columns = [str(i) for i in range(X.shape[1])]) # to Pandas
     df_names_before = df.columns
+    drop = self.diffusion_type != 'mixed-flow'
     for i in self.cat_indexes:
-      df = pd.get_dummies(df, columns=[str(i)], prefix=str(i), dtype='float', drop_first=True)
+      df = pd.get_dummies(df, columns=[str(i)], prefix=str(i), dtype='float', drop_first=drop)
     df_names_after = df.columns
     df = df.to_numpy()
     return df, df_names_before, df_names_after
 
   def unscale(self, X):
-    if self.scaler is not None: # unscale the min-max normalization
-      X = self.scaler.inverse_transform(X)
+    if self.scaler is not None:
+      if self._num_cols is not None:
+        X[:, self._num_cols] = self.scaler.inverse_transform(X[:, self._num_cols])
+      else:
+        X = self.scaler.inverse_transform(X)
     return X
 
-  # Rounding for the categorical variables which are dummy-coded and then remove dummy-coding
   def clean_onehot_data(self, X):
-    if len(self.cat_indexes) > 0: # ex: [5, 3] and X_names_after [gender_a gender_b cartype_a cartype_b cartype_c]
+    if len(self.cat_indexes) > 0:
       X_names_after = copy.deepcopy(self.X_names_after.to_numpy())
-      prefixes = [x.split('_')[0] for x in self.X_names_after if '_' in x] # for all categorical variables, we have prefix ex: ['gender', 'gender']
-      unique_prefixes = np.unique(prefixes) # uniques prefixes
+      prefixes = [x.split('_')[0] for x in self.X_names_after if '_' in x]
+      unique_prefixes = np.unique(prefixes)
       for i in range(len(unique_prefixes)):
         cat_vars_indexes = [unique_prefixes[i] + '_' in my_name for my_name in self.X_names_after]
-        cat_vars_indexes = np.where(cat_vars_indexes)[0] # actual indexes
+        cat_vars_indexes = np.where(cat_vars_indexes)[0]
         cat_vars = X[:, cat_vars_indexes] # [b, c_cat]
-        # dummy variable, so third category is true if all dummies are 0
-        cat_vars = np.concatenate((np.ones((cat_vars.shape[0], 1))*0.5,cat_vars), axis=1)
-        # argmax of -1, -1, 0 is 0; so as long as they are below 0 we choose the implicit-final class
-        max_index = np.argmax(cat_vars, axis=1) # argmax across all the one-hot features (most likely category)
+        if self.diffusion_type == 'mixed-flow':
+          # Full one-hot: argmax directly gives the category index
+          max_index = np.argmax(cat_vars, axis=1)
+        else:
+          # drop_first one-hot: prepend implicit category column
+          cat_vars = np.concatenate((np.ones((cat_vars.shape[0], 1))*0.5, cat_vars), axis=1)
+          max_index = np.argmax(cat_vars, axis=1)
         X[:, cat_vars_indexes[0]] = max_index
-        X_names_after[cat_vars_indexes[0]] = unique_prefixes[i] # gender_a -> gender
-      df = pd.DataFrame(X, columns = X_names_after) # to Pandas
-      df = df[self.X_names_before] # remove all gender_b, gender_c and put everything in the right order
+        X_names_after[cat_vars_indexes[0]] = unique_prefixes[i]
+      df = pd.DataFrame(X, columns = X_names_after)
+      df = df[self.X_names_before]
       X = df.to_numpy()
     return X
 
@@ -463,15 +485,11 @@ class ForestDiffusionModel():
                        else:
                             X_used = X[mask_y[label], :]
                        
-                       # Predict proba
                        probs = model.predict_proba(X_used)
-                       # probs is [N, num_classes], we need probs for classes 1..K
                        group_cols = self.cat_groups[group_id]
-                       
                        for idx, col_idx in enumerate(group_cols):
-                           out[mask_indices, col_idx] = probs[:, idx+1]
+                           out[mask_indices, col_idx] = probs[:, idx]
                    else:
-                       # Numerical
                        out[mask_y[label], k] = self.predict_over_c(X=X[mask_y[label], :], i=i, j=j, k=k, dmat=dmat, X_covs=X_covs_masked)
           else:
               for k in range(self.c):
@@ -539,13 +557,11 @@ class ForestDiffusionModel():
                        else:
                             X_used = X[mask_y[label], :]
                        
-                       # Predict proba
                        probs = model.predict_proba(X_used)
                        group_cols = self.cat_groups[group_id]
                        for idx, col_idx in enumerate(group_cols):
-                           out[mask_indices, col_idx] = probs[:, idx+1]
+                           out[mask_indices, col_idx] = probs[:, idx]
                    else:
-                       # Numerical
                        out[mask_y[label], k] = self.predict_over_c(X=X[mask_y[label], :], i=i, j=j, k=k, dmat=dmat, X_covs=X_covs_masked)
           else:
               for k in range(self.c):
@@ -693,16 +709,24 @@ class ForestDiffusionModel():
 
   # Zero-shot classification using https://diffusion-classifier.github.io/static/docs/DiffusionClassifier.pdf
   # Return the absolute and relative accuracies
+  def _apply_scaler(self, X):
+    """Apply the scaler respecting partial scaling for mixed-flow."""
+    if self.scaler is not None:
+      if self._num_cols is not None:
+        X[:, self._num_cols] = self.scaler.transform(X[:, self._num_cols])
+      else:
+        X = self.scaler.transform(X)
+    return X
+
   def predict(self, X, n_t=None, n_z=None, X_covs=None):
     if n_t is None:
       n_t = self.n_t
     if n_z is None:
       n_z = self.n_z
 
-    # Data transformation (assuming we get the raw data)
     if len(self.cat_indexes) > 0:
-      X, _, _ = self.dummify(X) # dummy-coding for categorical variables
-    X = self.scaler.transform(X)
+      X, _, _ = self.dummify(X)
+    X = self._apply_scaler(X)
 
     most_likely_class_avg, prob_avg = self.zero_shot_classification(X, n_t=n_t, n_z=n_z, X_covs=X_covs)
 
@@ -714,10 +738,9 @@ class ForestDiffusionModel():
     if n_z is None:
       n_z = self.n_z
 
-    # Data transformation (assuming we get the raw data)
     if len(self.cat_indexes) > 0:
-      X, _, _ = self.dummify(X) # dummy-coding for categorical variables
-    X = self.scaler.transform(X)
+      X, _, _ = self.dummify(X)
+    X = self._apply_scaler(X)
 
     most_likely_class_avg, prob_avg = self.zero_shot_classification(X, n_t=n_t, n_z=n_z, X_covs=X_covs)
 

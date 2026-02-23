@@ -34,8 +34,8 @@ def build_data_xt(x0, x1, x_covs=None, n_t=101, diffusion_type='flow', eps=1e-3,
     y = x0.reshape(b, c)
   elif diffusion_type == 'mixed-flow':
     y = x1.reshape(b, c) # The target is the clean data x1
-    # We repeat y for each time step to match X shape
-    y = np.tile(np.expand_dims(y, axis=0), (n_t, 1, 1)).reshape(-1, c)
+    # Do not repeat y, as the training loop handles it by using the same y for all t
+    # y = np.tile(np.expand_dims(y, axis=0), (n_t, 1, 1)).reshape(-1, c)
   else:
     y = x1.reshape(b, c) - x0.reshape(b, c) # [b, c]
     y = np.tile(np.expand_dims(y, axis=0), (n_t, 1, 1)).reshape(-1, c) # Repeat for each time step if needed?
