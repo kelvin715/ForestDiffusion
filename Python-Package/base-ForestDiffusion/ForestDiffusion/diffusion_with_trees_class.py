@@ -47,7 +47,7 @@ class ForestDiffusionModel():
 
     assert isinstance(X, np.ndarray), "Input dataset must be a Numpy array"
     assert len(X.shape)==2, "Input dataset must have two dimensions [n,p]"
-    assert diffusion_type == 'vp' or diffusion_type == 'flow'
+    assert diffusion_type == 'vp' or diffusion_type == 'flow' or diffusion_type == 'mixed-flow'
     if X_covs is not None:
       assert X_covs.shape[0] == X.shape[0]
     np.random.seed(seed)
@@ -67,6 +67,9 @@ class ForestDiffusionModel():
       self.p_in_one = p_in_one # All variables p can be predicted simultaneously
     else:
       self.p_in_one = False
+    
+    if diffusion_type == 'mixed-flow':
+        self.p_in_one = False # Mixed flow requires separating numerical and categorical models
 
     int_indexes = int_indexes + bin_indexes # since we round those, we do not need to dummy-code the binary variables
 
@@ -79,8 +82,27 @@ class ForestDiffusionModel():
 
     self.cat_indexes = cat_indexes
     self.int_indexes = int_indexes
+    
+    # Initialize category groupings
+    self.cat_group_dict = {} # Map from col index to group ID (first col index of the group)
+    self.cat_groups = {} # Map from group ID to list of col indices
+
     if len(self.cat_indexes) > 0:
         X, self.X_names_before, self.X_names_after = self.dummify(X) # dummy-coding for categorical variables
+        
+        # Build category groupings after dummify
+        if diffusion_type == 'mixed-flow':
+            prefixes = [x.split('_')[0] for x in self.X_names_after if '_' in x]
+            unique_prefixes = np.unique(prefixes)
+            for prefix in unique_prefixes:
+                # Find all columns belonging to this prefix
+                group_indices = [i for i, name in enumerate(self.X_names_after) if prefix + '_' in name]
+                if len(group_indices) > 0:
+                    group_id = group_indices[0]
+                    self.cat_groups[group_id] = group_indices
+                    for idx in group_indices:
+                        self.cat_group_dict[idx] = group_id
+
 
     # min-max normalization, this applies to dummy-coding too to ensure that they become -1 or +1
     self.scaler = MinMaxScaler(feature_range=(-1, 1))
@@ -207,10 +229,16 @@ class ForestDiffusionModel():
               if self.n_batch > 0: # Data iterator, no need to duplicate, not make xt yet
                 self.regr[j][i][k] = self.train_iterator(X1_splitted[j], X_covs_splitted[j], t=t_levels[i], dim=k)
               else:
+                target = self.get_train_target(y_train.reshape(self.b*self.duplicate_K, self.c)[self.mask_y[j], :], k)
                 self.regr[j][i][k] = self.train_parallel(
                 X_train.reshape(self.n_t, self.b*self.duplicate_K, self.c_all)[i][self.mask_y[j], :], 
-                y_train.reshape(self.b*self.duplicate_K, self.c)[self.mask_y[j], k]
+                target, k=k
                 )
+                if self.regr[j][i][k] is None and self.diffusion_type == 'mixed-flow' and k in self.cat_group_dict:
+                    # Use leader's model
+                    group_id = self.cat_group_dict[k]
+                    self.regr[j][i][k] = self.regr[j][i][group_id]
+
       else:
         if self.n_batch > 0: # Data iterator, no need to duplicate, not make xt yet
           self.regr = Parallel(n_jobs=self.n_jobs)(delayed(self.train_iterator)(X1_splitted[j], X_covs_splitted[j], t=t_levels[i], dim=k) for i in range(n_steps) for j in self.y_uniques for k in range(self.c))
@@ -218,7 +246,8 @@ class ForestDiffusionModel():
           self.regr = Parallel(n_jobs=self.n_jobs)( # using all cpus
                   delayed(self.train_parallel)(
                     X_train.reshape(self.n_t, self.b*self.duplicate_K, self.c_all)[i][self.mask_y[j], :], 
-                    y_train.reshape(self.b*self.duplicate_K, self.c)[self.mask_y[j], k]
+                    self.get_train_target(y_train.reshape(self.b*self.duplicate_K, self.c)[self.mask_y[j], :], k),
+                    k=k
                     ) for i in range(n_steps) for j in self.y_uniques for k in range(self.c)
                   )
         # Replace fits with doubly loops to make things easier
@@ -227,7 +256,11 @@ class ForestDiffusionModel():
         for i in range(n_steps):
           for j in range(len(self.y_uniques)): 
             for k in range(self.c): 
-              self.regr_[j][i][k] = self.regr[current_i]
+              model = self.regr[current_i]
+              if model is None and self.diffusion_type == 'mixed-flow' and k in self.cat_group_dict:
+                   group_id = self.cat_group_dict[k]
+                   model = self.regr_[j][i][group_id]
+              self.regr_[j][i][k] = model
               current_i += 1
         self.regr = self.regr_
 
@@ -271,7 +304,67 @@ class ForestDiffusionModel():
 
     return out
 
-  def dummify(self, X):
+  def get_train_target(self, y_matrix, k):
+    if self.diffusion_type == 'mixed-flow' and k in self.cat_group_dict:
+        group_id = self.cat_group_dict[k]
+        if k != group_id:
+            return None # Follower, skip training
+        # Leader: Reconstruct labels
+        group_cols = self.cat_groups[group_id]
+        subset = y_matrix[:, group_cols]
+        # Logic: 0 if all 0, else argmax+1
+        has_one = np.sum(subset, axis=1) > 0.5
+        labels = np.zeros(subset.shape[0], dtype=int)
+        labels[has_one] = np.argmax(subset[has_one], axis=1) + 1
+        return labels
+    return y_matrix[:, k]
+
+  def train_parallel(self, X_train, y_train, k=None):
+    
+    if y_train is None:
+        return None
+
+    if self.diffusion_type == 'mixed-flow' and k is not None and k in self.cat_group_dict:
+        # Categorical classification
+        group_id = self.cat_group_dict[k]
+        # Ensure we are training the leader
+        if k == group_id:
+            num_classes = len(self.cat_groups[group_id]) + 1
+            if self.model == 'xgboost':
+                out = xgb.XGBClassifier(n_estimators=self.n_estimators, objective='multi:softprob', 
+                                      num_class=num_classes, eta=self.eta, max_depth=self.max_depth,
+                                      reg_lambda=self.reg_lambda, reg_alpha=self.reg_alpha, 
+                                      subsample=self.subsample, seed=self.seed, tree_method=self.tree_method,
+                                      device='cuda' if self.gpu_hist else 'cpu', **self.xgboost_kwargs)
+                out.fit(X_train, y_train) # y_train should be labels
+                return out
+            else:
+                 # Fallback or error? Only xgboost supported for now as per user request context (usually)
+                 # But let's support others if possible? RandomForestClassifier?
+                 # For now, stick to XGBoost as primary request context implies forest flow mixed loss which used XGB
+                 pass
+
+    if self.model == 'random_forest':
+      out = RandomForestRegressor(n_estimators=self.n_estimators, max_depth=self.max_depth, random_state=self.seed)
+    elif self.model == 'lgbm':
+      out = LGBMRegressor(n_estimators=self.n_estimators, num_leaves=self.num_leaves, learning_rate=0.1, random_state=self.seed, force_col_wise=True)
+    elif self.model == 'catboost':
+      out = CatBoostRegressor(iterations=self.n_estimators, loss_function='RMSE', max_depth=self.max_depth, silent=True,
+        l2_leaf_reg=0.0, random_seed=self.seed) # consider t as a golden feature if t is a variable
+    elif self.model == 'xgboost':
+      out = xgb.XGBRegressor(n_estimators=self.n_estimators, objective='reg:squarederror', eta=self.eta, max_depth=self.max_depth, 
+        reg_lambda=self.reg_lambda, reg_alpha=self.reg_alpha, subsample=self.subsample, seed=self.seed, tree_method=self.tree_method, 
+        device='cuda' if self.gpu_hist else 'cpu', **self.xgboost_kwargs)
+    else:
+      raise Exception("model value does not exists")
+
+    if len(y_train.shape) == 1:
+      y_no_miss = ~np.isnan(y_train)
+      out.fit(X_train[y_no_miss, :], y_train[y_no_miss])
+    else:
+      out.fit(X_train, y_train)
+
+    return out
     df = pd.DataFrame(X, columns = [str(i) for i in range(X.shape[1])]) # to Pandas
     df_names_before = df.columns
     for i in self.cat_indexes:
@@ -353,12 +446,44 @@ class ForestDiffusionModel():
         if self.p_in_one:
           out[mask_y[label], :] = self.predict_over_c(X=X[mask_y[label], :], i=i, j=j, k=None, dmat=dmat, X_covs=X_covs_masked)
         else:
-          for k in range(self.c):
-            out[mask_y[label], k] = self.predict_over_c(X=X[mask_y[label], :], i=i, j=j, k=k, dmat=dmat, X_covs=X_covs_masked)
+          if self.diffusion_type == 'mixed-flow':
+               processed_groups = set()
+               mask_indices = np.where(mask_y[label])[0]
+               for k in range(self.c):
+                   if k in self.cat_group_dict:
+                       group_id = self.cat_group_dict[k]
+                       if group_id in processed_groups:
+                           continue
+                       processed_groups.add(group_id)
+                       # Predict for the whole group
+                       model = self.regr[j][i][group_id]
+                       # Prepare X
+                       if X_covs_masked is not None:
+                            X_used = np.concatenate((X[mask_y[label], :], X_covs_masked), axis=1)
+                       else:
+                            X_used = X[mask_y[label], :]
+                       
+                       # Predict proba
+                       probs = model.predict_proba(X_used)
+                       # probs is [N, num_classes], we need probs for classes 1..K
+                       group_cols = self.cat_groups[group_id]
+                       
+                       for idx, col_idx in enumerate(group_cols):
+                           out[mask_indices, col_idx] = probs[:, idx+1]
+                   else:
+                       # Numerical
+                       out[mask_y[label], k] = self.predict_over_c(X=X[mask_y[label], :], i=i, j=j, k=k, dmat=dmat, X_covs=X_covs_masked)
+          else:
+              for k in range(self.c):
+                out[mask_y[label], k] = self.predict_over_c(X=X[mask_y[label], :], i=i, j=j, k=k, dmat=dmat, X_covs=X_covs_masked)
 
     if self.diffusion_type == 'vp':
       alpha_, sigma_ = self.sde.marginal_prob_coef(X, t)
       out = - out / sigma_
+    elif self.diffusion_type == 'mixed-flow':
+       sigma_min = 1e-4
+       denom = 1 - (1 - sigma_min) * t
+       out = (out - (1 - sigma_min) * X) / denom
     if unflatten:
       out = out.reshape(-1) # [b*c]
     return out
@@ -377,6 +502,9 @@ class ForestDiffusionModel():
       assert sde is not None
       mean, std = sde.marginal_prob(X_miss, t)
       X = mean + std*y0 # following the sde
+    elif self.diffusion_type == 'mixed-flow':
+      sigma_min = 1e-4
+      X = (1 - (1 - sigma_min) * t) * y0 + t * X_miss
     else:
       X = t*X_miss + (1-t)*y0 # interpolation based on ground-truth for non-missing data
     mask_miss = np.isnan(X_miss)
@@ -394,12 +522,42 @@ class ForestDiffusionModel():
         if self.p_in_one:
           out[mask_y[label], :] = self.predict_over_c(X=X[mask_y[label], :], i=i, j=j, k=None, dmat=dmat, X_covs=X_covs_masked)
         else:
-          for k in range(self.c):
-            out[mask_y[label], k] = self.predict_over_c(X=X[mask_y[label], :], i=i, j=j, k=k, dmat=dmat, X_covs=X_covs_masked)
+          if self.diffusion_type == 'mixed-flow':
+               processed_groups = set()
+               mask_indices = np.where(mask_y[label])[0]
+               for k in range(self.c):
+                   if k in self.cat_group_dict:
+                       group_id = self.cat_group_dict[k]
+                       if group_id in processed_groups:
+                           continue
+                       processed_groups.add(group_id)
+                       # Predict for the whole group
+                       model = self.regr[j][i][group_id]
+                       # Prepare X
+                       if X_covs_masked is not None:
+                            X_used = np.concatenate((X[mask_y[label], :], X_covs_masked), axis=1)
+                       else:
+                            X_used = X[mask_y[label], :]
+                       
+                       # Predict proba
+                       probs = model.predict_proba(X_used)
+                       group_cols = self.cat_groups[group_id]
+                       for idx, col_idx in enumerate(group_cols):
+                           out[mask_indices, col_idx] = probs[:, idx+1]
+                   else:
+                       # Numerical
+                       out[mask_y[label], k] = self.predict_over_c(X=X[mask_y[label], :], i=i, j=j, k=k, dmat=dmat, X_covs=X_covs_masked)
+          else:
+              for k in range(self.c):
+                out[mask_y[label], k] = self.predict_over_c(X=X[mask_y[label], :], i=i, j=j, k=k, dmat=dmat, X_covs=X_covs_masked)
 
     if self.diffusion_type == 'vp':
       alpha_, sigma_ = self.sde.marginal_prob_coef(X, t)
       out = - out / sigma_
+    elif self.diffusion_type == 'mixed-flow':
+       sigma_min = 1e-4
+       denom = 1 - (1 - sigma_min) * t
+       out = (out - (1 - sigma_min) * X) / denom
 
     out = out[mask_miss] # only return the missing data output
     out = out.reshape(-1) # [-1]
@@ -517,6 +675,8 @@ class ForestDiffusionModel():
           pred_ = self.my_model(t=t, y=xt, mask_y=mask_y, unflatten=False, dmat=self.n_batch > 0, X_covs=X_covs)
           if self.diffusion_type == 'flow':
             x0 = x - pred_ # x0 = x1 - (x1 - x0)
+          elif self.diffusion_type == 'mixed-flow':
+            x0 = xt - t * pred_
           elif self.diffusion_type == 'vp':
             x0 = pred_ # x0
           L2_dist_ += [np.expand_dims(np.sum((x0 - y0) ** 2, axis=1), axis=0)] # [1, b]

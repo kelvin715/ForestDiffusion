@@ -19,14 +19,16 @@ from utils import *
 from data_loaders import dataset_loader
 from sklearn.model_selection import train_test_split
 import argparse
+
+import sys
+import os
+sys.path.append(os.path.join(os.getcwd(), 'Python-Package/base-ForestDiffusion'))
+
 from ForestDiffusion import ForestDiffusionModel
 from metrics import test_on_multiple_models, compute_coverage, test_imputation_regression, test_on_multiple_models_classifier
 from STaSy.stasy import STaSy_model
 from sdv.single_table import GaussianCopulaSynthesizer, TVAESynthesizer, CTGANSynthesizer, CopulaGANSynthesizer
 from sdv.metadata import SingleTableMetadata
-from CTABGANPlus.ctabgan import CTABGAN
-from TabDDPM.scripts.pipeline import main_fn as tab_ddpm_fn
-from TabDDPM.lib.dataset_prep import my_data_prep
 import miceforest as mf
 from missforest import MissForest
 
@@ -340,6 +342,7 @@ if __name__ == "__main__":
                         Xy_fake = np.concatenate((Xy_fake, Xy_fake_new), axis=0) # [ngen, n, p]
 
                 elif method == 'CTABGAN': # CTABGAN+
+                    from CTABGANPlus.ctabgan import CTABGAN
 
                     # Convert to Pandas
                     data_pd = pd.DataFrame(Xy_train_used, columns = [str(i) for i in range(Xy_train_used.shape[1])])
@@ -368,6 +371,8 @@ if __name__ == "__main__":
                     Xy_fake = Xy_fake.reshape(args.ngen, Xy_train_used.shape[0], Xy_train_used.shape[1]) # [ngen, n, p]
 
                 elif method == 'TabDDPM': # TabDDPM
+                    from TabDDPM.scripts.pipeline import main_fn as tab_ddpm_fn
+                    from TabDDPM.lib.dataset_prep import my_data_prep
 
                     # Prep the data, will be save in the format that TabDDPM wants
                     columns = [str(i) for i in range(Xy_train_used.shape[1])]
