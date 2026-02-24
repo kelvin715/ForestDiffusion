@@ -5,8 +5,6 @@ import copy
 import xgboost as xgb
 from functools import partial
 from sklearn.ensemble import RandomForestRegressor
-from lightgbm import LGBMRegressor
-from catboost import CatBoostRegressor
 from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
 from ForestDiffusion.utils.utils_diffusion import build_data_xt, euler_solve, IterForDMatrix, get_xt
@@ -98,7 +96,7 @@ class ForestDiffusionModel():
             unique_prefixes = np.unique(prefixes)
             for prefix in unique_prefixes:
                 # Find all columns belonging to this prefix
-                group_indices = [i for i, name in enumerate(self.X_names_after) if prefix + '_' in name]
+                group_indices = [i for i, name in enumerate(self.X_names_after) if name.startswith(prefix + '_')]
                 if len(group_indices) > 0:
                     group_id = group_indices[0]
                     self.cat_groups[group_id] = group_indices
@@ -302,8 +300,10 @@ class ForestDiffusionModel():
     if self.model == 'random_forest':
       out = RandomForestRegressor(n_estimators=self.n_estimators, max_depth=self.max_depth, random_state=self.seed)
     elif self.model == 'lgbm':
+      from lightgbm import LGBMRegressor
       out = LGBMRegressor(n_estimators=self.n_estimators, num_leaves=self.num_leaves, learning_rate=0.1, random_state=self.seed, force_col_wise=True)
     elif self.model == 'catboost':
+      from catboost import CatBoostRegressor
       out = CatBoostRegressor(iterations=self.n_estimators, loss_function='RMSE', max_depth=self.max_depth, silent=True,
         l2_leaf_reg=0.0, random_seed=self.seed) # consider t as a golden feature if t is a variable
     elif self.model == 'xgboost':
@@ -404,7 +404,7 @@ class ForestDiffusionModel():
       prefixes = [x.split('_')[0] for x in self.X_names_after if '_' in x]
       unique_prefixes = np.unique(prefixes)
       for i in range(len(unique_prefixes)):
-        cat_vars_indexes = [unique_prefixes[i] + '_' in my_name for my_name in self.X_names_after]
+        cat_vars_indexes = [my_name.startswith(unique_prefixes[i] + '_') for my_name in self.X_names_after]
         cat_vars_indexes = np.where(cat_vars_indexes)[0]
         cat_vars = X[:, cat_vars_indexes] # [b, c_cat]
         if self.diffusion_type == 'mixed-flow':

@@ -17,7 +17,7 @@ DATASETS = ['iris', 'wine', 'california', 'parkinsons', \
             'blood_transfusion', 'breast_cancer_diagnostic', \
             'connectionist_bench_vowel', 'concrete_slump', \
             'wine_quality_red', 'wine_quality_white', \
-            'bean', 'tictactoe','congress','car', 'higgs']
+            'bean', 'tictactoe','congress','car', 'adult', 'higgs']
 
 def dataset_loader(dataset):
     """
@@ -134,11 +134,16 @@ def dataset_loader(dataset):
         elif dataset == 'congress': # all categorical
             my_data = fetch_congress()
             cat_x = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-            cat_y = True
+            bin_y = True
         elif dataset == 'car': # all categorical
             my_data = fetch_car()
             cat_x = [0,1,2,3,4,5]
             cat_y = True
+        elif dataset == 'adult':
+            my_data = fetch_adult()
+            cat_x = [1,3,5,6,7,8,9,13]
+            int_x = [0,2,4,10,11,12]
+            bin_y = True
         else:
             raise Exception('dataset does not exists')
         X, y = my_data['data'], my_data['target']
@@ -512,6 +517,30 @@ def fetch_car():
         for i in range(Xy['data'].shape[1]):
             Xy['data'][:, i] = pd.factorize(df.values[:, i])[0]
         Xy['target'] =  pd.factorize(df.values[:, -1])[0]
+
+    return Xy
+
+def fetch_adult():
+    if not os.path.isdir('datasets/adult'):
+        os.mkdir('datasets/adult')
+        url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data'
+        wget.download(url, out='datasets/adult/')
+
+    with open('datasets/adult/adult.data', 'rb') as f:
+        df = pd.read_csv(f, delimiter=',', header=None, skipinitialspace=True)
+        # TODO: Do we need to replace '?' with np.nan and dropna?
+        # df = df.replace('?', np.nan).dropna()
+
+        # sample 200 rows
+        # df = df.sample(200)
+
+        categorical_columns = [1,3,5,6,7,8,9,13]
+        for col in categorical_columns:
+            df[col] = pd.factorize(df[col])[0]
+
+        Xy = {}
+        Xy['data'] = df.values[:, :-1].astype('float')
+        Xy['target'] = pd.factorize(df.values[:, -1])[0] # str to numeric
 
     return Xy
 

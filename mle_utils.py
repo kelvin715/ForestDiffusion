@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import os
 from xgboost import XGBClassifier, XGBRegressor
 from sklearn.ensemble import AdaBoostClassifier, RandomForestClassifier, RandomForestRegressor
 from sklearn.linear_model import LogisticRegression, LinearRegression
@@ -14,8 +15,34 @@ from sklearn.exceptions import ConvergenceWarning
 import logging
 from tqdm import tqdm
 
+try:
+    import cupy as cp
+except Exception:
+    cp = None
+
 CATEGORICAL = "categorical"
 CONTINUOUS = "continuous"
+_XGB_DEVICE_GRID = {"tree_method": ["hist"], "device": ["cuda"]}
+
+
+def _uses_xgb_gpu(param):
+    return param.get("device") == "cuda" or param.get("tree_method") == "gpu_hist"
+
+
+def _prepare_predict_input(x, use_gpu):
+    if not use_gpu:
+        return x
+    if cp is None:
+        raise RuntimeError(
+            "XGBoost GPU prediction requires cupy input, but cupy is unavailable."
+        )
+    return cp.asarray(x)
+
+
+def _to_numpy(x):
+    if cp is not None and isinstance(x, cp.ndarray):
+        return cp.asnumpy(x)
+    return np.asarray(x)
 
 _MODELS = {
     'binclass': [ # 184
@@ -70,7 +97,7 @@ _MODELS = {
                  'gamma': [0.0, 1.0],
                  'objective': ['binary:logistic'],
                  'nthread': [-1],
-                 'tree_method': ['hist']
+                 **_XGB_DEVICE_GRID
             },
         }
 
@@ -113,7 +140,7 @@ _MODELS = {
                 #  'objective': ['binary:logistic'],
                  'objective': ['multi:softprob'],
                  'nthread': [-1],
-                 'tree_method': ['hist']
+                 **_XGB_DEVICE_GRID
             }
         }
 
@@ -139,7 +166,7 @@ _MODELS = {
                  'gamma': [0.0, 1.0],
                  'objective': ['reg:linear'],
                  'nthread': [-1],
-                 'tree_method': ['hist']
+                 **_XGB_DEVICE_GRID
             }
         },
         # {
@@ -358,6 +385,9 @@ def _evaluate_multi_classification(train, test, info, val=None):
         unique_labels = np.unique(y_trains)
 
         param_set = list(ParameterGrid(model_kwargs))
+        use_gpu_pred = len(param_set) > 0 and _uses_xgb_gpu(param_set[0])
+        x_valid_pred_input = _prepare_predict_input(x_valid, use_gpu_pred)
+        x_test_pred_input = _prepare_predict_input(x_test, use_gpu_pred)
 
         results = []
         for param in tqdm(param_set):
@@ -365,15 +395,16 @@ def _evaluate_multi_classification(train, test, info, val=None):
 
             try:
                 model.fit(x_trains, y_trains)
-            except:
-                pass 
+            except Exception as e:
+                print(f"[MLE FIT ERROR] model={model_repr}, param={param}, stage=valid, error={repr(e)}")
+                raise
 
             if len(unique_labels) != len(np.unique(y_valid)):
                 pred = [unique_labels[0]] * len(x_valid)
                 pred_prob = np.array([1.] * len(x_valid))
             else:
-                pred = model.predict(x_valid)
-                pred_prob = model.predict_proba(x_valid)
+                pred = _to_numpy(model.predict(x_valid_pred_input))
+                pred_prob = _to_numpy(model.predict_proba(x_valid_pred_input))
 
             macro_f1 = f1_score(y_valid, pred, average='macro')
             weighted_f1 = _weighted_f1(y_valid, pred)
@@ -429,15 +460,16 @@ def _evaluate_multi_classification(train, test, info, val=None):
             
             try:
                 best_model.fit(x_train, y_train)
-            except:
-                pass 
+            except Exception as e:
+                print(f"[MLE FIT ERROR] model={model_repr}, stage=test, error={repr(e)}")
+                raise
 
             if len(unique_labels) != len(np.unique(y_test)):
                 pred = [unique_labels[0]] * len(x_test)
                 pred_prob = np.array([1.] * len(x_test))
             else:
-                pred = best_model.predict(x_test)
-                pred_prob = best_model.predict_proba(x_test)
+                pred = _to_numpy(best_model.predict(x_test_pred_input))
+                pred_prob = _to_numpy(best_model.predict_proba(x_test_pred_input))
 
             macro_f1 = f1_score(y_test, pred, average='macro')
             weighted_f1 = _weighted_f1(y_test, pred)
@@ -508,6 +540,9 @@ def _evaluate_binary_classification(train, test, info, val=None):
         unique_labels = np.unique(y_trains)
 
         param_set = list(ParameterGrid(model_kwargs))
+        use_gpu_pred = len(param_set) > 0 and _uses_xgb_gpu(param_set[0])
+        x_valid_pred_input = _prepare_predict_input(x_valid, use_gpu_pred)
+        x_test_pred_input = _prepare_predict_input(x_test, use_gpu_pred)
 
         results = []
         for param in tqdm(param_set):
@@ -515,15 +550,16 @@ def _evaluate_binary_classification(train, test, info, val=None):
 
             try:
                 model.fit(x_trains, y_trains)
-            except ValueError:
-                pass
+            except Exception as e:
+                print(f"[MLE FIT ERROR] model={model_repr}, param={param}, stage=valid, error={repr(e)}")
+                raise
 
             if len(unique_labels) == 1:
                 pred = [unique_labels[0]] * len(x_valid)
                 pred_prob = np.array([1.] * len(x_valid))
             else:
-                pred = model.predict(x_valid)
-                pred_prob = model.predict_proba(x_valid)
+                pred = _to_numpy(model.predict(x_valid_pred_input))
+                pred_prob = _to_numpy(model.predict_proba(x_valid_pred_input))
 
             binary_f1 = f1_score(y_valid, pred, average='binary')
             weighted_f1 = _weighted_f1(y_valid, pred)
@@ -582,8 +618,8 @@ def _evaluate_binary_classification(train, test, info, val=None):
                 pred = [unique_labels[0]] * len(x_test)
                 pred_prob = np.array([1.] * len(x_test))
             else:
-                pred = best_model.predict(x_test)
-                pred_prob = best_model.predict_proba(x_test)
+                pred = _to_numpy(best_model.predict(x_test_pred_input))
+                pred_prob = _to_numpy(best_model.predict_proba(x_test_pred_input))
 
             binary_f1 = f1_score(y_test, pred, average='binary')
             weighted_f1 = _weighted_f1(y_test, pred)
@@ -665,12 +701,15 @@ def _evaluate_regression(train, test, info, val=None):
         model_repr = model_class.__name__
 
         param_set = list(ParameterGrid(model_kwargs))
+        use_gpu_pred = len(param_set) > 0 and _uses_xgb_gpu(param_set[0])
+        x_valid_pred_input = _prepare_predict_input(x_valid, use_gpu_pred)
+        x_test_pred_input = _prepare_predict_input(x_test, use_gpu_pred)
 
         results = []
         for param in tqdm(param_set):
             model = model_class(**param)
             model.fit(x_trains, y_trains)
-            pred = model.predict(x_valid)
+            pred = _to_numpy(model.predict(x_valid_pred_input))
 
             r2 = r2_score(y_valid, pred)
             explained_variance = explained_variance_score(y_valid, pred)
@@ -704,7 +743,7 @@ def _evaluate_regression(train, test, info, val=None):
             x_train, y_train = x_trains, y_trains
             
             best_model.fit(x_train, y_train)
-            pred = best_model.predict(x_test)
+            pred = _to_numpy(best_model.predict(x_test_pred_input))
 
             r2 = r2_score(y_test, pred)
             explained_variance = explained_variance_score(y_test, pred)

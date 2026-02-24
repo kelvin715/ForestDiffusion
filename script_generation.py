@@ -58,7 +58,9 @@ parser.add_argument('--ngen', type=int, default=5,
                     help='number of generations per method')
 parser.add_argument('--n_tries', type=int, default=1,
                     help='number of models trained with different seeds in the metrics')
-parser.add_argument('--datasets', nargs='+', type=str, default=['iris', 'wine', 'parkinsons', 'climate_model_crashes', 'concrete_compression', 'yacht_hydrodynamics', 'airfoil_self_noise', 'connectionist_bench_sonar', 'ionosphere', 'qsar_biodegradation', 'seeds', 'glass', 'ecoli', 'yeast', 'libras', 'planning_relax', 'blood_transfusion', 'breast_cancer_diagnostic', 'connectionist_bench_vowel', 'concrete_slump', 'wine_quality_red', 'wine_quality_white', 'california', 'bean', 'tictactoe','congress','car'],
+# parser.add_argument('--datasets', nargs='+', type=str, default=['iris', 'wine', 'parkinsons', 'climate_model_crashes', 'concrete_compression', 'yacht_hydrodynamics', 'airfoil_self_noise', 'connectionist_bench_sonar', 'ionosphere', 'qsar_biodegradation', 'seeds', 'glass', 'ecoli', 'yeast', 'libras', 'planning_relax', 'blood_transfusion', 'breast_cancer_diagnostic', 'connectionist_bench_vowel', 'concrete_slump', 'wine_quality_red', 'wine_quality_white', 'california', 'bean', 'tictactoe','congress','car'],
+#                     help='datasets on which to run the experiments')
+parser.add_argument('--datasets', nargs='+', type=str, default=['tictactoe', 'congress', 'car'],
                     help='datasets on which to run the experiments')
 
 # Setting for Missingness if used
@@ -522,6 +524,8 @@ if __name__ == "__main__":
                     # After these transformations, taking the L1 (City-block / Manhattan distance) norm distance will give the Gower distance
                     Xy_train_scaled, Xy_fake_scaled, _, _, _ = minmax_scale_dummy(Xy_train, Xy_fake_i, cat_indexes, divide_by=2)
                     _, Xy_test_scaled, _, _, _ = minmax_scale_dummy(Xy_train, Xy_test, cat_indexes, divide_by=2)
+
+                    assert Xy_train_scaled.shape[1] == Xy_fake_scaled.shape[1] == Xy_test_scaled.shape[1], f"Xy_train_scaled.shape: {Xy_train_scaled.shape}, Xy_fake_scaled.shape: {Xy_fake_scaled.shape}, Xy_test_scaled.shape: {Xy_test_scaled.shape}"
 
                     # Wasserstein-1 based on L1 cost (after scaling)
                     if Xy_train.shape[0] < OTLIM:

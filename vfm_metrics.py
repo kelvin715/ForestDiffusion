@@ -33,8 +33,8 @@ class TabMetrics(object):
     
     def evaluate_density(self, syn_data):
         real_data = self.real_data.copy()
-        real_data.columns = range(len(real_data.columns))
-        syn_data.columns = range(len(syn_data.columns))
+        real_data.columns = [str(i) for i in range(len(real_data.columns))]
+        syn_data.columns = [str(i) for i in range(len(syn_data.columns))]
         
         info = deepcopy(self.info)
         
@@ -136,8 +136,8 @@ class TabMetrics(object):
         info = deepcopy(self.info)
         real_data = self.real_data.copy()
 
-        real_data.columns = range(len(real_data.columns))
-        syn_data.columns = range(len(syn_data.columns))
+        real_data.columns = [str(i) for i in range(len(real_data.columns))]
+        syn_data.columns = [str(i) for i in range(len(syn_data.columns))]
 
         new_real_data, new_syn_data, metadata = reorder(real_data, syn_data, info)
 
@@ -172,17 +172,17 @@ def reorder(real_data, syn_data, info):
     else:
         cat_col_idx += target_col_idx
 
-    real_num_data = real_data[num_col_idx]
-    real_cat_data = real_data[cat_col_idx]
+    real_num_data = real_data[[str(i) for i in num_col_idx]]
+    real_cat_data = real_data[[str(i) for i in cat_col_idx]]
 
     new_real_data = pd.concat([real_num_data, real_cat_data], axis=1)
-    new_real_data.columns = range(len(new_real_data.columns))
+    new_real_data.columns = [str(i) for i in range(len(new_real_data.columns))]
 
-    syn_num_data = syn_data[num_col_idx]
-    syn_cat_data = syn_data[cat_col_idx]
+    syn_num_data = syn_data[[str(i) for i in num_col_idx]]
+    syn_cat_data = syn_data[[str(i) for i in cat_col_idx]]
     
     new_syn_data = pd.concat([syn_num_data, syn_cat_data], axis=1)
-    new_syn_data.columns = range(len(new_syn_data.columns))
+    new_syn_data.columns = [str(i) for i in range(len(new_syn_data.columns))]
 
     
     metadata = deepcopy(info['metadata'])
@@ -199,9 +199,9 @@ def reorder(real_data, syn_data, info):
             # Map back to original column info
             original_idx = num_col_idx[i]
             # metadata['columns'][i] = columns[str(original_idx)] # Assuming columns keyed by str(idx)
-            metadata['columns'][i] = columns.get(str(original_idx)) or columns.get(original_idx)
+            metadata['columns'][str(i)] = columns.get(str(original_idx)) or columns.get(original_idx)
         else:
             original_idx = cat_col_idx[i-len(num_col_idx)]
-            metadata['columns'][i] = columns.get(str(original_idx)) or columns.get(original_idx)
+            metadata['columns'][str(i)] = columns.get(str(original_idx)) or columns.get(original_idx)
     
     return new_real_data, new_syn_data, metadata

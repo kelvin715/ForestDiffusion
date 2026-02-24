@@ -1,0 +1,599 @@
+/usr/local/lib/python3.10/dist-packages/joblib/externals/loky/backend/resource_tracker.py:314: UserWarning: resource_tracker: There appear to be 2 leaked file objects to clean up at shutdown
+  warnings.warn(
+2026-02-24 06:29:09.590977: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-24 06:29:09.590978: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-24 06:29:09.633740: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-24 06:29:09.633752: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+/usr/local/lib/python3.10/dist-packages/dask/dataframe/_pyarrow_compat.py:17: FutureWarning:
+
+Minimal version of pyarrow will soon be increased to 14.0.1. You are using 14.0.1.dev0+gba5374836.d20240125. Please consider upgrading.
+
+/usr/local/lib/python3.10/dist-packages/dask/dataframe/_pyarrow_compat.py:17: FutureWarning:
+
+Minimal version of pyarrow will soon be increased to 14.0.1. You are using 14.0.1.dev0+gba5374836.d20240125. Please consider upgrading.
+
+adult
+method=forest_diffusion
+0
+adult
+method=forest_diffusion
+0
+joblib.externals.loky.process_executor._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/joblib/externals/loky/backend/queues.py", line 159, in _feed
+    obj_ = dumps(obj, reducers=reducers)
+  File "/usr/local/lib/python3.10/dist-packages/joblib/externals/loky/backend/reduction.py", line 215, in dumps
+    dump(obj, buf, reducers=reducers, protocol=protocol)
+  File "/usr/local/lib/python3.10/dist-packages/joblib/externals/loky/backend/reduction.py", line 208, in dump
+    _LokyPickler(file, reducers=reducers, protocol=protocol).dump(obj)
+  File "/usr/local/lib/python3.10/dist-packages/joblib/externals/cloudpickle/cloudpickle_fast.py", line 632, in dump
+    return Pickler.dump(self, obj)
+  File "/usr/local/lib/python3.10/dist-packages/joblib/_memmapping_reducer.py", line 446, in __call__
+    for dumped_filename in dump(a, filename):
+  File "/usr/local/lib/python3.10/dist-packages/joblib/numpy_pickle.py", line 553, in dump
+    NumpyPickler(f, protocol=protocol).dump(value)
+  File "/usr/lib/python3.10/pickle.py", line 487, in dump
+    self.save(obj)
+  File "/usr/local/lib/python3.10/dist-packages/joblib/numpy_pickle.py", line 352, in save
+    wrapper.write_array(obj, self)
+  File "/usr/local/lib/python3.10/dist-packages/joblib/numpy_pickle.py", line 134, in write_array
+    pickler.file_handle.write(chunk.tobytes('C'))
+OSError: [Errno 28] No space left on device
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/proj-vertical-llms-pvc/users/zhihan/tabular_gen/ForestDiffusion/script_generation.py", line 432, in <module>
+    forest_model = ForestDiffusionModel(X=Xy_train_used,
+  File "/proj-vertical-llms-pvc/users/zhihan/tabular_gen/ForestDiffusion/Python-Package/base-ForestDiffusion/ForestDiffusion/diffusion_with_trees_class.py", line 261, in __init__
+    self.regr = Parallel(n_jobs=self.n_jobs)( # using all cpus
+  File "/usr/local/lib/python3.10/dist-packages/joblib/parallel.py", line 1952, in __call__
+    return output if self.return_generator else list(output)
+  File "/usr/local/lib/python3.10/dist-packages/joblib/parallel.py", line 1595, in _get_outputs
+    yield from self._retrieve()
+  File "/usr/local/lib/python3.10/dist-packages/joblib/parallel.py", line 1699, in _retrieve
+    self._raise_error_fast()
+  File "/usr/local/lib/python3.10/dist-packages/joblib/parallel.py", line 1734, in _raise_error_fast
+    error_job.get_result(self.timeout)
+  File "/usr/local/lib/python3.10/dist-packages/joblib/parallel.py", line 736, in get_result
+    return self._return_or_raise()
+  File "/usr/local/lib/python3.10/dist-packages/joblib/parallel.py", line 754, in _return_or_raise
+    raise self._result
+_pickle.PicklingError: Could not pickle the task to send it to the workers.
+Evaluating density
+Generating report ...
+
+
+|          | 0/15 [00:00<?, ?it/s]|
+(1/2) Evaluating Column Shapes: |          | 0/15 [00:00<?, ?it/s]|
+(1/2) Evaluating Column Shapes: |██████████| 15/15 [00:00<00:00, 197.27it/s]|
+Column Shapes Score: 86.51%
+
+
+|          | 0/105 [00:00<?, ?it/s]|
+(2/2) Evaluating Column Pair Trends: |          | 0/105 [00:00<?, ?it/s]|
+(2/2) Evaluating Column Pair Trends: |█▏        | 13/105 [00:00<00:00, 93.38it/s]|
+(2/2) Evaluating Column Pair Trends: |██▏       | 23/105 [00:00<00:00, 89.32it/s]|
+(2/2) Evaluating Column Pair Trends: |███       | 32/105 [00:00<00:00, 86.44it/s]|
+(2/2) Evaluating Column Pair Trends: |███▉      | 41/105 [00:00<00:00, 69.59it/s]|
+(2/2) Evaluating Column Pair Trends: |████▊     | 51/105 [00:00<00:00, 77.20it/s]|
+(2/2) Evaluating Column Pair Trends: |█████▉    | 62/105 [00:00<00:00, 85.87it/s]|
+(2/2) Evaluating Column Pair Trends: |██████▊   | 72/105 [00:00<00:00, 89.88it/s]|
+(2/2) Evaluating Column Pair Trends: |█████████▉| 104/105 [00:00<00:00, 156.73it/s]|
+(2/2) Evaluating Column Pair Trends: |██████████| 105/105 [00:00<00:00, 110.31it/s]|
+Column Pair Trends Score: 89.54%
+
+Overall Score (Average): 88.02%
+
+Generating report ...
+
+
+|          | 0/15 [00:00<?, ?it/s]|
+(1/2) Evaluating Data Validity: |          | 0/15 [00:00<?, ?it/s]|
+(1/2) Evaluating Data Validity: |██████████| 15/15 [00:00<00:00, 1158.28it/s]|
+Data Validity Score: 100.0%
+
+
+|          | 0/1 [00:00<?, ?it/s]|
+(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|
+(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 482.55it/s]|
+Data Structure Score: 100.0%
+
+Overall Score (Average): 100.0%
+
+Evaluating mle
+
+  0%|          | 0/36 [00:00<?, ?it/s]
+  3%|▎         | 1/36 [00:00<00:19,  1.80it/s]
+  6%|▌         | 2/36 [00:02<00:43,  1.28s/it]
+  8%|▊         | 3/36 [00:05<01:15,  2.29s/it]
+ 11%|█         | 4/36 [00:06<00:50,  1.57s/it]
+ 14%|█▍        | 5/36 [00:08<00:51,  1.65s/it]
+ 17%|█▋        | 6/36 [00:11<01:08,  2.27s/it]
+ 19%|█▉        | 7/36 [00:12<00:52,  1.80s/it]
+ 22%|██▏       | 8/36 [00:15<01:06,  2.36s/it]
+ 25%|██▌       | 9/36 [00:22<01:42,  3.80s/it]
+ 28%|██▊       | 10/36 [00:23<01:14,  2.87s/it]
+ 31%|███       | 11/36 [00:26<01:14,  2.97s/it]
+ 33%|███▎      | 12/36 [00:33<01:34,  3.94s/it]
+ 36%|███▌      | 13/36 [00:34<01:14,  3.24s/it]
+ 39%|███▉      | 14/36 [00:42<01:38,  4.48s/it]
+ 42%|████▏     | 15/36 [00:56<02:34,  7.36s/it]
+ 44%|████▍     | 16/36 [00:57<01:50,  5.53s/it]
+ 47%|████▋     | 17/36 [01:03<01:46,  5.58s/it]
+ 50%|█████     | 18/36 [01:14<02:10,  7.24s/it]
+ 53%|█████▎    | 19/36 [01:14<01:28,  5.20s/it]
+ 56%|█████▌    | 20/36 [01:16<01:05,  4.12s/it]
+ 58%|█████▊    | 21/36 [01:18<00:53,  3.58s/it]
+ 61%|██████    | 22/36 [01:18<00:36,  2.63s/it]
+ 64%|██████▍   | 23/36 [01:20<00:30,  2.31s/it]
+ 67%|██████▋   | 24/36 [01:22<00:27,  2.31s/it]
+ 69%|██████▉   | 25/36 [01:23<00:20,  1.86s/it]
+ 72%|███████▏  | 26/36 [01:25<00:19,  1.91s/it]
+ 75%|███████▌  | 27/36 [01:28<00:19,  2.17s/it]
+ 78%|███████▊  | 28/36 [01:29<00:13,  1.75s/it]
+ 81%|████████  | 29/36 [01:31<00:12,  1.85s/it]
+ 83%|████████▎ | 30/36 [01:34<00:12,  2.14s/it]
+ 86%|████████▌ | 31/36 [01:35<00:09,  1.97s/it]
+ 89%|████████▉ | 32/36 [01:38<00:09,  2.34s/it]
+ 92%|█████████▏| 33/36 [01:42<00:08,  2.81s/it]
+ 94%|█████████▍| 34/36 [01:44<00:04,  2.34s/it]
+ 97%|█████████▋| 35/36 [01:47<00:02,  2.55s/it]
+100%|██████████| 36/36 [01:50<00:00,  2.92s/it]
+100%|██████████| 36/36 [01:50<00:00,  3.08s/it]
+/usr/local/lib/python3.10/dist-packages/sklearn/linear_model/_logistic.py:458: ConvergenceWarning:
+
+lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+
+/usr/local/lib/python3.10/dist-packages/sklearn/linear_model/_logistic.py:458: ConvergenceWarning:
+
+lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+
+/usr/local/lib/python3.10/dist-packages/sklearn/linear_model/_logistic.py:458: ConvergenceWarning:
+
+lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+
+Evaluating c2st
+['adult', 'forest_diffusion n_t=10 n_t_sampling=10 model=xgboost diffusion=flow duplicate_K=10 ycond=False depth=7 n_trees=100 eta=0.3 ', 0.0, 0.0, 0.0, 0.0, 0.0, 0.7548094031458441, 0.6832401900344158, 0.7422933358147303, 0.5718673218673219, 0.8730231844004299, 0.0, 0.0, 0.0, [0.47513937240876486], 1284.3856794834137, 0.865082411957412, 0.8953529578529579, 0.8802176849051849, 0.8734163167289161, 0.7715926010667469, 0.0, 0.0, 0.0, 0.6274644693046012, 0.6151357238691378, 0.6217550056877956, 0.0, 0.0, 0.0, 0.7870150224437893, 0.7060187236390245, 0.7686471462668147, 0.0, 0.0, 0.0, 0.7953922153746014, 0.6972730968242064, 0.7765120373427246, 0.0, 0.0, 0.0, 0.8093659054603843, 0.7145332158052942, 0.8022591539615862]
+2026-02-24 06:53:51.755290: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-24 06:53:51.763848: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-24 06:53:51.796635: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-24 06:53:51.804744: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+/usr/local/lib/python3.10/dist-packages/dask/dataframe/_pyarrow_compat.py:17: FutureWarning:
+
+Minimal version of pyarrow will soon be increased to 14.0.1. You are using 14.0.1.dev0+gba5374836.d20240125. Please consider upgrading.
+
+/usr/local/lib/python3.10/dist-packages/dask/dataframe/_pyarrow_compat.py:17: FutureWarning:
+
+Minimal version of pyarrow will soon be increased to 14.0.1. You are using 14.0.1.dev0+gba5374836.d20240125. Please consider upgrading.
+
+adult
+method=forest_diffusion
+0
+adult
+method=forest_diffusion
+0
+Evaluating density
+Generating report ...
+
+
+|          | 0/15 [00:00<?, ?it/s]|
+(1/2) Evaluating Column Shapes: |          | 0/15 [00:00<?, ?it/s]|
+(1/2) Evaluating Column Shapes: |██████████| 15/15 [00:00<00:00, 179.61it/s]|
+Column Shapes Score: 87.16%
+
+
+|          | 0/105 [00:00<?, ?it/s]|
+(2/2) Evaluating Column Pair Trends: |          | 0/105 [00:00<?, ?it/s]|
+(2/2) Evaluating Column Pair Trends: |█▏        | 12/105 [00:00<00:01, 71.87it/s]|
+(2/2) Evaluating Column Pair Trends: |█▉        | 20/105 [00:00<00:01, 70.91it/s]|
+(2/2) Evaluating Column Pair Trends: |██▊       | 29/105 [00:00<00:00, 76.80it/s]|
+(2/2) Evaluating Column Pair Trends: |███▌      | 38/105 [00:00<00:00, 81.21it/s]|
+(2/2) Evaluating Column Pair Trends: |████▍     | 47/105 [00:00<00:00, 80.80it/s]|
+(2/2) Evaluating Column Pair Trends: |█████▎    | 56/105 [00:00<00:00, 67.29it/s]|
+(2/2) Evaluating Column Pair Trends: |██████    | 64/105 [00:00<00:00, 70.58it/s]|
+(2/2) Evaluating Column Pair Trends: |█████████▏| 97/105 [00:00<00:00, 140.06it/s]|
+(2/2) Evaluating Column Pair Trends: |██████████| 105/105 [00:01<00:00, 104.05it/s]|
+Column Pair Trends Score: 90.64%
+
+Overall Score (Average): 88.9%
+
+Generating report ...
+
+
+|          | 0/15 [00:00<?, ?it/s]|
+(1/2) Evaluating Data Validity: |          | 0/15 [00:00<?, ?it/s]|
+(1/2) Evaluating Data Validity: |██████████| 15/15 [00:00<00:00, 1111.51it/s]|
+Data Validity Score: 100.0%
+
+
+|          | 0/1 [00:00<?, ?it/s]|
+(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|
+(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 515.84it/s]|
+Data Structure Score: 100.0%
+
+Overall Score (Average): 100.0%
+
+Evaluating mle
+
+  0%|          | 0/36 [00:00<?, ?it/s]
+  3%|▎         | 1/36 [00:00<00:20,  1.67it/s]
+  6%|▌         | 2/36 [00:02<00:44,  1.31s/it]
+  8%|▊         | 3/36 [00:05<01:16,  2.32s/it]
+ 11%|█         | 4/36 [00:06<00:50,  1.57s/it]
+ 14%|█▍        | 5/36 [00:08<00:51,  1.65s/it]
+ 17%|█▋        | 6/36 [00:11<01:08,  2.28s/it]
+ 19%|█▉        | 7/36 [00:12<00:52,  1.81s/it]
+ 22%|██▏       | 8/36 [00:15<01:05,  2.34s/it]Evaluating density
+Generating report ...
+
+
+|          | 0/15 [00:00<?, ?it/s]|
+(1/2) Evaluating Column Shapes: |          | 0/15 [00:00<?, ?it/s]|
+(1/2) Evaluating Column Shapes: |██████████| 15/15 [00:00<00:00, 252.58it/s]|
+Column Shapes Score: 74.72%
+
+
+|          | 0/105 [00:00<?, ?it/s]|
+(2/2) Evaluating Column Pair Trends: |          | 0/105 [00:00<?, ?it/s]|
+(2/2) Evaluating Column Pair Trends: |▊         | 8/105 [00:00<00:01, 71.27it/s]|
+(2/2) Evaluating Column Pair Trends: |█▌        | 16/105 [00:00<00:01, 73.41it/s]|
+(2/2) Evaluating Column Pair Trends: |██▍       | 25/105 [00:00<00:00, 80.05it/s]|
+(2/2) Evaluating Column Pair Trends: |███▏      | 34/105 [00:00<00:00, 81.22it/s]|
+(2/2) Evaluating Column Pair Trends: |████      | 43/105 [00:00<00:00, 82.31it/s]|
+(2/2) Evaluating Column Pair Trends: |████▉     | 52/105 [00:00<00:00, 84.03it/s]|
+(2/2) Evaluating Column Pair Trends: |█████▉    | 62/105 [00:00<00:00, 88.95it/s]|
+(2/2) Evaluating Column Pair Trends: |███████   | 74/105 [00:00<00:00, 98.05it/s]|
+(2/2) Evaluating Column Pair Trends: |██████████| 105/105 [00:00<00:00, 111.50it/s]|
+Column Pair Trends Score: 74.87%
+
+Overall Score (Average): 74.8%
+
+Generating report ...
+
+
+|          | 0/15 [00:00<?, ?it/s]|
+(1/2) Evaluating Data Validity: |          | 0/15 [00:00<?, ?it/s]|
+(1/2) Evaluating Data Validity: |██████████| 15/15 [00:00<00:00, 1237.01it/s]|
+Data Validity Score: 100.0%
+
+
+|          | 0/1 [00:00<?, ?it/s]|
+(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|
+(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 453.63it/s]|
+Data Structure Score: 100.0%
+
+Overall Score (Average): 100.0%
+
+Evaluating mle
+
+  0%|          | 0/36 [00:00<?, ?it/s]
+  3%|▎         | 1/36 [00:00<00:19,  1.77it/s]
+  6%|▌         | 2/36 [00:02<00:43,  1.28s/it]
+ 25%|██▌       | 9/36 [00:23<01:44,  3.87s/it]
+ 28%|██▊       | 10/36 [00:23<01:15,  2.91s/it]
+  8%|▊         | 3/36 [00:05<01:15,  2.30s/it]
+ 11%|█         | 4/36 [00:06<00:49,  1.56s/it]
+ 31%|███       | 11/36 [00:27<01:14,  2.99s/it]
+ 14%|█▍        | 5/36 [00:08<00:50,  1.64s/it]
+ 17%|█▋        | 6/36 [00:11<01:08,  2.27s/it]
+ 19%|█▉        | 7/36 [00:12<00:52,  1.80s/it]
+ 33%|███▎      | 12/36 [00:33<01:34,  3.94s/it]
+ 36%|███▌      | 13/36 [00:34<01:14,  3.23s/it]
+ 22%|██▏       | 8/36 [00:16<01:06,  2.39s/it]
+ 39%|███▉      | 14/36 [00:41<01:36,  4.36s/it]
+ 25%|██▌       | 9/36 [00:23<01:44,  3.87s/it]
+ 28%|██▊       | 10/36 [00:23<01:15,  2.91s/it]
+ 31%|███       | 11/36 [00:27<01:14,  3.00s/it]
+ 33%|███▎      | 12/36 [00:33<01:35,  3.97s/it]
+ 36%|███▌      | 13/36 [00:34<01:15,  3.27s/it]
+ 42%|████▏     | 15/36 [00:55<02:27,  7.03s/it]
+ 44%|████▍     | 16/36 [00:56<01:45,  5.27s/it]
+ 47%|████▋     | 17/36 [01:01<01:41,  5.33s/it]
+ 39%|███▉      | 14/36 [00:42<01:39,  4.52s/it]
+ 50%|█████     | 18/36 [01:12<02:05,  6.95s/it]
+ 53%|█████▎    | 19/36 [01:12<01:24,  4.99s/it]
+ 56%|█████▌    | 20/36 [01:14<01:04,  4.03s/it]
+ 42%|████▏     | 15/36 [00:56<02:35,  7.42s/it]
+ 58%|█████▊    | 21/36 [01:17<00:54,  3.63s/it]
+ 44%|████▍     | 16/36 [00:57<01:52,  5.60s/it]
+ 61%|██████    | 22/36 [01:17<00:37,  2.66s/it]
+ 64%|██████▍   | 23/36 [01:19<00:31,  2.40s/it]
+ 67%|██████▋   | 24/36 [01:22<00:29,  2.44s/it]
+ 69%|██████▉   | 25/36 [01:22<00:21,  1.95s/it]
+ 47%|████▋     | 17/36 [01:03<01:48,  5.71s/it]
+ 72%|███████▏  | 26/36 [01:25<00:20,  2.08s/it]
+ 75%|███████▌  | 27/36 [01:28<00:21,  2.40s/it]
+ 78%|███████▊  | 28/36 [01:29<00:15,  1.90s/it]
+ 81%|████████  | 29/36 [01:31<00:14,  2.03s/it]
+ 83%|████████▎ | 30/36 [01:34<00:13,  2.33s/it]
+ 50%|█████     | 18/36 [01:15<02:14,  7.47s/it]
+ 53%|█████▎    | 19/36 [01:15<01:31,  5.36s/it]
+ 86%|████████▌ | 31/36 [01:35<00:10,  2.09s/it]
+ 56%|█████▌    | 20/36 [01:17<01:08,  4.29s/it]
+ 89%|████████▉ | 32/36 [01:39<00:09,  2.46s/it]
+ 58%|█████▊    | 21/36 [01:20<00:59,  3.94s/it]
+ 61%|██████    | 22/36 [01:21<00:40,  2.89s/it]
+ 64%|██████▍   | 23/36 [01:23<00:33,  2.56s/it]
+ 92%|█████████▏| 33/36 [01:43<00:08,  2.94s/it]
+ 94%|█████████▍| 34/36 [01:44<00:04,  2.39s/it]
+ 67%|██████▋   | 24/36 [01:26<00:32,  2.74s/it]
+ 69%|██████▉   | 25/36 [01:27<00:23,  2.16s/it]
+ 97%|█████████▋| 35/36 [01:47<00:02,  2.64s/it]
+ 72%|███████▏  | 26/36 [01:29<00:24,  2.40s/it]
+100%|██████████| 36/36 [01:51<00:00,  3.04s/it]
+100%|██████████| 36/36 [01:51<00:00,  3.10s/it]
+
+ 75%|███████▌  | 27/36 [01:33<00:25,  2.79s/it]
+ 78%|███████▊  | 28/36 [01:34<00:17,  2.18s/it]
+ 81%|████████  | 29/36 [01:37<00:17,  2.44s/it]
+ 83%|████████▎ | 30/36 [01:41<00:17,  2.84s/it]
+ 86%|████████▌ | 31/36 [01:42<00:12,  2.47s/it]
+ 89%|████████▉ | 32/36 [01:46<00:11,  2.85s/it]/usr/local/lib/python3.10/dist-packages/sklearn/linear_model/_logistic.py:458: ConvergenceWarning:
+
+lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+
+/usr/local/lib/python3.10/dist-packages/sklearn/linear_model/_logistic.py:458: ConvergenceWarning:
+
+lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+
+/usr/local/lib/python3.10/dist-packages/sklearn/linear_model/_logistic.py:458: ConvergenceWarning:
+
+lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+
+
+ 92%|█████████▏| 33/36 [01:52<00:11,  3.73s/it]
+ 94%|█████████▍| 34/36 [01:53<00:06,  3.02s/it]
+ 97%|█████████▋| 35/36 [01:57<00:03,  3.33s/it]
+100%|██████████| 36/36 [02:02<00:00,  3.78s/it]
+100%|██████████| 36/36 [02:02<00:00,  3.41s/it]
+Evaluating c2st
+['adult', 'forest_diffusion n_t=10 n_t_sampling=10 model=xgboost diffusion=flow duplicate_K=10 ycond=True depth=7 n_trees=100 eta=0.3 ', 0.0, 0.0, 0.0, 0.0, 0.0, 0.7548094031458441, 0.7315746099973449, 0.7491280679944734, 0.5841139434889435, 0.8745585751573776, 0.0, 0.0, 0.0, [0.46435083269660454], 1502.4202418327332, 0.87158834971335, 0.9064212814212815, 0.8890048155673158, 0.8883510709642806, 0.778309240097676, 0.0, 0.0, 0.0, 0.6274644693046012, 0.6193536609310472, 0.6291945235538395, 0.0, 0.0, 0.0, 0.7870150224437893, 0.7650191311426086, 0.78215810171903, 0.0, 0.0, 0.0, 0.7953922153746014, 0.7680609666896758, 0.7839833004479138, 0.0, 0.0, 0.0, 0.8093659054603843, 0.7738646812260482, 0.8011763462571106]
+Evaluating c2st
+['adult', 'forest_diffusion n_t=10 n_t_sampling=10 model=xgboost diffusion=vp duplicate_K=10 ycond=True depth=7 n_trees=100 eta=0.3 ', 0.0, 0.0, 0.0, 0.0, 0.0, 0.7548094031458441, 0.6356503474290875, 0.6945656848527868, 0.06875767813267813, 0.19867956394902503, 0.0, 0.0, 0.0, [0.4826640658662599], 1522.230396747589, 0.7472435503685503, 0.7486769986769987, 0.7479602745227745, 0.875066161449413, 0.09600310161097336, 0.0, 0.0, 0.0, 0.6274644693046012, 0.44946322499161295, 0.44946322499161295, 0.0, 0.0, 0.0, 0.7870150224437893, 0.7030586314447969, 0.7526782027641093, 0.0, 0.0, 0.0, 0.7953922153746014, 0.6609304532794397, 0.7762519743394634, 0.0, 0.0, 0.0, 0.8093659054603843, 0.7291490800005003, 0.7998693373159615]
+2026-02-24 07:22:46.912778: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-24 07:22:46.951391: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+/usr/local/lib/python3.10/dist-packages/dask/dataframe/_pyarrow_compat.py:17: FutureWarning:
+
+Minimal version of pyarrow will soon be increased to 14.0.1. You are using 14.0.1.dev0+gba5374836.d20240125. Please consider upgrading.
+
+adult
+method=forest_diffusion
+0
+Evaluating density
+Generating report ...
+
+
+|          | 0/15 [00:00<?, ?it/s]|
+(1/2) Evaluating Column Shapes: |          | 0/15 [00:00<?, ?it/s]|
+(1/2) Evaluating Column Shapes: |██████████| 15/15 [00:00<00:00, 246.09it/s]|
+Column Shapes Score: 74.97%
+
+
+|          | 0/105 [00:00<?, ?it/s]|
+(2/2) Evaluating Column Pair Trends: |          | 0/105 [00:00<?, ?it/s]|
+(2/2) Evaluating Column Pair Trends: |█         | 11/105 [00:00<00:01, 83.25it/s]|
+(2/2) Evaluating Column Pair Trends: |█▉        | 20/105 [00:00<00:01, 80.76it/s]|
+(2/2) Evaluating Column Pair Trends: |██▊       | 30/105 [00:00<00:00, 87.20it/s]|
+(2/2) Evaluating Column Pair Trends: |███▊      | 40/105 [00:00<00:00, 90.09it/s]|
+(2/2) Evaluating Column Pair Trends: |████▊     | 50/105 [00:00<00:00, 93.16it/s]|
+(2/2) Evaluating Column Pair Trends: |█████▋    | 60/105 [00:00<00:00, 76.34it/s]|
+(2/2) Evaluating Column Pair Trends: |████████▊ | 93/105 [00:00<00:00, 143.29it/s]|
+(2/2) Evaluating Column Pair Trends: |██████████| 105/105 [00:00<00:00, 119.59it/s]|
+Column Pair Trends Score: 74.51%
+
+Overall Score (Average): 74.74%
+
+Generating report ...
+
+
+|          | 0/15 [00:00<?, ?it/s]|
+(1/2) Evaluating Data Validity: |          | 0/15 [00:00<?, ?it/s]|
+(1/2) Evaluating Data Validity: |██████████| 15/15 [00:00<00:00, 1256.98it/s]|
+Data Validity Score: 100.0%
+
+
+|          | 0/1 [00:00<?, ?it/s]|
+(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|
+(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 584.41it/s]|
+Data Structure Score: 100.0%
+
+Overall Score (Average): 100.0%
+
+Evaluating mle
+
+  0%|          | 0/36 [00:00<?, ?it/s]
+  3%|▎         | 1/36 [00:00<00:19,  1.78it/s]
+  6%|▌         | 2/36 [00:02<00:43,  1.29s/it]
+  8%|▊         | 3/36 [00:05<01:16,  2.31s/it]
+ 11%|█         | 4/36 [00:06<00:50,  1.56s/it]
+ 14%|█▍        | 5/36 [00:08<00:51,  1.65s/it]
+ 17%|█▋        | 6/36 [00:11<01:08,  2.28s/it]
+ 19%|█▉        | 7/36 [00:12<00:52,  1.81s/it]
+ 22%|██▏       | 8/36 [00:16<01:07,  2.41s/it]
+ 25%|██▌       | 9/36 [00:23<01:46,  3.93s/it]
+ 28%|██▊       | 10/36 [00:24<01:17,  2.97s/it]
+ 31%|███       | 11/36 [00:27<01:16,  3.08s/it]
+ 33%|███▎      | 12/36 [00:34<01:38,  4.12s/it]
+ 36%|███▌      | 13/36 [00:35<01:17,  3.38s/it]
+ 39%|███▉      | 14/36 [00:43<01:42,  4.67s/it]
+ 42%|████▏     | 15/36 [00:58<02:42,  7.74s/it]
+ 44%|████▍     | 16/36 [00:59<01:57,  5.87s/it]
+ 47%|████▋     | 17/36 [01:06<01:54,  6.04s/it]
+ 50%|█████     | 18/36 [01:18<02:23,  7.97s/it]
+ 53%|█████▎    | 19/36 [01:19<01:37,  5.71s/it]
+ 56%|█████▌    | 20/36 [01:20<01:11,  4.49s/it]
+ 58%|█████▊    | 21/36 [01:23<00:57,  3.85s/it]
+ 61%|██████    | 22/36 [01:23<00:39,  2.83s/it]
+ 64%|██████▍   | 23/36 [01:25<00:32,  2.47s/it]
+ 67%|██████▋   | 24/36 [01:27<00:29,  2.44s/it]
+ 69%|██████▉   | 25/36 [01:28<00:21,  1.95s/it]
+ 72%|███████▏  | 26/36 [01:30<00:19,  1.96s/it]
+ 75%|███████▌  | 27/36 [01:33<00:19,  2.18s/it]
+ 78%|███████▊  | 28/36 [01:33<00:14,  1.77s/it]
+ 81%|████████  | 29/36 [01:36<00:13,  1.92s/it]
+ 83%|████████▎ | 30/36 [01:39<00:13,  2.24s/it]
+ 86%|████████▌ | 31/36 [01:40<00:10,  2.06s/it]
+ 89%|████████▉ | 32/36 [01:43<00:09,  2.33s/it]
+ 92%|█████████▏| 33/36 [01:47<00:08,  2.75s/it]
+ 94%|█████████▍| 34/36 [01:48<00:04,  2.37s/it]
+ 97%|█████████▋| 35/36 [01:52<00:02,  2.59s/it]
+100%|██████████| 36/36 [01:55<00:00,  2.96s/it]
+100%|██████████| 36/36 [01:55<00:00,  3.22s/it]
+Evaluating c2st
+['adult', 'forest_diffusion n_t=10 n_t_sampling=10 model=xgboost diffusion=vp duplicate_K=10 ycond=False depth=7 n_trees=100 eta=0.3 ', 0.0, 0.0, 0.0, 0.0, 0.0, 0.7548094031458441, 0.6191211658186789, 0.6919954743072081, 0.06706848894348895, 0.19530170428374022, 0.0, 0.0, 0.0, [0.4814470230135121], 1040.587521314621, 0.7496647215397215, 0.7450623700623701, 0.7473635458010458, 0.8750658390251955, 0.10544757081697742, 0.0, 0.0, 0.0, 0.6274644693046012, 0.44946322499161295, 0.44946322499161295, 0.0, 0.0, 0.0, 0.7870150224437893, 0.6939967853640703, 0.7377677638475721, 0.0, 0.0, 0.0, 0.7953922153746014, 0.6574813673818221, 0.780925245993775, 0.0, 0.0, 0.0, 0.8093659054603843, 0.6755432855372105, 0.7998256623958719]
+2026-02-24 08:12:33.627114: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-24 08:12:33.666551: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+/usr/local/lib/python3.10/dist-packages/dask/dataframe/_pyarrow_compat.py:17: FutureWarning:
+
+Minimal version of pyarrow will soon be increased to 14.0.1. You are using 14.0.1.dev0+gba5374836.d20240125. Please consider upgrading.
+
+adult
+method=forest_diffusion
+0
+/usr/local/lib/python3.10/dist-packages/joblib/externals/loky/process_executor.py:752: UserWarning:
+
+A worker stopped while some jobs were given to the executor. This can be caused by a too short worker timeout or by a memory leak.
+
+2026-02-24 08:21:48.123889: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-24 08:21:48.167449: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+/usr/local/lib/python3.10/dist-packages/dask/dataframe/_pyarrow_compat.py:17: FutureWarning:
+
+Minimal version of pyarrow will soon be increased to 14.0.1. You are using 14.0.1.dev0+gba5374836.d20240125. Please consider upgrading.
+
+adult
+method=forest_diffusion
+0
+joblib.externals.loky.process_executor._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/joblib/externals/loky/backend/queues.py", line 159, in _feed
+    obj_ = dumps(obj, reducers=reducers)
+  File "/usr/local/lib/python3.10/dist-packages/joblib/externals/loky/backend/reduction.py", line 215, in dumps
+    dump(obj, buf, reducers=reducers, protocol=protocol)
+  File "/usr/local/lib/python3.10/dist-packages/joblib/externals/loky/backend/reduction.py", line 208, in dump
+    _LokyPickler(file, reducers=reducers, protocol=protocol).dump(obj)
+  File "/usr/local/lib/python3.10/dist-packages/joblib/externals/cloudpickle/cloudpickle_fast.py", line 632, in dump
+    return Pickler.dump(self, obj)
+  File "/usr/local/lib/python3.10/dist-packages/joblib/_memmapping_reducer.py", line 446, in __call__
+    for dumped_filename in dump(a, filename):
+  File "/usr/local/lib/python3.10/dist-packages/joblib/numpy_pickle.py", line 553, in dump
+    NumpyPickler(f, protocol=protocol).dump(value)
+  File "/usr/lib/python3.10/pickle.py", line 487, in dump
+    self.save(obj)
+  File "/usr/local/lib/python3.10/dist-packages/joblib/numpy_pickle.py", line 352, in save
+    wrapper.write_array(obj, self)
+  File "/usr/local/lib/python3.10/dist-packages/joblib/numpy_pickle.py", line 134, in write_array
+    pickler.file_handle.write(chunk.tobytes('C'))
+OSError: [Errno 28] No space left on device
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/proj-vertical-llms-pvc/users/zhihan/tabular_gen/ForestDiffusion/script_generation.py", line 432, in <module>
+    forest_model = ForestDiffusionModel(X=Xy_train_used,
+  File "/proj-vertical-llms-pvc/users/zhihan/tabular_gen/ForestDiffusion/Python-Package/base-ForestDiffusion/ForestDiffusion/diffusion_with_trees_class.py", line 261, in __init__
+    self.regr = Parallel(n_jobs=self.n_jobs)( # using all cpus
+  File "/usr/local/lib/python3.10/dist-packages/joblib/parallel.py", line 1952, in __call__
+    return output if self.return_generator else list(output)
+  File "/usr/local/lib/python3.10/dist-packages/joblib/parallel.py", line 1595, in _get_outputs
+    yield from self._retrieve()
+  File "/usr/local/lib/python3.10/dist-packages/joblib/parallel.py", line 1699, in _retrieve
+    self._raise_error_fast()
+  File "/usr/local/lib/python3.10/dist-packages/joblib/parallel.py", line 1734, in _raise_error_fast
+    error_job.get_result(self.timeout)
+  File "/usr/local/lib/python3.10/dist-packages/joblib/parallel.py", line 736, in get_result
+    return self._return_or_raise()
+  File "/usr/local/lib/python3.10/dist-packages/joblib/parallel.py", line 754, in _return_or_raise
+    raise self._result
+_pickle.PicklingError: Could not pickle the task to send it to the workers.
+joblib.externals.loky.process_executor._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/joblib/externals/loky/backend/queues.py", line 159, in _feed
+    obj_ = dumps(obj, reducers=reducers)
+  File "/usr/local/lib/python3.10/dist-packages/joblib/externals/loky/backend/reduction.py", line 215, in dumps
+    dump(obj, buf, reducers=reducers, protocol=protocol)
+  File "/usr/local/lib/python3.10/dist-packages/joblib/externals/loky/backend/reduction.py", line 208, in dump
+    _LokyPickler(file, reducers=reducers, protocol=protocol).dump(obj)
+  File "/usr/local/lib/python3.10/dist-packages/joblib/externals/cloudpickle/cloudpickle_fast.py", line 632, in dump
+    return Pickler.dump(self, obj)
+  File "/usr/local/lib/python3.10/dist-packages/joblib/_memmapping_reducer.py", line 446, in __call__
+    for dumped_filename in dump(a, filename):
+  File "/usr/local/lib/python3.10/dist-packages/joblib/numpy_pickle.py", line 553, in dump
+    NumpyPickler(f, protocol=protocol).dump(value)
+  File "/usr/lib/python3.10/pickle.py", line 487, in dump
+    self.save(obj)
+  File "/usr/local/lib/python3.10/dist-packages/joblib/numpy_pickle.py", line 352, in save
+    wrapper.write_array(obj, self)
+  File "/usr/local/lib/python3.10/dist-packages/joblib/numpy_pickle.py", line 134, in write_array
+    pickler.file_handle.write(chunk.tobytes('C'))
+OSError: [Errno 28] No space left on device
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/proj-vertical-llms-pvc/users/zhihan/tabular_gen/ForestDiffusion/script_generation.py", line 432, in <module>
+    forest_model = ForestDiffusionModel(X=Xy_train_used,
+  File "/proj-vertical-llms-pvc/users/zhihan/tabular_gen/ForestDiffusion/Python-Package/base-ForestDiffusion/ForestDiffusion/diffusion_with_trees_class.py", line 261, in __init__
+    self.regr = Parallel(n_jobs=self.n_jobs)( # using all cpus
+  File "/usr/local/lib/python3.10/dist-packages/joblib/parallel.py", line 1952, in __call__
+    return output if self.return_generator else list(output)
+  File "/usr/local/lib/python3.10/dist-packages/joblib/parallel.py", line 1595, in _get_outputs
+    yield from self._retrieve()
+  File "/usr/local/lib/python3.10/dist-packages/joblib/parallel.py", line 1699, in _retrieve
+    self._raise_error_fast()
+  File "/usr/local/lib/python3.10/dist-packages/joblib/parallel.py", line 1734, in _raise_error_fast
+    error_job.get_result(self.timeout)
+  File "/usr/local/lib/python3.10/dist-packages/joblib/parallel.py", line 736, in get_result
+    return self._return_or_raise()
+  File "/usr/local/lib/python3.10/dist-packages/joblib/parallel.py", line 754, in _return_or_raise
+    raise self._result
+_pickle.PicklingError: Could not pickle the task to send it to the workers.
