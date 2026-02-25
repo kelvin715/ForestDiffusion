@@ -4,7 +4,7 @@ set -euo pipefail
 cd /proj-vertical-llms-pvc/users/zhihan/tabular_gen/ForestDiffusion
 out_path="/proj-vertical-llms-pvc/users/zhihan/tabular_gen/ForestDiffusion/results_all.csv"
 
-DATASETS=${DATASETS:-adult}
+DATASETS=${DATASETS:-car}
 if [[ -z "${DATASETS}" ]]; then
   echo "DATASETS is empty. Please set DATASETS, e.g. DATASETS=wine"
   exit 1
@@ -27,7 +27,7 @@ run_case() {
     --n_tries 1 \
     --duplicate_K 10 \
     --n_batch "${n_batch}" \
-    --ycond "${ycond}" 
+    --ycond "${ycond}" \
     --n_jobs 8
 }
 
@@ -36,7 +36,7 @@ run_case() {
 # run_case vp True 1 0
 # run_case vp False 1 0
 # run_case mixed-flow True 0
-# run_case mixed-flow False 0 0
-run_case flow True 0 0
+run_case mixed-flow False 1 1
+# run_case flow True 1 0
 
 wait

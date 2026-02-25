@@ -155,12 +155,8 @@ class ForestDiffusionModel():
       self.sde = VPSDE(beta_min=self.beta_min, beta_max=self.beta_max, N=n_t)
 
     self.n_batch = n_batch
-    # mixed-flow needs per-dimension classification models for categorical groups.
-    # The iterator path uses xgb.train and returns Booster objects, which do not
-    # expose predict_proba required at sampling time. Force the non-iterator path.
     if self.diffusion_type == 'mixed-flow' and self.n_batch > 0:
-      print("Warning: mixed-flow requires per-dimension classification models for categorical groups. Forcing n_batch=0.")
-      self.n_batch = 0
+      print("Info: mixed-flow with n_batch>0 will use iterator training for regression and multi:softprob boosters for categorical groups.")
     if self.n_batch == 0: 
       if duplicate_K > 1: # we duplicate the data multiple times, so that X0 is k times bigger so we have more room to learn
         X1 = np.tile(X1, (duplicate_K, 1))
@@ -243,6 +239,10 @@ class ForestDiffusionModel():
             for k in range(self.c): 
               if self.n_batch > 0: # Data iterator, no need to duplicate, not make xt yet
                 self.regr[j][i][k] = self.train_iterator(X1_splitted[j], X_covs_splitted[j], t=t_levels[i], dim=k)
+                if self.regr[j][i][k] is None and self.diffusion_type == 'mixed-flow' and k in self.cat_group_dict:
+                    # Use leader's model for follower one-hot columns
+                    group_id = self.cat_group_dict[k]
+                    self.regr[j][i][k] = self.regr[j][i][group_id]
               else:
                 target = self.get_train_target(y_train.reshape(self.b*self.duplicate_K, self.c)[self.mask_y[j], :], k)
                 self.regr[j][i][k] = self.train_parallel(
@@ -282,13 +282,38 @@ class ForestDiffusionModel():
   def train_iterator(self, X1_splitted, X_covs_splitted, t, dim):
     np.random.seed(self.seed)
 
-    it = IterForDMatrix(X1_splitted, X_covs_splitted, t=t, dim=dim, n_batch=self.n_batch, n_epochs=self.duplicate_K, diffusion_type=self.diffusion_type, eps=self.eps, sde=self.sde)
+    target_group_cols = None
+    objective = 'reg:squarederror'
+    num_class = None
+    train_dim = dim
+    if self.diffusion_type == 'mixed-flow' and dim is not None and dim in self.cat_group_dict:
+      group_id = self.cat_group_dict[dim]
+      if dim != group_id:
+        return None
+      target_group_cols = self.cat_groups[group_id]
+      objective = 'multi:softprob'
+      num_class = len(target_group_cols)
+      train_dim = None
+
+    it = IterForDMatrix(
+      X1_splitted,
+      X_covs_splitted,
+      t=t,
+      dim=train_dim,
+      n_batch=self.n_batch,
+      n_epochs=self.duplicate_K,
+      diffusion_type=self.diffusion_type,
+      eps=self.eps,
+      sde=self.sde,
+      target_group_cols=target_group_cols
+    )
     data_iterator = xgb.QuantileDMatrix(it)
 
-    xgb_dict = {'objective': 'reg:squarederror', 'eta': self.eta, 'max_depth': self.max_depth,
+    xgb_dict = {'objective': objective, 'eta': self.eta, 'max_depth': self.max_depth,
           "reg_lambda": self.reg_lambda, 'reg_alpha': self.reg_alpha, "subsample": self.subsample, "seed": self.seed, 
-          "tree_method": self.tree_method, 'device': 'cuda' if self.gpu_hist else 'cpu', 
-          "device": "cuda" if self.gpu_hist else 'cpu'}
+          "tree_method": self.tree_method, 'device': 'cuda' if self.gpu_hist else 'cpu'}
+    if num_class is not None:
+      xgb_dict['num_class'] = num_class
     for myarg in self.xgboost_kwargs:
       xgb_dict[myarg] = self.xgboost_kwargs[myarg]
     out = xgb.train(xgb_dict, data_iterator, num_boost_round=self.n_estimators)
@@ -446,6 +471,23 @@ class ForestDiffusionModel():
     else:
       return self.regr[j][i][k].predict(X_used)
 
+  def predict_group_proba(self, model, X_used, group_size):
+    if hasattr(model, 'predict_proba'):
+      probs = model.predict_proba(X_used)
+      return np.asarray(probs)
+    probs = np.asarray(model.predict(xgb.DMatrix(data=X_used)))
+    if probs.ndim == 1:
+      expected = X_used.shape[0] * group_size
+      if probs.shape[0] == expected:
+        probs = probs.reshape(X_used.shape[0], group_size)
+      else:
+        probs = np.expand_dims(probs, axis=1)
+    if probs.shape[1] != group_size and probs.size == X_used.shape[0] * group_size:
+      probs = probs.reshape(X_used.shape[0], group_size)
+    if probs.shape[1] != group_size:
+      raise ValueError(f"Unexpected probability shape {probs.shape} for group size {group_size}")
+    return probs
+
   # Return the score-fn or ode-flow output
   def my_model(self, t, y, mask_y=None, dmat=False, unflatten=True, X_covs=None):
     if unflatten:
@@ -485,8 +527,8 @@ class ForestDiffusionModel():
                        else:
                             X_used = X[mask_y[label], :]
                        
-                       probs = model.predict_proba(X_used)
                        group_cols = self.cat_groups[group_id]
+                       probs = self.predict_group_proba(model, X_used, group_size=len(group_cols))
                        for idx, col_idx in enumerate(group_cols):
                            out[mask_indices, col_idx] = probs[:, idx]
                    else:
@@ -557,8 +599,8 @@ class ForestDiffusionModel():
                        else:
                             X_used = X[mask_y[label], :]
                        
-                       probs = model.predict_proba(X_used)
                        group_cols = self.cat_groups[group_id]
+                       probs = self.predict_group_proba(model, X_used, group_size=len(group_cols))
                        for idx, col_idx in enumerate(group_cols):
                            out[mask_indices, col_idx] = probs[:, idx]
                    else:

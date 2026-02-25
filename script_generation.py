@@ -84,7 +84,7 @@ parser.add_argument('--eps', type=float, default=1e-3, help='')
 parser.add_argument('--beta_min', type=float, default=0.1, help='')
 parser.add_argument('--beta_max', type=float, default=8, help='')
 parser.add_argument('--n_jobs', type=int, default=-1, help='')
-parser.add_argument('--n_batch', type=int, default=1, help='If >0 use the data iterator with the specified number of batches')
+parser.add_argument('--n_batch', type=int, default=1, help='If >0 use the data iterator with the specified number of batches (supported for flow/vp/mixed-flow)')
 
 # stasy hyperparameters
 parser.add_argument('--act', type=str, default='elu', help='')

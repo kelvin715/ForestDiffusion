@@ -129,7 +129,7 @@ class IterForDMatrix(xgb.core.DataIter):
 
   """
 
-  def __init__(self, data, data_covs, t, dim, n_batch=1000, n_epochs=10, diffusion_type='flow', eps=1e-3, sde=None):
+  def __init__(self, data, data_covs, t, dim, n_batch=1000, n_epochs=10, diffusion_type='flow', eps=1e-3, sde=None, target_group_cols=None):
     self._data = data
     self._data_covs = data_covs
     self.n_batch = n_batch
@@ -139,6 +139,7 @@ class IterForDMatrix(xgb.core.DataIter):
     self.eps = eps
     self.sde = sde
     self.dim = dim
+    self.target_group_cols = target_group_cols
     self.it = 0  # set iterator to 0
     super().__init__()
 
@@ -150,7 +151,11 @@ class IterForDMatrix(xgb.core.DataIter):
     """Yield next batch of data."""
     if self.it == self.n_batch*self.n_epochs: # stops after k epochs
       return 0
-    x_t, y = get_xt(x1=self._data[self.it % self.n_batch], dim=self.dim, t=self.t, diffusion_type=self.diffusion_type, eps=self.eps, sde=self.sde)
+    if self.target_group_cols is not None:
+      x_t, y_full = get_xt(x1=self._data[self.it % self.n_batch], dim=None, t=self.t, diffusion_type=self.diffusion_type, eps=self.eps, sde=self.sde)
+      y = np.argmax(y_full[:, self.target_group_cols], axis=1).astype(np.int32)
+    else:
+      x_t, y = get_xt(x1=self._data[self.it % self.n_batch], dim=self.dim, t=self.t, diffusion_type=self.diffusion_type, eps=self.eps, sde=self.sde)
     if self._data_covs is not None:
       x_t = np.concatenate((x_t, self._data_covs[self.it % self.n_batch]), axis=1)
     if len(y.shape) == 1:
