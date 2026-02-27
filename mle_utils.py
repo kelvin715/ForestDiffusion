@@ -22,11 +22,13 @@ except Exception:
 
 CATEGORICAL = "categorical"
 CONTINUOUS = "continuous"
-_XGB_DEVICE_GRID = {"tree_method": ["hist"], "device": ["cuda"]}
+# Use CPU-only XGBoost (no CuPy/GPU)
+_XGB_DEVICE_GRID = {"tree_method": ["hist"]}
 
 
 def _uses_xgb_gpu(param):
-    return param.get("device") == "cuda" or param.get("tree_method") == "gpu_hist"
+    # GPU prediction is disabled
+    return False
 
 
 def _prepare_predict_input(x, use_gpu):

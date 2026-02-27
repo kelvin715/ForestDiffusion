@@ -1,153 +1,0 @@
-2026-02-24 09:27:26.539590: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2026-02-24 09:27:26.586744: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-2026-02-24 09:27:26.639615: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2026-02-24 09:27:26.683767: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-/usr/local/lib/python3.10/dist-packages/dask/dataframe/_pyarrow_compat.py:17: FutureWarning:
-
-Minimal version of pyarrow will soon be increased to 14.0.1. You are using 14.0.1.dev0+gba5374836.d20240125. Please consider upgrading.
-
-/usr/local/lib/python3.10/dist-packages/dask/dataframe/_pyarrow_compat.py:17: FutureWarning:
-
-Minimal version of pyarrow will soon be increased to 14.0.1. You are using 14.0.1.dev0+gba5374836.d20240125. Please consider upgrading.
-
-adult
-method=forest_diffusion
-0
-adult
-method=forest_diffusion
-0
-Info: mixed-flow with n_batch>0 will use iterator training for regression and multi:softprob boosters for categorical groups.
-/usr/local/lib/python3.10/dist-packages/joblib/externals/loky/process_executor.py:752: UserWarning:
-
-A worker stopped while some jobs were given to the executor. This can be caused by a too short worker timeout or by a memory leak.
-
-Evaluating density
-Generating report ...
-
-|          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |████████  | 12/15 [00:00<00:00, 118.79it/s]|(1/2) Evaluating Column Shapes: |██████████| 15/15 [00:00<00:00, 131.21it/s]|
-Column Shapes Score: 93.44%
-
-|          | 0/105 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/105 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |▊         | 9/105 [00:00<00:01, 54.00it/s]|(2/2) Evaluating Column Pair Trends: |█▍        | 15/105 [00:00<00:01, 56.69it/s]|(2/2) Evaluating Column Pair Trends: |██        | 21/105 [00:00<00:01, 57.03it/s]|(2/2) Evaluating Column Pair Trends: |██▋       | 28/105 [00:00<00:01, 61.50it/s]|(2/2) Evaluating Column Pair Trends: |███▎      | 35/105 [00:00<00:01, 64.16it/s]|(2/2) Evaluating Column Pair Trends: |████      | 42/105 [00:00<00:00, 65.15it/s]|(2/2) Evaluating Column Pair Trends: |████▊     | 50/105 [00:00<00:00, 69.58it/s]|(2/2) Evaluating Column Pair Trends: |█████▌    | 58/105 [00:00<00:00, 72.21it/s]|(2/2) Evaluating Column Pair Trends: |██████▍   | 67/105 [00:00<00:00, 77.09it/s]|(2/2) Evaluating Column Pair Trends: |█████████▎| 98/105 [00:01<00:00, 146.52it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 105/105 [00:01<00:00, 94.31it/s]|
-Column Pair Trends Score: 94.94%
-
-Overall Score (Average): 94.19%
-
-Generating report ...
-
-|          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 15/15 [00:00<00:00, 883.85it/s]|
-Data Validity Score: 100.0%
-
-|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 379.99it/s]|
-Data Structure Score: 100.0%
-
-Overall Score (Average): 100.0%
-
-Evaluating mle
-  0%|          | 0/36 [00:00<?, ?it/s]  3%|▎         | 1/36 [00:00<00:22,  1.58it/s]  6%|▌         | 2/36 [00:02<00:44,  1.31s/it]  8%|▊         | 3/36 [00:05<01:16,  2.31s/it] 11%|█         | 4/36 [00:06<00:50,  1.56s/it] 14%|█▍        | 5/36 [00:08<00:50,  1.64s/it] 17%|█▋        | 6/36 [00:11<01:08,  2.28s/it] 19%|█▉        | 7/36 [00:12<00:52,  1.80s/it] 22%|██▏       | 8/36 [00:15<01:05,  2.35s/it] 25%|██▌       | 9/36 [00:22<01:41,  3.76s/it] 28%|██▊       | 10/36 [00:23<01:13,  2.83s/it] 31%|███       | 11/36 [00:26<01:13,  2.93s/it] 33%|███▎      | 12/36 [00:32<01:33,  3.90s/it] 36%|███▌      | 13/36 [00:34<01:13,  3.21s/it] 39%|███▉      | 14/36 [00:41<01:37,  4.45s/it] 42%|████▏     | 15/36 [00:55<02:34,  7.38s/it] 44%|████▍     | 16/36 [00:57<01:51,  5.56s/it] 47%|████▋     | 17/36 [01:03<01:47,  5.64s/it] 50%|█████     | 18/36 [01:14<02:12,  7.36s/it] 53%|█████▎    | 19/36 [01:14<01:29,  5.28s/it] 56%|█████▌    | 20/36 [01:16<01:07,  4.22s/it] 58%|█████▊    | 21/36 [01:19<00:55,  3.70s/it] 61%|██████    | 22/36 [01:19<00:37,  2.71s/it] 64%|██████▍   | 23/36 [01:21<00:31,  2.40s/it] 67%|██████▋   | 24/36 [01:23<00:28,  2.39s/it] 69%|██████▉   | 25/36 [01:24<00:21,  1.91s/it] 72%|███████▏  | 26/36 [01:26<00:19,  1.99s/it] 75%|███████▌  | 27/36 [01:29<00:20,  2.25s/it] 78%|███████▊  | 28/36 [01:30<00:14,  1.80s/it] 81%|████████  | 29/36 [01:32<00:13,  1.88s/it] 83%|████████▎ | 30/36 [01:35<00:12,  2.15s/it] 86%|████████▌ | 31/36 [01:36<00:09,  1.98s/it] 89%|████████▉ | 32/36 [01:39<00:09,  2.33s/it] 92%|█████████▏| 33/36 [01:43<00:08,  2.79s/it] 94%|█████████▍| 34/36 [01:44<00:04,  2.35s/it] 97%|█████████▋| 35/36 [01:47<00:02,  2.50s/it]100%|██████████| 36/36 [01:51<00:00,  2.83s/it]100%|██████████| 36/36 [01:51<00:00,  3.09s/it]
-/usr/local/lib/python3.10/dist-packages/sklearn/linear_model/_logistic.py:458: ConvergenceWarning:
-
-lbfgs failed to converge (status=1):
-STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
-
-Increase the number of iterations (max_iter) or scale the data as shown in:
-    https://scikit-learn.org/stable/modules/preprocessing.html
-Please also refer to the documentation for alternative solver options:
-    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
-
-/usr/local/lib/python3.10/dist-packages/sklearn/linear_model/_logistic.py:458: ConvergenceWarning:
-
-lbfgs failed to converge (status=1):
-STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
-
-Increase the number of iterations (max_iter) or scale the data as shown in:
-    https://scikit-learn.org/stable/modules/preprocessing.html
-Please also refer to the documentation for alternative solver options:
-    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
-
-/usr/local/lib/python3.10/dist-packages/sklearn/linear_model/_logistic.py:458: ConvergenceWarning:
-
-lbfgs failed to converge (status=1):
-STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
-
-Increase the number of iterations (max_iter) or scale the data as shown in:
-    https://scikit-learn.org/stable/modules/preprocessing.html
-Please also refer to the documentation for alternative solver options:
-    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
-
-Evaluating c2st
-Evaluating density
-Generating report ...
-
-|          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |████████  | 12/15 [00:00<00:00, 119.54it/s]|(1/2) Evaluating Column Shapes: |██████████| 15/15 [00:00<00:00, 130.91it/s]|
-Column Shapes Score: 93.28%
-
-|          | 0/105 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/105 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |▍         | 5/105 [00:00<00:02, 47.24it/s]|(2/2) Evaluating Column Pair Trends: |█         | 11/105 [00:00<00:01, 53.95it/s]|(2/2) Evaluating Column Pair Trends: |█▌        | 17/105 [00:00<00:01, 54.92it/s]|(2/2) Evaluating Column Pair Trends: |██▍       | 26/105 [00:00<00:01, 67.75it/s]|(2/2) Evaluating Column Pair Trends: |███▏      | 33/105 [00:00<00:01, 66.65it/s]|(2/2) Evaluating Column Pair Trends: |███▊      | 40/105 [00:00<00:01, 53.57it/s]|(2/2) Evaluating Column Pair Trends: |████▋     | 49/105 [00:00<00:00, 63.02it/s]|(2/2) Evaluating Column Pair Trends: |█████▍    | 57/105 [00:00<00:00, 67.20it/s]|(2/2) Evaluating Column Pair Trends: |██████▏   | 65/105 [00:01<00:00, 70.73it/s]|(2/2) Evaluating Column Pair Trends: |█████████ | 95/105 [00:01<00:00, 135.25it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 105/105 [00:01<00:00, 91.17it/s]|
-Column Pair Trends Score: 94.74%
-
-Overall Score (Average): 94.01%
-
-Generating report ...
-
-|          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 15/15 [00:00<00:00, 1098.71it/s]|
-Data Validity Score: 100.0%
-
-|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 927.33it/s]|
-Data Structure Score: 100.0%
-
-Overall Score (Average): 100.0%
-
-Evaluating mle
-  0%|          | 0/36 [00:00<?, ?it/s]  3%|▎         | 1/36 [00:00<00:15,  2.32it/s]  6%|▌         | 2/36 [00:02<00:41,  1.23s/it]  8%|▊         | 3/36 [00:05<01:14,  2.26s/it] 11%|█         | 4/36 [00:06<00:49,  1.54s/it] 14%|█▍        | 5/36 [00:07<00:50,  1.63s/it] 17%|█▋        | 6/36 [00:11<01:07,  2.27s/it] 19%|█▉        | 7/36 [00:12<00:52,  1.79s/it] 22%|██▏       | 8/36 [00:15<01:05,  2.34s/it] 25%|██▌       | 9/36 [00:22<01:41,  3.75s/it] 28%|██▊       | 10/36 [00:23<01:13,  2.82s/it] 31%|███       | 11/36 [00:26<01:12,  2.92s/it] 33%|███▎      | 12/36 [00:32<01:33,  3.89s/it] 36%|███▌      | 13/36 [00:34<01:13,  3.20s/it] 39%|███▉      | 14/36 [00:41<01:37,  4.45s/it] 42%|████▏     | 15/36 [00:55<02:35,  7.39s/it] 44%|████▍     | 16/36 [00:57<01:51,  5.58s/it] 47%|████▋     | 17/36 [01:02<01:47,  5.66s/it] 50%|█████     | 18/36 [01:14<02:12,  7.37s/it] 53%|█████▎    | 19/36 [01:14<01:29,  5.29s/it] 56%|█████▌    | 20/36 [01:16<01:07,  4.24s/it] 58%|█████▊    | 21/36 [01:19<00:55,  3.72s/it] 61%|██████    | 22/36 [01:19<00:38,  2.73s/it] 64%|██████▍   | 23/36 [01:21<00:31,  2.42s/it] 67%|██████▋   | 24/36 [01:23<00:29,  2.42s/it] 69%|██████▉   | 25/36 [01:24<00:21,  1.93s/it] 72%|███████▏  | 26/36 [01:26<00:19,  1.97s/it] 75%|███████▌  | 27/36 [01:29<00:19,  2.22s/it] 78%|███████▊  | 28/36 [01:29<00:14,  1.77s/it] 81%|████████  | 29/36 [01:31<00:12,  1.84s/it] 83%|████████▎ | 30/36 [01:34<00:12,  2.10s/it] 86%|████████▌ | 31/36 [01:36<00:09,  1.94s/it] 89%|████████▉ | 32/36 [01:39<00:09,  2.27s/it] 92%|█████████▏| 33/36 [01:43<00:08,  2.71s/it] 94%|█████████▍| 34/36 [01:44<00:04,  2.29s/it] 97%|█████████▋| 35/36 [01:47<00:02,  2.46s/it]100%|██████████| 36/36 [01:50<00:00,  2.79s/it]100%|██████████| 36/36 [01:50<00:00,  3.08s/it]
-Evaluating c2st
-['adult', 'forest_diffusion n_t=50 n_t_sampling=50 model=xgboost diffusion=flow duplicate_K=100 ycond=False depth=7 n_trees=100 eta=0.3 ', 0.0, 0.0, 0.0, 0.0, 0.0, 0.7542808439171964, 0.7413954972680372, 0.7529527838417016, 0.6922412469287469, 0.9316751113158299, 0.0, 0.0, 0.0, [0.31356747882761016, 0.31497487031298754], 47521.51703810692, 0.9335713554463554, 0.9484103312228311, 0.9409908433345933, 0.9044054755370299, 0.893604483922233, 0.0, 0.0, 0.0, 0.6274644693046012, 0.6278030109157449, 0.6267662403294962, 0.0, 0.0, 0.0, 0.7870150224437893, 0.7863910253751741, 0.7897933403540984, 0.0, 0.0, 0.0, 0.7932779784600111, 0.7744358891717258, 0.7923745571654806, 0.0, 0.0, 0.0, 0.8093659054603843, 0.7769520636095039, 0.8028769975177314]
-Evaluating density
-Generating report ...
-
-|          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 15/15 [00:00<00:00, 177.78it/s]|
-Column Shapes Score: 95.23%
-
-|          | 0/105 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/105 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |▌         | 6/105 [00:00<00:01, 57.69it/s]|(2/2) Evaluating Column Pair Trends: |█▎        | 14/105 [00:00<00:01, 69.97it/s]|(2/2) Evaluating Column Pair Trends: |██▎       | 24/105 [00:00<00:00, 82.30it/s]|(2/2) Evaluating Column Pair Trends: |███▏      | 33/105 [00:00<00:00, 82.02it/s]|(2/2) Evaluating Column Pair Trends: |████      | 42/105 [00:00<00:00, 84.23it/s]|(2/2) Evaluating Column Pair Trends: |████▊     | 51/105 [00:00<00:00, 85.75it/s]|(2/2) Evaluating Column Pair Trends: |█████▉    | 62/105 [00:00<00:00, 92.59it/s]|(2/2) Evaluating Column Pair Trends: |███████   | 74/105 [00:00<00:00, 100.43it/s]|(2/2) Evaluating Column Pair Trends: |█████████▊| 103/105 [00:00<00:00, 158.21it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 105/105 [00:00<00:00, 112.19it/s]|
-Column Pair Trends Score: 98.01%
-
-Overall Score (Average): 96.62%
-
-Generating report ...
-
-|          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 15/15 [00:00<00:00, 1105.33it/s]|
-Data Validity Score: 100.0%
-
-|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 534.71it/s]|
-Data Structure Score: 100.0%
-
-Overall Score (Average): 100.0%
-
-Evaluating mle
-  0%|          | 0/36 [00:00<?, ?it/s]  3%|▎         | 1/36 [00:00<00:17,  1.95it/s]  6%|▌         | 2/36 [00:02<00:42,  1.26s/it]  8%|▊         | 3/36 [00:05<01:15,  2.28s/it] 11%|█         | 4/36 [00:06<00:49,  1.55s/it] 14%|█▍        | 5/36 [00:08<00:50,  1.63s/it] 17%|█▋        | 6/36 [00:11<01:07,  2.26s/it] 19%|█▉        | 7/36 [00:12<00:51,  1.79s/it] 22%|██▏       | 8/36 [00:15<01:05,  2.33s/it] 25%|██▌       | 9/36 [00:22<01:40,  3.72s/it] 28%|██▊       | 10/36 [00:23<01:12,  2.80s/it] 31%|███       | 11/36 [00:26<01:12,  2.90s/it] 33%|███▎      | 12/36 [00:32<01:33,  3.88s/it] 36%|███▌      | 13/36 [00:34<01:13,  3.19s/it] 39%|███▉      | 14/36 [00:41<01:37,  4.42s/it] 42%|████▏     | 15/36 [00:55<02:33,  7.31s/it] 44%|████▍     | 16/36 [00:56<01:50,  5.51s/it] 47%|████▋     | 17/36 [01:02<01:46,  5.59s/it] 50%|█████     | 18/36 [01:13<02:10,  7.27s/it] 53%|█████▎    | 19/36 [01:14<01:28,  5.21s/it] 56%|█████▌    | 20/36 [01:15<01:06,  4.18s/it] 58%|█████▊    | 21/36 [01:18<00:55,  3.69s/it] 61%|██████    | 22/36 [01:18<00:37,  2.71s/it] 64%|██████▍   | 23/36 [01:20<00:31,  2.42s/it] 67%|██████▋   | 24/36 [01:23<00:29,  2.44s/it] 69%|██████▉   | 25/36 [01:23<00:21,  1.94s/it] 72%|███████▏  | 26/36 [01:26<00:20,  2.02s/it] 75%|███████▌  | 27/36 [01:29<00:20,  2.29s/it] 78%|███████▊  | 28/36 [01:29<00:14,  1.82s/it] 81%|████████  | 29/36 [01:31<00:13,  1.91s/it] 83%|████████▎ | 30/36 [01:34<00:13,  2.19s/it] 86%|████████▌ | 31/36 [01:36<00:09,  2.00s/it] 89%|████████▉ | 32/36 [01:39<00:09,  2.34s/it] 92%|█████████▏| 33/36 [01:43<00:08,  2.80s/it] 94%|█████████▍| 34/36 [01:44<00:04,  2.34s/it] 97%|█████████▋| 35/36 [01:47<00:02,  2.51s/it]100%|██████████| 36/36 [01:51<00:00,  2.85s/it]100%|██████████| 36/36 [01:51<00:00,  3.09s/it]
-Evaluating c2st
-Evaluating density
-Generating report ...
-
-|          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 15/15 [00:00<00:00, 165.04it/s]|
-Column Shapes Score: 95.23%
-
-|          | 0/105 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/105 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |█▌        | 16/105 [00:00<00:00, 98.93it/s]|(2/2) Evaluating Column Pair Trends: |██▍       | 26/105 [00:00<00:00, 95.09it/s]|(2/2) Evaluating Column Pair Trends: |███▍      | 36/105 [00:00<00:00, 94.67it/s]|(2/2) Evaluating Column Pair Trends: |████▍     | 46/105 [00:00<00:00, 94.23it/s]|(2/2) Evaluating Column Pair Trends: |█████▎    | 56/105 [00:00<00:00, 94.61it/s]|(2/2) Evaluating Column Pair Trends: |██████▍   | 67/105 [00:00<00:00, 98.61it/s]|(2/2) Evaluating Column Pair Trends: |███████▌  | 80/105 [00:00<00:00, 107.62it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 105/105 [00:00<00:00, 119.50it/s]|
-Column Pair Trends Score: 97.98%
-
-Overall Score (Average): 96.61%
-
-Generating report ...
-
-|          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 15/15 [00:00<00:00, 1284.10it/s]|
-Data Validity Score: 100.0%
-
-|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 1167.35it/s]|
-Data Structure Score: 100.0%
-
-Overall Score (Average): 100.0%
-
-Evaluating mle
-  0%|          | 0/36 [00:00<?, ?it/s]  3%|▎         | 1/36 [00:00<00:14,  2.35it/s]  6%|▌         | 2/36 [00:02<00:41,  1.22s/it]  8%|▊         | 3/36 [00:05<01:14,  2.26s/it] 11%|█         | 4/36 [00:06<00:49,  1.53s/it] 14%|█▍        | 5/36 [00:07<00:50,  1.62s/it] 17%|█▋        | 6/36 [00:11<01:07,  2.26s/it] 19%|█▉        | 7/36 [00:12<00:51,  1.78s/it] 22%|██▏       | 8/36 [00:15<01:04,  2.31s/it] 25%|██▌       | 9/36 [00:22<01:40,  3.72s/it] 28%|██▊       | 10/36 [00:23<01:12,  2.80s/it] 31%|███       | 11/36 [00:26<01:12,  2.91s/it] 33%|███▎      | 12/36 [00:32<01:33,  3.88s/it] 36%|███▌      | 13/36 [00:34<01:13,  3.19s/it] 39%|███▉      | 14/36 [00:41<01:36,  4.40s/it] 42%|████▏     | 15/36 [00:55<02:32,  7.28s/it] 44%|████▍     | 16/36 [00:56<01:50,  5.50s/it] 47%|████▋     | 17/36 [01:02<01:46,  5.59s/it] 50%|█████     | 18/36 [01:13<02:11,  7.29s/it] 53%|█████▎    | 19/36 [01:14<01:28,  5.23s/it] 56%|█████▌    | 20/36 [01:15<01:07,  4.19s/it] 58%|█████▊    | 21/36 [01:18<00:55,  3.70s/it] 61%|██████    | 22/36 [01:18<00:38,  2.71s/it] 64%|██████▍   | 23/36 [01:20<00:31,  2.43s/it] 67%|██████▋   | 24/36 [01:23<00:29,  2.45s/it] 69%|██████▉   | 25/36 [01:23<00:21,  1.95s/it] 72%|███████▏  | 26/36 [01:26<00:20,  2.02s/it] 75%|███████▌  | 27/36 [01:28<00:20,  2.29s/it] 78%|███████▊  | 28/36 [01:29<00:14,  1.82s/it] 81%|████████  | 29/36 [01:31<00:13,  1.89s/it] 83%|████████▎ | 30/36 [01:34<00:12,  2.15s/it] 86%|████████▌ | 31/36 [01:36<00:09,  1.98s/it] 89%|████████▉ | 32/36 [01:39<00:09,  2.30s/it] 92%|█████████▏| 33/36 [01:42<00:08,  2.76s/it] 94%|█████████▍| 34/36 [01:44<00:04,  2.31s/it] 97%|█████████▋| 35/36 [01:47<00:02,  2.52s/it]100%|██████████| 36/36 [01:50<00:00,  2.89s/it]100%|██████████| 36/36 [01:50<00:00,  3.08s/it]
-Evaluating c2st
-['adult', 'forest_diffusion n_t=50 n_t_sampling=50 model=xgboost diffusion=mixed-flow duplicate_K=100 ycond=False depth=7 n_trees=100 eta=0.3 ', 0.0, 0.0, 0.0, 0.0, 0.0, 0.7542808439171964, 0.7444906924465735, 0.758181773657985, 0.7277334152334153, 0.9456471672040534, 0.0, 0.0, 0.0, [0.29532007993116555, 0.2924510447635212], 52907.820618867874, 0.9523303132678131, 0.9799394018144019, 0.9661348575411076, 0.9079958948948639, 0.9818669862619949, 0.0, 0.0, 0.0, 0.6274644693046012, 0.6236953962848484, 0.6396119845001469, 0.0, 0.0, 0.0, 0.7870150224437893, 0.7828063370138798, 0.7882897621266203, 0.0, 0.0, 0.0, 0.7932779784600111, 0.7822881779946815, 0.7950015990693649, 0.0, 0.0, 0.0, 0.8093659054603843, 0.7891728584928843, 0.8098237489358082]

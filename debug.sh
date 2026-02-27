@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-cd /proj-vertical-llms-pvc/users/zhihan/tabular_gen/ForestDiffusion
-out_path="/proj-vertical-llms-pvc/users/zhihan/tabular_gen/ForestDiffusion/results_all.csv"
+cd /home/zhihan/tabular_gen/ForestDiffusion
+out_path="/home/zhihan/tabular_gen/ForestDiffusion/results_all.csv"
 
-DATASETS=${DATASETS:-car}
+DATASETS=${DATASETS:-magic}
 if [[ -z "${DATASETS}" ]]; then
   echo "DATASETS is empty. Please set DATASETS, e.g. DATASETS=wine"
   exit 1
@@ -21,22 +21,22 @@ run_case() {
     --diffusion_type "${diffusion_type}" \
     --out_path "${out_path}" \
     --datasets "${DATASETS}" \
-    --n_t 10 \
+    --n_t 50 \
     --nexp 1 \
     --ngen 1 \
     --n_tries 1 \
-    --duplicate_K 10 \
+    --duplicate_K 100 \
     --n_batch "${n_batch}" \
     --ycond "${ycond}" \
     --n_jobs 8
 }
 
-# run_case flow True 1 0
-# run_case flow False 1 0
-# run_case vp True 1 0
-# run_case vp False 1 0
-# run_case mixed-flow True 0
-run_case mixed-flow False 1 1
+# run_case flow True 1 2
+# run_case flow False 1 2
+# run_case vp True 1 2
+# run_case vp False 1 2
+# run_case mixed-flow True 0 2
+run_case mixed-flow False 0 2
 # run_case flow True 1 0
 
 wait

@@ -17,7 +17,7 @@ from sklearn.experimental import enable_iterative_imputer
 from sklearn.impute import IterativeImputer
 
 from utils import *
-from data_loaders import dataset_loader
+from data_loaders import dataset_loader, EFVFM_DATASETS, get_efvfm_splits
 from sklearn.model_selection import train_test_split
 import argparse
 
@@ -121,6 +121,11 @@ if __name__ == "__main__":
         print(dataset)
         X, bin_x, cat_x, int_x, y, bin_y, cat_y, int_y = dataset_loader(dataset)
 
+        # For ef-vfm datasets we use the predefined train/test splits
+        efvfm_split = None
+        if dataset in EFVFM_DATASETS:
+            efvfm_split = get_efvfm_splits(dataset)
+
         # Binary
         bin_indexes = []
         if bin_x is not None:
@@ -198,7 +203,19 @@ if __name__ == "__main__":
                 print(n)
 
                 # Need to train/test split for evaluating the linear regression performance and for W1 based on test
-                X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=n, stratify=y if bin_y or cat_y else None)
+                if efvfm_split is not None:
+                    X_train = efvfm_split['X_train']
+                    X_test = efvfm_split['X_test']
+                    y_train = efvfm_split['y_train']
+                    y_test = efvfm_split['y_test']
+                else:
+                    X_train, X_test, y_train, y_test = train_test_split(
+                        X,
+                        y,
+                        test_size=0.2,
+                        random_state=n,
+                        stratify=y if bin_y or cat_y else None,
+                    )
                 Xy_train = np.concatenate((X_train, np.expand_dims(y_train, axis=1)), axis=1)
                 Xy_test = np.concatenate((X_test, np.expand_dims(y_test, axis=1)), axis=1)
 

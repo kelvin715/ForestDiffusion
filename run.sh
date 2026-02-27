@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-cd /proj-vertical-llms-pvc/users/zhihan/tabular_gen/ForestDiffusion
-out_path="/proj-vertical-llms-pvc/users/zhihan/tabular_gen/ForestDiffusion/results_new_xgboost.csv"
-log_path="/proj-vertical-llms-pvc/users/zhihan/tabular_gen/ForestDiffusion/logs_new_xgboost.txt"
+cd /home/zhihan/tabular_gen/ForestDiffusion
+out_path="/home/zhihan/tabular_gen/ForestDiffusion/results_new_xgboost.csv"
+log_path="/home/zhihan/tabular_gen/ForestDiffusion/logs_new_xgboost.txt"
 
 DATASETS=${DATASETS:-tictactoe}
 if [[ -z "${DATASETS}" ]]; then
@@ -32,8 +32,8 @@ run_case() {
     --ycond "${ycond}" >> "${log_path}" 2>&1 &
 }
 
-# run_case flow False 1 0
-run_case mixed-flow False 1 1
+run_case flow False 1 2
+# run_case mixed-flow False 1 2
 # wait
 # run_case vp True 1 0
 # run_case flow True 1 1

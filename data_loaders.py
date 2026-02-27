@@ -7,7 +7,8 @@ import os
 import pandas as pd
 import numpy as np
 import wget
-
+import json
+import gzip
 
 DATASETS = ['iris', 'wine', 'california', 'parkinsons', \
             'climate_model_crashes', 'concrete_compression', \
@@ -17,7 +18,15 @@ DATASETS = ['iris', 'wine', 'california', 'parkinsons', \
             'blood_transfusion', 'breast_cancer_diagnostic', \
             'connectionist_bench_vowel', 'concrete_slump', \
             'wine_quality_red', 'wine_quality_white', \
-            'bean', 'tictactoe','congress','car', 'adult', 'higgs']
+            'bean', 'tictactoe','congress','car', 'adult', 'higgs', \
+            'beijing', 'default', 'magic', 'news', 'shoppers']
+
+# Datasets that should be loaded from ef-vfm-dev-mixed using train/test splits
+EFVFM_DATASETS = ['adult', 'shoppers', 'magic', 'news', 'beijing', 'default']
+
+# Will be populated by load_from_ef_vfm and can be reused by scripts
+EFVFM_SPLITS = {}
+
 
 def dataset_loader(dataset):
     """
@@ -38,6 +47,12 @@ def dataset_loader(dataset):
         Data values (predictive values only).
     """
     assert dataset in DATASETS , f"Dataset not supported: {dataset}"
+
+    # For ef-vfm datasets, we use the dedicated loader that respects
+    # the predefined train/test splits in ef-vfm-dev-mixed.
+    if dataset in EFVFM_DATASETS:
+        X, bin_x, cat_x, int_x, y, bin_y, cat_y, int_y = load_from_ef_vfm(dataset)
+        return X, bin_x, cat_x, int_x, y, bin_y, cat_y, int_y
 
     if not os.path.isdir('datasets'):
         os.mkdir('datasets')
@@ -139,11 +154,6 @@ def dataset_loader(dataset):
             my_data = fetch_car()
             cat_x = [0,1,2,3,4,5]
             cat_y = True
-        elif dataset == 'adult':
-            my_data = fetch_adult()
-            cat_x = [1,3,5,6,7,8,9,13]
-            int_x = [0,2,4,10,11,12]
-            bin_y = True
         else:
             raise Exception('dataset does not exists')
         X, y = my_data['data'], my_data['target']
@@ -520,30 +530,6 @@ def fetch_car():
 
     return Xy
 
-def fetch_adult():
-    if not os.path.isdir('datasets/adult'):
-        os.mkdir('datasets/adult')
-        url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data'
-        wget.download(url, out='datasets/adult/')
-
-    with open('datasets/adult/adult.data', 'rb') as f:
-        df = pd.read_csv(f, delimiter=',', header=None, skipinitialspace=True)
-        # TODO: Do we need to replace '?' with np.nan and dropna?
-        # df = df.replace('?', np.nan).dropna()
-
-        # sample 200 rows
-        # df = df.sample(200)
-
-        categorical_columns = [1,3,5,6,7,8,9,13]
-        for col in categorical_columns:
-            df[col] = pd.factorize(df[col])[0]
-
-        Xy = {}
-        Xy['data'] = df.values[:, :-1].astype('float')
-        Xy['target'] = pd.factorize(df.values[:, -1])[0] # str to numeric
-
-    return Xy
-
 def fetch_higgs():
     if not os.path.isdir('datasets/higgs'):
         os.mkdir('datasets/higgs')
@@ -560,3 +546,150 @@ def fetch_higgs():
         Xy['target'] =  pd.factorize(df.values[:, 0])[0] # str to numeric
 
     return Xy
+  
+
+def load_from_ef_vfm(dataset: str):
+    """
+    Load dataset from ef-vfm-dev-mixed using its train/test split and info.json.
+
+    This function:
+    - reads train.csv and test.csv
+    - concatenates them to ensure consistent encoding
+    - encodes categorical feature columns using info['cat_col_idx']
+    - encodes target column if metadata marks it as categorical
+    - treats the remaining columns as numerical features
+    - stores the explicit train/test split in EFVFM_SPLITS for reuse
+
+    It returns values compatible with dataset_loader:
+    X, bin_x, cat_x, int_x, y, bin_y, cat_y, int_y
+    where X/y contain all rows from train+test.
+    """
+    assert dataset in EFVFM_DATASETS, f"Dataset {dataset} is not configured as an ef-vfm dataset."
+
+    # Resolve ef-vfm-dev-mixed path relative to project root (one level above this file's dir)
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    base_dir = os.path.join(project_root, 'ef-vfm-dev-mixed', 'data', dataset)
+    info_path = os.path.join(base_dir, 'info.json')
+
+    with open(info_path, 'r') as f:
+        info = json.load(f)
+
+    header_cfg = info.get('header', None)
+    # Treat missing header config the same as \"infer\" (let pandas use first row as header)
+    if header_cfg is None or header_cfg == 'infer':
+        header = 0
+    else:
+        header = None
+
+    train_path = os.path.join(base_dir, 'train.csv')
+    test_path = os.path.join(base_dir, 'test.csv')
+
+    df_train = pd.read_csv(train_path, header=header)
+    df_test = pd.read_csv(test_path, header=header)
+
+    n_train = df_train.shape[0]
+
+    # Work with unified dataframe; reset column labels to positional indices
+    df_all = pd.concat([df_train, df_test], axis=0, ignore_index=True)
+    df_all.columns = list(range(df_all.shape[1]))
+
+    cat_col_idx = info.get('cat_col_idx', []) or []
+    num_col_idx = info.get('num_col_idx', []) or []
+    int_col_idx = info.get('int_col_idx', []) or []
+    target_col_idx_list = info.get('target_col_idx', [])
+    assert isinstance(target_col_idx_list, list) and len(target_col_idx_list) == 1, \
+        f"Expected a single target_col_idx for {dataset}, got {target_col_idx_list}"
+    target_idx = target_col_idx_list[0]
+
+    # Encode categorical feature columns jointly on train+test
+    for idx in cat_col_idx:
+        if idx == target_idx:
+            # target is handled separately below
+            continue
+        col = df_all.columns[idx]
+        df_all[col], _ = pd.factorize(df_all[col])
+
+    # Decide whether target is categorical from ef-vfm metadata
+    metadata_cols = (info.get('metadata') or {}).get('columns', {})
+    target_meta = metadata_cols.get(str(target_idx), {})
+    target_is_categorical = target_idx in cat_col_idx or target_meta.get('sdtype') == 'categorical'
+
+    if target_is_categorical:
+        df_all[target_idx], _ = pd.factorize(df_all[target_idx])
+
+    # Build feature matrix and target vector with target removed from X
+    feature_indices = [i for i in range(df_all.shape[1]) if i != target_idx]
+    index_map = {old_idx: new_pos for new_pos, old_idx in enumerate(feature_indices)}
+
+    df_features = df_all[feature_indices].copy()
+    df_features.columns = list(range(df_features.shape[1]))
+
+    # Map categorical / integer feature indices into the feature space
+    cat_x = sorted(index_map[idx] for idx in cat_col_idx if idx != target_idx and idx in index_map)
+    int_x = sorted(index_map[idx] for idx in int_col_idx if idx != target_idx and idx in index_map)
+    bin_x = None  # we treat all categorical features uniformly as cat_x
+
+    # Build y and task-type flags
+    task_type = info.get('task_type', None)
+    if task_type == 'binclass':
+        bin_y = True
+        cat_y = False
+        int_y = False
+    elif task_type == 'multiclass':
+        bin_y = False
+        cat_y = True
+        int_y = False
+    elif task_type == 'regression':
+        bin_y = False
+        cat_y = False
+        int_y = True
+    else:
+        raise ValueError(f"Unknown task type: {task_type}")
+        # # Fallback: infer from target metadata
+        # if target_is_categorical:
+        #     # Assume binary if only two unique values
+        #     n_unique = df_all[target_idx].nunique()
+        #     bin_y = n_unique == 2
+        #     cat_y = n_unique > 2
+        #     int_y = False
+        # else:
+        #     bin_y = False
+        #     cat_y = False
+        #     int_y = True
+
+    if bin_y or cat_y or target_is_categorical:
+        y_all = df_all[target_idx].astype('int').to_numpy()
+    else:
+        y_all = df_all[target_idx].astype('float').to_numpy()
+
+    X_all = df_features.astype('float').to_numpy()
+
+    # Construct explicit train/test splits following ef-vfm
+    X_train = X_all[:n_train]
+    X_test = X_all[n_train:]
+    y_train = y_all[:n_train]
+    y_test = y_all[n_train:]
+
+    EFVFM_SPLITS[dataset] = {
+        'X_train': X_train,
+        'X_test': X_test,
+        'y_train': y_train,
+        'y_test': y_test,
+        'info': info,
+        'cat_x': cat_x,
+        'int_x': int_x,
+        'target_idx': target_idx,
+        'feature_indices': feature_indices,
+    }
+
+    return X_all, bin_x, cat_x if cat_x else None, int_x if int_x else None, y_all, bin_y, cat_y, int_y
+
+
+def get_efvfm_splits(dataset: str):
+    """Return stored ef-vfm train/test split and metadata for a dataset, if available."""
+    return EFVFM_SPLITS.get(dataset)
+
+
+if __name__ == "__main__":
+    dataset = 'magic'
+    _ = load_from_ef_vfm(dataset)
