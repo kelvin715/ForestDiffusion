@@ -1,8 +1,29 @@
 import numpy as np
 from ForestDiffusion.utils.diffusion import VPSDE
 import xgboost as xgb
+from scipy.optimize import linear_sum_assignment
 
-# Build the dataset of x(t) at multiple values of t 
+# Compute optimal permutation of x0 to match x1 using group-normalized L2² cost
+def compute_ot_permutation(x0, x1, num_cols=None, cat_groups=None):
+  n = x0.shape[0]
+  if num_cols is not None and cat_groups is not None:
+    C = np.zeros((n, n))
+    # Numerical columns: standard L2²
+    if len(num_cols) > 0:
+      diff = x0[:, None, num_cols] - x1[None, :, num_cols]
+      C += np.sum(diff ** 2, axis=-1)
+    # Categorical columns: group-normalized L2² (divide by group size)
+    for group_id, cols in cat_groups.items():
+      diff = x0[:, None, cols] - x1[None, :, cols]
+      C += np.sum(diff ** 2, axis=-1) / len(cols)
+  else:
+    # No mixed-flow info, fall back to standard L2²
+    diff = x0[:, None, :] - x1[None, :, :]
+    C = np.sum(diff ** 2, axis=-1)
+  _, col_ind = linear_sum_assignment(C)
+  return col_ind
+
+# Build the dataset of x(t) at multiple values of t
 def build_data_xt(x0, x1, x_covs=None, n_t=101, diffusion_type='flow', eps=1e-3, sde=None):
   b, c = x1.shape
 
@@ -34,35 +55,8 @@ def build_data_xt(x0, x1, x_covs=None, n_t=101, diffusion_type='flow', eps=1e-3,
     y = x0.reshape(b, c)
   elif diffusion_type == 'mixed-flow':
     y = x1.reshape(b, c) # The target is the clean data x1
-    # Do not repeat y, as the training loop handles it by using the same y for all t
-    # y = np.tile(np.expand_dims(y, axis=0), (n_t, 1, 1)).reshape(-1, c)
   else:
     y = x1.reshape(b, c) - x0.reshape(b, c) # [b, c]
-    y = np.tile(np.expand_dims(y, axis=0), (n_t, 1, 1)).reshape(-1, c) # Repeat for each time step if needed?
-    # Wait, the original code for 'else' (flow) was:
-    # y = x1.reshape(b, c) - x0.reshape(b, c) # [b, c]
-    # But X is [t*b, c]. It seems `y` is broadcasted or repeated correctly?
-    # In 'flow', y is constant across t because v = x1 - x0.
-    # So y shape [b, c] is fine if the loss function handles it, but X is [t*b, c].
-    # XGBoost needs X and y to have same number of rows.
-    # The original code:
-    # y = x1.reshape(b, c) - x0.reshape(b, c) # [b, c]
-    # If build_data_xt returns X of shape [t*b, c] and y of shape [b, c], that's a mismatch for XGBoost unless repeated.
-    # Let me check how it was returned.
-    # Original: y = x1.reshape(b, c) - x0.reshape(b, c)
-    # This implies y is [b, c].
-    # If X is [t*b, c], then y must be [t*b, c].
-    # In the original code, `y` was NOT repeated.
-    # BUT, looking at `diffusion_with_trees_class.py`:
-    # X_train.reshape(self.n_t, self.b*self.duplicate_K, self.c_all)[i] ...
-    # It slices X_train by [i] (time step).
-    # y_train.reshape(self.b*self.duplicate_K, self.c) ...
-    # It does NOT slice y_train by [i] in the 'flow' case!
-    # "y_train.reshape(self.b*self.duplicate_K, self.c)[self.mask_y[j], :]"
-    # This means y_train was indeed [b*K, c], same for all t.
-    # For `mixed-flow`, target IS x1, which is also constant across t.
-    # So I don't need to tile y for mixed-flow either.
-
 
   if x_covs is not None: # additional covariates
     c_new = x_covs.shape[1]
@@ -85,10 +79,15 @@ def euler_solve(y0, my_model, N=101):
   return y
 
 # Get X[t], y where t is a scalar
-def get_xt(x1, t, dim, diffusion_type='flow', eps=1e-3, sde=None, x0=None):
+def get_xt(x1, t, dim, diffusion_type='flow', eps=1e-3, sde=None, x0=None, use_ot=False, num_cols=None, cat_groups=None):
   b, c = x1.shape
   if x0 is None:
     x0 = np.random.normal(size=x1.shape) # Noise data
+
+  # Apply OT permutation to x0 before computing x_t
+  if use_ot:
+    perm = compute_ot_permutation(x0, x1, num_cols=num_cols, cat_groups=cat_groups)
+    x0 = x0[perm]
 
   if diffusion_type == 'vp': # Forward diffusion from x0 to x1
     mean, std = sde.marginal_prob(x1, t)
@@ -129,7 +128,7 @@ class IterForDMatrix(xgb.core.DataIter):
 
   """
 
-  def __init__(self, data, data_covs, t, dim, n_batch=1000, n_epochs=10, diffusion_type='flow', eps=1e-3, sde=None, target_group_cols=None):
+  def __init__(self, data, data_covs, t, dim, n_batch=1000, n_epochs=10, diffusion_type='flow', eps=1e-3, sde=None, target_group_cols=None, use_ot=False, num_cols=None, cat_groups=None):
     self._data = data
     self._data_covs = data_covs
     self.n_batch = n_batch
@@ -140,6 +139,9 @@ class IterForDMatrix(xgb.core.DataIter):
     self.sde = sde
     self.dim = dim
     self.target_group_cols = target_group_cols
+    self.use_ot = use_ot
+    self.num_cols = num_cols
+    self.cat_groups = cat_groups
     self.it = 0  # set iterator to 0
     super().__init__()
 
@@ -152,10 +154,10 @@ class IterForDMatrix(xgb.core.DataIter):
     if self.it == self.n_batch*self.n_epochs: # stops after k epochs
       return 0
     if self.target_group_cols is not None:
-      x_t, y_full = get_xt(x1=self._data[self.it % self.n_batch], dim=None, t=self.t, diffusion_type=self.diffusion_type, eps=self.eps, sde=self.sde)
+      x_t, y_full = get_xt(x1=self._data[self.it % self.n_batch], dim=None, t=self.t, diffusion_type=self.diffusion_type, eps=self.eps, sde=self.sde, use_ot=self.use_ot, num_cols=self.num_cols, cat_groups=self.cat_groups)
       y = np.argmax(y_full[:, self.target_group_cols], axis=1).astype(np.int32)
     else:
-      x_t, y = get_xt(x1=self._data[self.it % self.n_batch], dim=self.dim, t=self.t, diffusion_type=self.diffusion_type, eps=self.eps, sde=self.sde)
+      x_t, y = get_xt(x1=self._data[self.it % self.n_batch], dim=self.dim, t=self.t, diffusion_type=self.diffusion_type, eps=self.eps, sde=self.sde, use_ot=self.use_ot, num_cols=self.num_cols, cat_groups=self.cat_groups)
     if self._data_covs is not None:
       x_t = np.concatenate((x_t, self._data_covs[self.it % self.n_batch]), axis=1)
     if len(y.shape) == 1:

@@ -89,6 +89,7 @@ parser.add_argument('--beta_min', type=float, default=0.1, help='')
 parser.add_argument('--beta_max', type=float, default=8, help='')
 parser.add_argument('--n_jobs', type=int, default=-1, help='')
 parser.add_argument('--n_batch', type=int, default=1, help='If >0 use the data iterator with the specified number of batches (supported for flow/vp/mixed-flow)')
+parser.add_argument('--use_ot', type=str2bool, default=False, help='If True, use Minibatch Optimal Transport coupling (group-normalized L2²) for straighter flow paths')
 
 # stasy hyperparameters
 parser.add_argument('--act', type=str, default='elu', help='')
@@ -461,7 +462,7 @@ if __name__ == "__main__":
                 elif method == 'forest_diffusion':
 
                     if args.ycond and (bin_y or cat_y):
-                        forest_model = ForestDiffusionModel(X=Xy_train_used[:,:-1], 
+                        forest_model = ForestDiffusionModel(X=Xy_train_used[:,:-1],
                             label_y=Xy_train_used[:,-1],
                             n_t=args.n_t,
                             model=args.forest_model, # in random_forest, xgboost, lgbm
@@ -476,10 +477,11 @@ if __name__ == "__main__":
                             int_indexes=int_indexes_no_y,
                             n_jobs=args.n_jobs,
                             n_batch=args.n_batch,
+                            use_ot=args.use_ot,
                             eps=args.eps, beta_min=args.beta_min, beta_max=args.beta_max,
                             seed=n)
                     else:
-                        forest_model = ForestDiffusionModel(X=Xy_train_used, 
+                        forest_model = ForestDiffusionModel(X=Xy_train_used,
                             n_t=args.n_t,
                             model=args.forest_model, # in random_forest, xgboost, lgbm
                             diffusion_type=args.diffusion_type, # vp, flow
@@ -493,6 +495,7 @@ if __name__ == "__main__":
                             int_indexes=int_indexes,
                             n_jobs=args.n_jobs,
                             n_batch=args.n_batch,
+                            use_ot=args.use_ot,
                             eps=args.eps, beta_min=args.beta_min, beta_max=args.beta_max,
                             seed=n)
                     Xy_fake = forest_model.generate(batch_size=args.ngen*Xy_train_used.shape[0], n_t=args.n_t_sampling)

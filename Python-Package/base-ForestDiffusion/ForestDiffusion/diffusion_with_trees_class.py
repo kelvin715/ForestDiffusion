@@ -7,7 +7,7 @@ from functools import partial
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
-from ForestDiffusion.utils.utils_diffusion import build_data_xt, euler_solve, IterForDMatrix, get_xt
+from ForestDiffusion.utils.utils_diffusion import build_data_xt, euler_solve, IterForDMatrix, get_xt, compute_ot_permutation
 from joblib import delayed, Parallel
 from scipy.special import softmax
 
@@ -40,6 +40,7 @@ class ForestDiffusionModel():
                beta_max=8, 
                n_jobs=-1, # cpus used (feel free to limit it to something small, this will leave more cpus per model; for lgbm you have to use n_jobs=1, otherwise it will never finish)
                n_batch=1, # If >0 use the data iterator with the specified number of batches
+               use_ot=False, # If True, use Minibatch Optimal Transport coupling (group-normalized L2²) for straighter flow paths
                seed=666,
                **xgboost_kwargs): # you can pass extra parameter for xgboost
 
@@ -142,6 +143,7 @@ class ForestDiffusionModel():
     self.reg_alpha = reg_alpha
     self.subsample = subsample
     self.n_z = n_z
+    self.use_ot = use_ot
     self.xgboost_kwargs = xgboost_kwargs
 
     if model == 'random_forest' and np.sum(np.isnan(X1)) > 0:
@@ -164,6 +166,16 @@ class ForestDiffusionModel():
           X_covs = np.tile(X_covs, (duplicate_K, 1))
 
       X0 = np.random.normal(size=X1.shape) # Noise data
+
+      # Apply Minibatch-OT coupling per duplication batch
+      if self.use_ot:
+        ot_num_cols = self._num_cols if (self.diffusion_type == 'mixed-flow' and len(self.cat_groups) > 0) else None
+        ot_cat_groups = self.cat_groups if (self.diffusion_type == 'mixed-flow' and len(self.cat_groups) > 0) else None
+        for k in range(max(duplicate_K, 1)):
+          x0_batch = X0[k*self.b:(k+1)*self.b]
+          x1_batch = X1[k*self.b:(k+1)*self.b]
+          perm = compute_ot_permutation(x0_batch, x1_batch, num_cols=ot_num_cols, cat_groups=ot_cat_groups)
+          X0[k*self.b:(k+1)*self.b] = x0_batch[perm]
 
       # Make Datasets of interpolation
       X_train, y_train = build_data_xt(X0, X1, X_covs, n_t=self.n_t, diffusion_type=self.diffusion_type, eps=self.eps, sde=self.sde)
@@ -295,6 +307,8 @@ class ForestDiffusionModel():
       num_class = len(target_group_cols)
       train_dim = None
 
+    ot_num_cols = self._num_cols if (self.use_ot and self.diffusion_type == 'mixed-flow' and len(self.cat_groups) > 0) else None
+    ot_cat_groups = self.cat_groups if (self.use_ot and self.diffusion_type == 'mixed-flow' and len(self.cat_groups) > 0) else None
     it = IterForDMatrix(
       X1_splitted,
       X_covs_splitted,
@@ -305,7 +319,10 @@ class ForestDiffusionModel():
       diffusion_type=self.diffusion_type,
       eps=self.eps,
       sde=self.sde,
-      target_group_cols=target_group_cols
+      target_group_cols=target_group_cols,
+      use_ot=self.use_ot,
+      num_cols=ot_num_cols,
+      cat_groups=ot_cat_groups
     )
     data_iterator = xgb.QuantileDMatrix(it)
 
