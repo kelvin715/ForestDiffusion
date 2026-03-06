@@ -28,7 +28,8 @@ run_case() {
     --duplicate_K 100 \
     --n_batch "${n_batch}" \
     --ycond "${ycond}" \
-    --n_jobs 8
+    --n_jobs 8 \
+    --use_quantile True
 }
 
 # run_case flow True 1 2

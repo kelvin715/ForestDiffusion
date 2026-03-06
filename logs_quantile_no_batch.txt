@@ -1,0 +1,1169 @@
+2026-03-03 08:29:24.695641: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-03-03 08:29:24.738602: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-03-03 08:29:25.657316: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/torch/__init__.py:1305: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at /pytorch/torch/csrc/tensor/python_tensor.cpp:434.)
+  _C._set_default_tensor_type(t)
+shoppers
+method=forest_diffusion
+0
+joblib.externals.loky.process_executor._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/externals/loky/backend/queues.py", line 159, in _feed
+    obj_ = dumps(obj, reducers=reducers)
+  File "/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/externals/loky/backend/reduction.py", line 214, in dumps
+    dump(obj, buf, reducers=reducers, protocol=protocol)
+  File "/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/externals/loky/backend/reduction.py", line 207, in dump
+    _LokyPickler(file, reducers=reducers, protocol=protocol).dump(obj)
+  File "/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/externals/cloudpickle/cloudpickle.py", line 1313, in dump
+    return super().dump(obj)
+  File "/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/_memmapping_reducer.py", line 497, in __call__
+    for dumped_filename in dump(a, filename):
+  File "/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/numpy_pickle.py", line 600, in dump
+    NumpyPickler(f, protocol=protocol).dump(value)
+  File "/usr/lib/python3.10/pickle.py", line 487, in dump
+    self.save(obj)
+  File "/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/numpy_pickle.py", line 392, in save
+    wrapper.write_array(obj, self)
+  File "/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/numpy_pickle.py", line 157, in write_array
+    pickler.file_handle.write(chunk.tobytes("C"))
+OSError: [Errno 122] Disk quota exceeded
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/zhihan/tabular_gen/ForestDiffusion/script_generation.py", line 482, in <module>
+    forest_model = ForestDiffusionModel(X=Xy_train_used,
+  File "/home/zhihan/tabular_gen/ForestDiffusion/Python-Package/base-ForestDiffusion/ForestDiffusion/diffusion_with_trees_class.py", line 261, in __init__
+    self.regr = Parallel(n_jobs=self.n_jobs)( # using all cpus
+  File "/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/parallel.py", line 2072, in __call__
+    return output if self.return_generator else list(output)
+  File "/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/parallel.py", line 1682, in _get_outputs
+    yield from self._retrieve()
+  File "/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/parallel.py", line 1784, in _retrieve
+    self._raise_error_fast()
+  File "/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/parallel.py", line 1859, in _raise_error_fast
+    error_job.get_result(self.timeout)
+  File "/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/parallel.py", line 758, in get_result
+    return self._return_or_raise()
+  File "/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/parallel.py", line 773, in _return_or_raise
+    raise self._result
+_pickle.PicklingError: Could not pickle the task to send it to the workers.
+2026-03-03 08:55:13.202552: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-03-03 08:55:13.242854: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-03-03 08:55:14.240161: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/torch/__init__.py:1305: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at /pytorch/torch/csrc/tensor/python_tensor.cpp:434.)
+  _C._set_default_tensor_type(t)
+shoppers
+method=forest_diffusion
+0
+Evaluating density
+Generating report ...
+
+|          | 0/18 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/18 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 18/18 [00:00<00:00, 428.75it/s]|
+Column Shapes Score: 87.41%
+
+|          | 0/153 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/153 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |███       | 47/153 [00:00<00:00, 469.88it/s]|(2/2) Evaluating Column Pair Trends: |██████▌   | 100/153 [00:00<00:00, 499.48it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 153/153 [00:00<00:00, 526.46it/s]|
+Column Pair Trends Score: 98.64%
+
+Overall Score (Average): 93.03%
+
+Generating report ...
+
+|          | 0/18 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/18 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 18/18 [00:00<00:00, 2021.13it/s]|
+Data Validity Score: 100.0%
+
+|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 914.79it/s]|
+Data Structure Score: 100.0%
+
+Overall Score (Average): 100.0%
+
+Evaluating mle
+  0%|          | 0/36 [00:00<?, ?it/s]  6%|▌         | 2/36 [00:00<00:02, 13.67it/s] 11%|█         | 4/36 [00:00<00:02, 10.79it/s] 17%|█▋        | 6/36 [00:00<00:03,  8.33it/s] 22%|██▏       | 8/36 [00:00<00:03,  8.37it/s] 25%|██▌       | 9/36 [00:01<00:04,  5.83it/s] 31%|███       | 11/36 [00:01<00:03,  6.54it/s] 33%|███▎      | 12/36 [00:01<00:04,  5.23it/s] 39%|███▉      | 14/36 [00:02<00:04,  5.17it/s] 42%|████▏     | 15/36 [00:02<00:05,  3.75it/s] 47%|████▋     | 17/36 [00:03<00:04,  4.64it/s] 50%|█████     | 18/36 [00:03<00:04,  3.90it/s] 56%|█████▌    | 20/36 [00:03<00:02,  5.43it/s] 58%|█████▊    | 21/36 [00:03<00:02,  5.91it/s] 64%|██████▍   | 23/36 [00:03<00:01,  7.81it/s] 69%|██████▉   | 25/36 [00:04<00:01,  6.19it/s] 72%|███████▏  | 26/36 [00:04<00:01,  6.54it/s] 75%|███████▌  | 27/36 [00:04<00:01,  6.83it/s] 81%|████████  | 29/36 [00:04<00:00,  8.42it/s] 83%|████████▎ | 30/36 [00:04<00:00,  6.35it/s] 89%|████████▉ | 32/36 [00:05<00:00,  7.61it/s] 92%|█████████▏| 33/36 [00:05<00:00,  5.80it/s] 97%|█████████▋| 35/36 [00:05<00:00,  7.21it/s]100%|██████████| 36/36 [00:05<00:00,  5.95it/s]100%|██████████| 36/36 [00:05<00:00,  6.12it/s]
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:469: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:469: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:469: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+Evaluating c2st
+Evaluating density
+Generating report ...
+
+|          | 0/18 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/18 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 18/18 [00:00<00:00, 435.77it/s]|
+Column Shapes Score: 87.45%
+
+|          | 0/153 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/153 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |███▏      | 48/153 [00:00<00:00, 478.79it/s]|(2/2) Evaluating Column Pair Trends: |██████▌   | 101/153 [00:00<00:00, 506.23it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 153/153 [00:00<00:00, 532.36it/s]|
+Column Pair Trends Score: 98.66%
+
+Overall Score (Average): 93.05%
+
+Generating report ...
+
+|          | 0/18 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/18 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 18/18 [00:00<00:00, 2032.01it/s]|
+Data Validity Score: 100.0%
+
+|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 1397.64it/s]|
+Data Structure Score: 100.0%
+
+Overall Score (Average): 100.0%
+
+Evaluating mle
+  0%|          | 0/36 [00:00<?, ?it/s]  6%|▌         | 2/36 [00:00<00:02, 13.88it/s] 11%|█         | 4/36 [00:00<00:03, 10.58it/s] 17%|█▋        | 6/36 [00:00<00:03,  8.40it/s] 22%|██▏       | 8/36 [00:00<00:03,  8.27it/s] 25%|██▌       | 9/36 [00:01<00:04,  5.77it/s] 31%|███       | 11/36 [00:01<00:03,  6.66it/s] 33%|███▎      | 12/36 [00:01<00:04,  5.28it/s] 39%|███▉      | 14/36 [00:02<00:04,  5.09it/s] 42%|████▏     | 15/36 [00:02<00:05,  3.57it/s] 47%|████▋     | 17/36 [00:03<00:04,  4.38it/s] 50%|█████     | 18/36 [00:03<00:05,  3.59it/s] 56%|█████▌    | 20/36 [00:03<00:03,  5.10it/s] 58%|█████▊    | 21/36 [00:03<00:02,  5.63it/s] 64%|██████▍   | 23/36 [00:03<00:01,  7.54it/s] 69%|██████▉   | 25/36 [00:04<00:01,  8.76it/s] 75%|███████▌  | 27/36 [00:04<00:01,  8.95it/s] 81%|████████  | 29/36 [00:04<00:00,  9.53it/s] 86%|████████▌ | 31/36 [00:04<00:00,  9.69it/s] 92%|█████████▏| 33/36 [00:05<00:00,  7.75it/s] 97%|█████████▋| 35/36 [00:05<00:00,  8.63it/s]100%|██████████| 36/36 [00:05<00:00,  8.20it/s]100%|██████████| 36/36 [00:05<00:00,  6.70it/s]
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+Evaluating c2st
+Evaluating density
+Generating report ...
+
+|          | 0/18 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/18 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 18/18 [00:00<00:00, 350.83it/s]|
+Column Shapes Score: 87.59%
+
+|          | 0/153 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/153 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |███▏      | 49/153 [00:00<00:00, 481.92it/s]|(2/2) Evaluating Column Pair Trends: |██████▋   | 102/153 [00:00<00:00, 508.14it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 153/153 [00:00<00:00, 531.96it/s]|
+Column Pair Trends Score: 98.76%
+
+Overall Score (Average): 93.18%
+
+Generating report ...
+
+|          | 0/18 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/18 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 18/18 [00:00<00:00, 1979.48it/s]|
+Data Validity Score: 100.0%
+
+|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 1373.83it/s]|
+Data Structure Score: 100.0%
+
+Overall Score (Average): 100.0%
+
+Evaluating mle
+  0%|          | 0/36 [00:00<?, ?it/s]  6%|▌         | 2/36 [00:00<00:02, 12.87it/s] 11%|█         | 4/36 [00:00<00:03,  9.82it/s] 17%|█▋        | 6/36 [00:00<00:03,  7.86it/s] 22%|██▏       | 8/36 [00:00<00:03,  7.88it/s] 25%|██▌       | 9/36 [00:01<00:04,  5.58it/s] 31%|███       | 11/36 [00:01<00:03,  6.61it/s] 33%|███▎      | 12/36 [00:01<00:04,  5.24it/s] 39%|███▉      | 14/36 [00:02<00:04,  5.06it/s] 42%|████▏     | 15/36 [00:02<00:05,  3.66it/s] 47%|████▋     | 17/36 [00:03<00:04,  4.46it/s] 50%|█████     | 18/36 [00:03<00:05,  3.33it/s] 56%|█████▌    | 20/36 [00:03<00:03,  4.78it/s] 58%|█████▊    | 21/36 [00:03<00:02,  5.32it/s] 64%|██████▍   | 23/36 [00:04<00:01,  7.19it/s] 69%|██████▉   | 25/36 [00:04<00:01,  8.46it/s] 75%|███████▌  | 27/36 [00:04<00:01,  8.70it/s] 81%|████████  | 29/36 [00:04<00:00,  9.39it/s] 86%|████████▌ | 31/36 [00:04<00:00,  9.61it/s] 92%|█████████▏| 33/36 [00:05<00:00,  8.73it/s] 97%|█████████▋| 35/36 [00:05<00:00,  9.59it/s]100%|██████████| 36/36 [00:05<00:00,  6.56it/s]
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+Evaluating c2st
+['shoppers', 'forest_diffusion n_t=50 n_t_sampling=50 model=xgboost diffusion=mixed-flow duplicate_K=100 ycond=False depth=7 n_trees=100 eta=0.3  quantile=False ', 0.0, 0.0, 0.0, 0.0, 0.0, np.float64(0.7552948831458679), np.float64(0.7793422324128612), np.float64(0.7718125648807634), np.float64(0.7473491333994172), np.float64(0.9870235198702353), 0.0, 0.0, 0.0, [np.float64(0.44583549957810087), np.float64(0.4517922695705367), np.float64(0.4475446771921101)], 10303.061242103577, np.float64(0.8748276978429272), np.float64(0.9868630601068065), np.float64(0.930845378974867), np.float64(0.9161785907370699), np.float64(0.9827582408409694), 0.0, 0.0, 0.0, np.float64(0.7169621791231797), np.float64(0.7652159578710869), np.float64(0.7455902237061347), 0.0, 0.0, 0.0, np.float64(0.7643940085331629), np.float64(0.7765085088885001), np.float64(0.7703780121086108), 0.0, 0.0, 0.0, np.float64(0.7649509803921568), np.float64(0.7885810380991487), np.float64(0.7796639328351078), 0.0, 0.0, 0.0, np.float64(0.774872364534972), np.float64(0.7870634247927089), np.float64(0.7916180908732011)]
+2026-03-03 11:48:02.891050: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-03-03 11:48:02.935029: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-03-03 11:48:03.852723: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/torch/__init__.py:1305: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at /pytorch/torch/csrc/tensor/python_tensor.cpp:434.)
+  _C._set_default_tensor_type(t)
+shoppers
+method=forest_diffusion
+0
+Evaluating density
+Generating report ...
+
+|          | 0/18 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/18 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 18/18 [00:00<00:00, 351.32it/s]|
+Column Shapes Score: 96.43%
+
+|          | 0/153 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/153 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |███▏      | 49/153 [00:00<00:00, 487.24it/s]|(2/2) Evaluating Column Pair Trends: |██████▊   | 104/153 [00:00<00:00, 519.54it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 153/153 [00:00<00:00, 539.88it/s]|
+Column Pair Trends Score: 97.64%
+
+Overall Score (Average): 97.03%
+
+Generating report ...
+
+|          | 0/18 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/18 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 18/18 [00:00<00:00, 2033.60it/s]|
+Data Validity Score: 100.0%
+
+|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 928.15it/s]|
+Data Structure Score: 100.0%
+
+Overall Score (Average): 100.0%
+
+Evaluating mle
+  0%|          | 0/36 [00:00<?, ?it/s]  6%|▌         | 2/36 [00:00<00:02, 13.01it/s] 11%|█         | 4/36 [00:00<00:04,  6.84it/s] 14%|█▍        | 5/36 [00:00<00:04,  7.37it/s] 17%|█▋        | 6/36 [00:00<00:04,  6.39it/s] 19%|█▉        | 7/36 [00:00<00:04,  7.11it/s] 22%|██▏       | 8/36 [00:01<00:04,  6.49it/s] 25%|██▌       | 9/36 [00:01<00:06,  4.21it/s] 31%|███       | 11/36 [00:01<00:05,  5.00it/s] 33%|███▎      | 12/36 [00:02<00:07,  3.39it/s] 39%|███▉      | 14/36 [00:02<00:05,  3.82it/s] 42%|████▏     | 15/36 [00:03<00:07,  2.65it/s] 47%|████▋     | 17/36 [00:03<00:05,  3.45it/s] 50%|█████     | 18/36 [00:04<00:06,  2.97it/s] 56%|█████▌    | 20/36 [00:04<00:03,  4.38it/s] 61%|██████    | 22/36 [00:04<00:02,  5.90it/s] 67%|██████▋   | 24/36 [00:04<00:01,  7.10it/s] 72%|███████▏  | 26/36 [00:05<00:01,  8.38it/s] 78%|███████▊  | 28/36 [00:05<00:00,  8.91it/s] 83%|████████▎ | 30/36 [00:05<00:00,  8.93it/s] 89%|████████▉ | 32/36 [00:05<00:00,  7.67it/s] 92%|█████████▏| 33/36 [00:05<00:00,  7.51it/s] 97%|█████████▋| 35/36 [00:06<00:00,  8.69it/s]100%|██████████| 36/36 [00:06<00:00,  8.41it/s]100%|██████████| 36/36 [00:06<00:00,  5.76it/s]
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:469: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:469: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:469: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+Evaluating c2st
+Evaluating density
+Generating report ...
+
+|          | 0/18 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/18 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 18/18 [00:00<00:00, 301.73it/s]|
+Column Shapes Score: 96.42%
+
+|          | 0/153 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/153 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |███▎      | 50/153 [00:00<00:00, 494.50it/s]|(2/2) Evaluating Column Pair Trends: |██████▊   | 105/153 [00:00<00:00, 526.55it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 153/153 [00:00<00:00, 545.65it/s]|
+Column Pair Trends Score: 97.94%
+
+Overall Score (Average): 97.18%
+
+Generating report ...
+
+|          | 0/18 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/18 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 18/18 [00:00<00:00, 1984.01it/s]|
+Data Validity Score: 100.0%
+
+|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 1410.32it/s]|
+Data Structure Score: 100.0%
+
+Overall Score (Average): 100.0%
+
+Evaluating mle
+  0%|          | 0/36 [00:00<?, ?it/s]  6%|▌         | 2/36 [00:00<00:02, 13.57it/s] 11%|█         | 4/36 [00:00<00:04,  7.12it/s] 14%|█▍        | 5/36 [00:00<00:04,  7.67it/s] 17%|█▋        | 6/36 [00:00<00:04,  6.80it/s] 22%|██▏       | 8/36 [00:01<00:03,  7.26it/s] 25%|██▌       | 9/36 [00:01<00:06,  4.28it/s] 31%|███       | 11/36 [00:01<00:04,  5.24it/s] 33%|███▎      | 12/36 [00:02<00:05,  4.44it/s] 39%|███▉      | 14/36 [00:02<00:04,  4.53it/s] 42%|████▏     | 15/36 [00:03<00:06,  3.25it/s] 47%|████▋     | 17/36 [00:03<00:04,  4.06it/s] 50%|█████     | 18/36 [00:04<00:05,  3.41it/s] 56%|█████▌    | 20/36 [00:04<00:03,  4.92it/s] 58%|█████▊    | 21/36 [00:04<00:02,  5.38it/s] 61%|██████    | 22/36 [00:04<00:02,  5.65it/s] 64%|██████▍   | 23/36 [00:04<00:02,  6.22it/s] 67%|██████▋   | 24/36 [00:04<00:02,  4.98it/s] 72%|███████▏  | 26/36 [00:04<00:01,  6.77it/s] 75%|███████▌  | 27/36 [00:05<00:01,  7.10it/s] 81%|████████  | 29/36 [00:05<00:00,  8.89it/s] 86%|████████▌ | 31/36 [00:05<00:00,  9.39it/s] 92%|█████████▏| 33/36 [00:05<00:00,  6.22it/s] 94%|█████████▍| 34/36 [00:06<00:00,  5.26it/s] 97%|█████████▋| 35/36 [00:06<00:00,  5.78it/s]100%|██████████| 36/36 [00:06<00:00,  4.35it/s]100%|██████████| 36/36 [00:06<00:00,  5.31it/s]
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+Evaluating c2st
+Evaluating density
+Generating report ...
+
+|          | 0/18 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/18 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 18/18 [00:00<00:00, 381.59it/s]|
+Column Shapes Score: 96.63%
+
+|          | 0/153 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/153 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |███▎      | 50/153 [00:00<00:00, 497.57it/s]|(2/2) Evaluating Column Pair Trends: |██████▉   | 106/153 [00:00<00:00, 532.40it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 153/153 [00:00<00:00, 550.08it/s]|
+Column Pair Trends Score: 97.77%
+
+Overall Score (Average): 97.2%
+
+Generating report ...
+
+|          | 0/18 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/18 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 18/18 [00:00<00:00, 2043.01it/s]|
+Data Validity Score: 100.0%
+
+|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 1432.48it/s]|
+Data Structure Score: 100.0%
+
+Overall Score (Average): 100.0%
+
+Evaluating mle
+  0%|          | 0/36 [00:00<?, ?it/s]  6%|▌         | 2/36 [00:00<00:03, 10.43it/s] 11%|█         | 4/36 [00:00<00:03,  9.33it/s] 14%|█▍        | 5/36 [00:00<00:04,  6.32it/s] 17%|█▋        | 6/36 [00:00<00:05,  5.98it/s] 22%|██▏       | 8/36 [00:01<00:04,  6.80it/s] 25%|██▌       | 9/36 [00:01<00:05,  4.67it/s] 28%|██▊       | 10/36 [00:01<00:05,  4.91it/s] 31%|███       | 11/36 [00:01<00:04,  5.05it/s] 33%|███▎      | 12/36 [00:02<00:07,  3.39it/s] 36%|███▌      | 13/36 [00:02<00:06,  3.49it/s] 39%|███▉      | 14/36 [00:03<00:06,  3.15it/s] 42%|████▏     | 15/36 [00:04<00:11,  1.78it/s] 47%|████▋     | 17/36 [00:04<00:07,  2.66it/s] 50%|█████     | 18/36 [00:05<00:08,  2.24it/s] 56%|█████▌    | 20/36 [00:05<00:04,  3.53it/s] 61%|██████    | 22/36 [00:05<00:02,  4.95it/s] 67%|██████▋   | 24/36 [00:05<00:02,  5.93it/s] 72%|███████▏  | 26/36 [00:05<00:01,  7.36it/s] 78%|███████▊  | 28/36 [00:05<00:00,  8.55it/s] 83%|████████▎ | 30/36 [00:06<00:00,  8.79it/s] 89%|████████▉ | 32/36 [00:06<00:00,  9.35it/s] 94%|█████████▍| 34/36 [00:06<00:00,  9.32it/s]100%|██████████| 36/36 [00:06<00:00,  8.90it/s]100%|██████████| 36/36 [00:06<00:00,  5.27it/s]
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+Evaluating c2st
+['shoppers', 'forest_diffusion n_t=50 n_t_sampling=50 model=xgboost diffusion=mixed-flow duplicate_K=100 ycond=False depth=7 n_trees=100 eta=0.3  quantile=True ', 0.0, 0.0, 0.0, 0.0, 0.0, np.float64(0.7552948831458679), np.float64(0.7683429118720142), np.float64(0.7657351718373366), np.float64(0.7315490673154906), np.float64(0.9835090565017572), 0.0, 0.0, 0.0, [np.float64(0.45913545371754283), np.float64(0.4584725547533233), np.float64(0.46489509786742833)], 10118.010960817337, np.float64(0.964920448970192), np.float64(0.9778196843677662), np.float64(0.9713700666689793), np.float64(0.9108804271393185), np.float64(0.9206239694078957), 0.0, 0.0, 0.0, np.float64(0.7169621791231797), np.float64(0.7589277349522352), np.float64(0.7422693223496528), 0.0, 0.0, 0.0, np.float64(0.7643940085331629), np.float64(0.7628082225935816), np.float64(0.761991494747273), 0.0, 0.0, 0.0, np.float64(0.7649509803921568), np.float64(0.7790286217430324), np.float64(0.7761719150512492), 0.0, 0.0, 0.0, np.float64(0.774872364534972), np.float64(0.7726070681992079), np.float64(0.7825079552011714)]
+2026-03-04 13:36:34.344309: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-03-04 13:36:34.384625: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-03-04 13:36:35.312037: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/torch/__init__.py:1305: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at /pytorch/torch/csrc/tensor/python_tensor.cpp:434.)
+  _C._set_default_tensor_type(t)
+default
+method=forest_diffusion
+0
+Evaluating density
+Generating report ...
+
+|          | 0/24 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/24 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |███████   | 17/24 [00:00<00:00, 168.74it/s]|(1/2) Evaluating Column Shapes: |██████████| 24/24 [00:00<00:00, 175.94it/s]|
+Column Shapes Score: 92.25%
+
+|          | 0/276 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/276 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |█         | 30/276 [00:00<00:00, 295.49it/s]|(2/2) Evaluating Column Pair Trends: |██▍       | 67/276 [00:00<00:00, 333.42it/s]|(2/2) Evaluating Column Pair Trends: |███▋      | 101/276 [00:00<00:00, 331.99it/s]|(2/2) Evaluating Column Pair Trends: |████▉     | 136/276 [00:00<00:00, 338.64it/s]|(2/2) Evaluating Column Pair Trends: |██████▍   | 176/276 [00:00<00:00, 358.18it/s]|(2/2) Evaluating Column Pair Trends: |████████  | 223/276 [00:00<00:00, 394.19it/s]|(2/2) Evaluating Column Pair Trends: |█████████▋| 268/276 [00:00<00:00, 409.08it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 276/276 [00:00<00:00, 374.72it/s]|
+Column Pair Trends Score: 96.24%
+
+Overall Score (Average): 94.25%
+
+Generating report ...
+
+|          | 0/24 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/24 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 24/24 [00:00<00:00, 1077.55it/s]|
+Data Validity Score: 100.0%
+
+|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 667.78it/s]|
+Data Structure Score: 100.0%
+
+Overall Score (Average): 100.0%
+
+Evaluating mle
+  0%|          | 0/36 [00:00<?, ?it/s]  6%|▌         | 2/36 [00:00<00:02, 11.68it/s] 11%|█         | 4/36 [00:00<00:03,  8.49it/s] 14%|█▍        | 5/36 [00:00<00:03,  8.16it/s] 17%|█▋        | 6/36 [00:00<00:04,  6.24it/s] 22%|██▏       | 8/36 [00:01<00:04,  5.79it/s] 25%|██▌       | 9/36 [00:01<00:07,  3.83it/s] 31%|███       | 11/36 [00:02<00:05,  4.57it/s] 33%|███▎      | 12/36 [00:02<00:06,  3.70it/s] 36%|███▌      | 13/36 [00:02<00:06,  3.77it/s] 39%|███▉      | 14/36 [00:03<00:08,  2.67it/s] 42%|████▏     | 15/36 [00:04<00:12,  1.73it/s] 44%|████▍     | 16/36 [00:04<00:08,  2.24it/s] 47%|████▋     | 17/36 [00:05<00:08,  2.27it/s] 50%|█████     | 18/36 [00:05<00:09,  1.81it/s] 56%|█████▌    | 20/36 [00:06<00:05,  2.91it/s] 58%|█████▊    | 21/36 [00:06<00:04,  3.32it/s] 64%|██████▍   | 23/36 [00:06<00:02,  4.64it/s] 67%|██████▋   | 24/36 [00:06<00:02,  4.87it/s] 72%|███████▏  | 26/36 [00:06<00:01,  5.65it/s] 75%|███████▌  | 27/36 [00:07<00:01,  5.42it/s] 81%|████████  | 29/36 [00:07<00:01,  6.44it/s] 83%|████████▎ | 30/36 [00:07<00:00,  6.27it/s] 86%|████████▌ | 31/36 [00:07<00:00,  5.86it/s] 89%|████████▉ | 32/36 [00:07<00:00,  4.99it/s] 92%|█████████▏| 33/36 [00:08<00:00,  4.33it/s] 94%|█████████▍| 34/36 [00:08<00:00,  5.05it/s] 97%|█████████▋| 35/36 [00:08<00:00,  4.93it/s]100%|██████████| 36/36 [00:08<00:00,  4.63it/s]100%|██████████| 36/36 [00:08<00:00,  4.05it/s]
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+Evaluating c2st
+Evaluating density
+Generating report ...
+
+|          | 0/24 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/24 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████▋   | 16/24 [00:00<00:00, 158.45it/s]|(1/2) Evaluating Column Shapes: |██████████| 24/24 [00:00<00:00, 169.41it/s]|
+Column Shapes Score: 92.14%
+
+|          | 0/276 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/276 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |█         | 30/276 [00:00<00:00, 298.96it/s]|(2/2) Evaluating Column Pair Trends: |██▍       | 67/276 [00:00<00:00, 336.65it/s]|(2/2) Evaluating Column Pair Trends: |███▋      | 101/276 [00:00<00:00, 335.14it/s]|(2/2) Evaluating Column Pair Trends: |█████     | 138/276 [00:00<00:00, 347.60it/s]|(2/2) Evaluating Column Pair Trends: |██████▍   | 178/276 [00:00<00:00, 364.09it/s]|(2/2) Evaluating Column Pair Trends: |████████▏ | 225/276 [00:00<00:00, 398.08it/s]|(2/2) Evaluating Column Pair Trends: |█████████▋| 269/276 [00:00<00:00, 408.45it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 276/276 [00:00<00:00, 377.67it/s]|
+Column Pair Trends Score: 96.5%
+
+Overall Score (Average): 94.32%
+
+Generating report ...
+
+|          | 0/24 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/24 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 24/24 [00:00<00:00, 1071.17it/s]|
+Data Validity Score: 100.0%
+
+|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 1283.05it/s]|
+Data Structure Score: 100.0%
+
+Overall Score (Average): 100.0%
+
+Evaluating mle
+  0%|          | 0/36 [00:00<?, ?it/s]  6%|▌         | 2/36 [00:00<00:03, 11.08it/s] 11%|█         | 4/36 [00:00<00:03,  8.18it/s] 14%|█▍        | 5/36 [00:00<00:04,  7.70it/s] 17%|█▋        | 6/36 [00:00<00:04,  6.06it/s] 22%|██▏       | 8/36 [00:01<00:04,  5.91it/s] 25%|██▌       | 9/36 [00:01<00:06,  3.97it/s] 31%|███       | 11/36 [00:02<00:05,  4.69it/s] 33%|███▎      | 12/36 [00:02<00:06,  3.74it/s] 36%|███▌      | 13/36 [00:02<00:06,  3.81it/s] 39%|███▉      | 14/36 [00:03<00:08,  2.70it/s] 42%|████▏     | 15/36 [00:04<00:12,  1.74it/s] 44%|████▍     | 16/36 [00:04<00:08,  2.25it/s] 47%|████▋     | 17/36 [00:05<00:08,  2.29it/s] 50%|█████     | 18/36 [00:05<00:09,  1.84it/s] 56%|█████▌    | 20/36 [00:06<00:05,  2.97it/s] 58%|█████▊    | 21/36 [00:06<00:04,  3.37it/s] 64%|██████▍   | 23/36 [00:06<00:02,  4.78it/s] 67%|██████▋   | 24/36 [00:06<00:02,  4.98it/s] 72%|███████▏  | 26/36 [00:06<00:01,  5.88it/s] 75%|███████▌  | 27/36 [00:07<00:01,  5.60it/s] 81%|████████  | 29/36 [00:07<00:01,  6.08it/s] 83%|████████▎ | 30/36 [00:07<00:01,  5.91it/s] 86%|████████▌ | 31/36 [00:07<00:00,  5.69it/s] 89%|████████▉ | 32/36 [00:07<00:00,  4.96it/s] 92%|█████████▏| 33/36 [00:08<00:00,  4.36it/s] 94%|█████████▍| 34/36 [00:08<00:00,  5.07it/s] 97%|█████████▋| 35/36 [00:08<00:00,  4.94it/s]100%|██████████| 36/36 [00:08<00:00,  4.71it/s]100%|██████████| 36/36 [00:08<00:00,  4.08it/s]
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+Evaluating c2st
+Evaluating density
+Generating report ...
+
+|          | 0/24 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/24 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |███████▉  | 19/24 [00:00<00:00, 181.75it/s]|(1/2) Evaluating Column Shapes: |██████████| 24/24 [00:00<00:00, 184.56it/s]|
+Column Shapes Score: 92.08%
+
+|          | 0/276 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/276 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |█         | 31/276 [00:00<00:00, 304.89it/s]|(2/2) Evaluating Column Pair Trends: |██▍       | 68/276 [00:00<00:00, 336.78it/s]|(2/2) Evaluating Column Pair Trends: |███▊      | 104/276 [00:00<00:00, 344.31it/s]|(2/2) Evaluating Column Pair Trends: |█████     | 141/276 [00:00<00:00, 352.92it/s]|(2/2) Evaluating Column Pair Trends: |██████▌   | 182/276 [00:00<00:00, 372.55it/s]|(2/2) Evaluating Column Pair Trends: |████████▎ | 229/276 [00:00<00:00, 404.80it/s]|(2/2) Evaluating Column Pair Trends: |█████████▊| 271/276 [00:00<00:00, 409.49it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 276/276 [00:00<00:00, 382.12it/s]|
+Column Pair Trends Score: 96.39%
+
+Overall Score (Average): 94.23%
+
+Generating report ...
+
+|          | 0/24 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/24 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 24/24 [00:00<00:00, 1088.20it/s]|
+Data Validity Score: 100.0%
+
+|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 1440.35it/s]|
+Data Structure Score: 100.0%
+
+Overall Score (Average): 100.0%
+
+Evaluating mle
+  0%|          | 0/36 [00:00<?, ?it/s]  6%|▌         | 2/36 [00:00<00:03, 11.27it/s] 11%|█         | 4/36 [00:00<00:04,  7.98it/s] 14%|█▍        | 5/36 [00:00<00:04,  7.71it/s] 17%|█▋        | 6/36 [00:00<00:04,  6.07it/s] 22%|██▏       | 8/36 [00:01<00:04,  5.88it/s] 25%|██▌       | 9/36 [00:01<00:06,  3.88it/s] 31%|███       | 11/36 [00:02<00:05,  4.64it/s] 33%|███▎      | 12/36 [00:02<00:06,  3.78it/s] 36%|███▌      | 13/36 [00:02<00:05,  3.87it/s] 39%|███▉      | 14/36 [00:03<00:08,  2.70it/s] 42%|████▏     | 15/36 [00:04<00:12,  1.74it/s] 44%|████▍     | 16/36 [00:04<00:08,  2.24it/s] 47%|████▋     | 17/36 [00:05<00:08,  2.27it/s] 50%|█████     | 18/36 [00:05<00:09,  1.87it/s] 56%|█████▌    | 20/36 [00:06<00:05,  3.01it/s] 58%|█████▊    | 21/36 [00:06<00:04,  3.45it/s] 64%|██████▍   | 23/36 [00:06<00:02,  4.84it/s] 67%|██████▋   | 24/36 [00:06<00:02,  4.99it/s] 72%|███████▏  | 26/36 [00:06<00:01,  5.96it/s] 75%|███████▌  | 27/36 [00:06<00:01,  5.74it/s] 81%|████████  | 29/36 [00:07<00:01,  6.69it/s] 83%|████████▎ | 30/36 [00:07<00:00,  6.45it/s] 86%|████████▌ | 31/36 [00:07<00:00,  6.09it/s] 89%|████████▉ | 32/36 [00:07<00:00,  5.24it/s] 92%|█████████▏| 33/36 [00:08<00:00,  4.48it/s] 94%|█████████▍| 34/36 [00:08<00:00,  5.19it/s] 97%|█████████▋| 35/36 [00:08<00:00,  4.58it/s]100%|██████████| 36/36 [00:08<00:00,  4.47it/s]100%|██████████| 36/36 [00:08<00:00,  4.10it/s]
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+Evaluating c2st
+['default', 'forest_diffusion n_t=50 n_t_sampling=50 model=xgboost diffusion=mixed-flow duplicate_K=100 ycond=False depth=7 n_trees=100 eta=0.3  quantile=False ', 0.0, 0.0, 0.0, 0.0, 0.0, np.float64(0.6505359937006442), np.float64(0.6284464927393225), np.float64(0.6504170486227931), np.float64(0.6972098765432099), np.float64(0.9837777777777779), 0.0, 0.0, 0.0, [np.float64(0.43838187330544165), np.float64(0.44616463799916656), np.float64(0.43503100117761867)], 28475.31416273117, np.float64(0.9215817901234568), np.float64(0.963770861687299), np.float64(0.9426763259053779), np.float64(0.740519153196655), np.float64(0.9492761838134431), 0.0, 0.0, 0.0, np.float64(0.5880331952530229), np.float64(0.5334193762282111), np.float64(0.583770126822299), 0.0, 0.0, 0.0, np.float64(0.6694145675610773), np.float64(0.6687346898455542), np.float64(0.6710194154109834), 0.0, 0.0, 0.0, np.float64(0.6730820051577864), np.float64(0.6684745635531762), np.float64(0.6759765844957484), 0.0, 0.0, 0.0, np.float64(0.6716142068306901), np.float64(0.6431573413303486), np.float64(0.6709020677621416)]
+adult
+method=forest_diffusion
+0
+Evaluating density
+Generating report ...
+
+|          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |████████▋ | 13/15 [00:00<00:00, 127.42it/s]|(1/2) Evaluating Column Shapes: |██████████| 15/15 [00:00<00:00, 130.98it/s]|
+Column Shapes Score: 95.19%
+
+|          | 0/105 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/105 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |███▌      | 38/105 [00:00<00:00, 372.22it/s]|(2/2) Evaluating Column Pair Trends: |████████  | 85/105 [00:00<00:00, 425.53it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 105/105 [00:00<00:00, 412.32it/s]|
+Column Pair Trends Score: 98.02%
+
+Overall Score (Average): 96.6%
+
+Generating report ...
+
+|          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 15/15 [00:00<00:00, 1114.34it/s]|
+Data Validity Score: 100.0%
+
+|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 1501.72it/s]|
+Data Structure Score: 100.0%
+
+Overall Score (Average): 100.0%
+
+Evaluating mle
+  0%|          | 0/36 [00:00<?, ?it/s]  6%|▌         | 2/36 [00:00<00:03, 10.51it/s] 11%|█         | 4/36 [00:00<00:03,  9.76it/s] 14%|█▍        | 5/36 [00:00<00:03,  9.43it/s] 17%|█▋        | 6/36 [00:00<00:03,  7.63it/s] 19%|█▉        | 7/36 [00:01<00:07,  3.82it/s] 22%|██▏       | 8/36 [00:01<00:06,  4.20it/s] 25%|██▌       | 9/36 [00:01<00:08,  3.33it/s] 31%|███       | 11/36 [00:02<00:05,  4.69it/s] 33%|███▎      | 12/36 [00:02<00:05,  4.16it/s] 36%|███▌      | 13/36 [00:02<00:04,  4.67it/s] 39%|███▉      | 14/36 [00:03<00:06,  3.56it/s] 42%|████▏     | 15/36 [00:03<00:09,  2.28it/s] 47%|████▋     | 17/36 [00:05<00:09,  1.96it/s] 50%|█████     | 18/36 [00:05<00:09,  1.82it/s] 56%|█████▌    | 20/36 [00:05<00:05,  2.81it/s] 58%|█████▊    | 21/36 [00:06<00:04,  3.25it/s] 64%|██████▍   | 23/36 [00:06<00:03,  3.59it/s] 67%|██████▋   | 24/36 [00:06<00:02,  4.04it/s] 72%|███████▏  | 26/36 [00:06<00:01,  5.32it/s] 75%|███████▌  | 27/36 [00:07<00:01,  5.48it/s] 81%|████████  | 29/36 [00:07<00:01,  6.55it/s] 83%|████████▎ | 30/36 [00:07<00:00,  6.57it/s] 86%|████████▌ | 31/36 [00:07<00:00,  6.34it/s] 89%|████████▉ | 32/36 [00:07<00:00,  6.06it/s] 92%|█████████▏| 33/36 [00:07<00:00,  5.60it/s] 97%|█████████▋| 35/36 [00:08<00:00,  6.33it/s]100%|██████████| 36/36 [00:08<00:00,  6.04it/s]100%|██████████| 36/36 [00:08<00:00,  4.28it/s]
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+Evaluating c2st
+Evaluating density
+Generating report ...
+
+|          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 15/15 [00:00<00:00, 148.08it/s]|(1/2) Evaluating Column Shapes: |██████████| 15/15 [00:00<00:00, 146.90it/s]|
+Column Shapes Score: 95.18%
+
+|          | 0/105 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/105 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |███▍      | 36/105 [00:00<00:00, 359.28it/s]|(2/2) Evaluating Column Pair Trends: |███████▉  | 83/105 [00:00<00:00, 421.48it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 105/105 [00:00<00:00, 407.07it/s]|
+Column Pair Trends Score: 97.91%
+
+Overall Score (Average): 96.55%
+
+Generating report ...
+
+|          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 15/15 [00:00<00:00, 1112.45it/s]|
+Data Validity Score: 100.0%
+
+|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 1500.11it/s]|
+Data Structure Score: 100.0%
+
+Overall Score (Average): 100.0%
+
+Evaluating mle
+  0%|          | 0/36 [00:00<?, ?it/s]  3%|▎         | 1/36 [00:00<00:06,  5.76it/s]  6%|▌         | 2/36 [00:00<00:08,  4.05it/s]  8%|▊         | 3/36 [00:00<00:07,  4.62it/s] 14%|█▍        | 5/36 [00:00<00:04,  7.41it/s] 17%|█▋        | 6/36 [00:00<00:04,  6.68it/s] 22%|██▏       | 8/36 [00:01<00:03,  7.31it/s] 25%|██▌       | 9/36 [00:01<00:05,  5.34it/s] 31%|███       | 11/36 [00:01<00:03,  6.29it/s] 33%|███▎      | 12/36 [00:02<00:04,  5.11it/s] 36%|███▌      | 13/36 [00:02<00:04,  5.57it/s] 39%|███▉      | 14/36 [00:02<00:05,  4.13it/s] 42%|████▏     | 15/36 [00:03<00:08,  2.55it/s] 47%|████▋     | 17/36 [00:03<00:05,  3.27it/s] 50%|█████     | 18/36 [00:04<00:07,  2.57it/s] 56%|█████▌    | 20/36 [00:04<00:04,  3.84it/s] 58%|█████▊    | 21/36 [00:04<00:03,  4.31it/s] 64%|██████▍   | 23/36 [00:04<00:02,  5.93it/s] 67%|██████▋   | 24/36 [00:05<00:01,  6.23it/s] 72%|███████▏  | 26/36 [00:05<00:01,  7.39it/s] 75%|███████▌  | 27/36 [00:05<00:01,  7.14it/s] 81%|████████  | 29/36 [00:05<00:00,  7.95it/s] 83%|████████▎ | 30/36 [00:05<00:00,  7.69it/s] 86%|████████▌ | 31/36 [00:05<00:00,  8.06it/s] 89%|████████▉ | 32/36 [00:06<00:00,  7.21it/s] 92%|█████████▏| 33/36 [00:06<00:00,  6.21it/s] 97%|█████████▋| 35/36 [00:06<00:00,  6.97it/s]100%|██████████| 36/36 [00:06<00:00,  6.60it/s]100%|██████████| 36/36 [00:06<00:00,  5.38it/s]
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+Evaluating c2st
+Evaluating density
+Generating report ...
+
+|          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 15/15 [00:00<00:00, 148.61it/s]|(1/2) Evaluating Column Shapes: |██████████| 15/15 [00:00<00:00, 147.51it/s]|
+Column Shapes Score: 95.2%
+
+|          | 0/105 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/105 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |███▌      | 38/105 [00:00<00:00, 372.45it/s]|(2/2) Evaluating Column Pair Trends: |████████  | 85/105 [00:00<00:00, 425.10it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 105/105 [00:00<00:00, 412.84it/s]|
+Column Pair Trends Score: 97.79%
+
+Overall Score (Average): 96.5%
+
+Generating report ...
+
+|          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/15 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 15/15 [00:00<00:00, 1119.30it/s]|
+Data Validity Score: 100.0%
+
+|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 1562.12it/s]|
+Data Structure Score: 100.0%
+
+Overall Score (Average): 100.0%
+
+Evaluating mle
+  0%|          | 0/36 [00:00<?, ?it/s]  6%|▌         | 2/36 [00:00<00:02, 13.29it/s] 11%|█         | 4/36 [00:00<00:03,  9.64it/s] 17%|█▋        | 6/36 [00:00<00:04,  7.38it/s] 22%|██▏       | 8/36 [00:01<00:03,  7.40it/s] 25%|██▌       | 9/36 [00:01<00:05,  5.33it/s] 31%|███       | 11/36 [00:01<00:04,  6.21it/s] 33%|███▎      | 12/36 [00:02<00:05,  4.50it/s] 36%|███▌      | 13/36 [00:02<00:04,  4.99it/s] 39%|███▉      | 14/36 [00:02<00:05,  3.88it/s] 42%|████▏     | 15/36 [00:03<00:08,  2.52it/s] 47%|████▋     | 17/36 [00:03<00:06,  3.04it/s] 50%|█████     | 18/36 [00:04<00:07,  2.56it/s] 56%|█████▌    | 20/36 [00:04<00:04,  3.83it/s] 58%|█████▊    | 21/36 [00:04<00:03,  4.28it/s] 64%|██████▍   | 23/36 [00:04<00:02,  5.92it/s] 67%|██████▋   | 24/36 [00:05<00:01,  6.24it/s] 72%|███████▏  | 26/36 [00:05<00:01,  7.42it/s] 75%|███████▌  | 27/36 [00:05<00:01,  7.00it/s] 81%|████████  | 29/36 [00:05<00:00,  7.88it/s] 83%|████████▎ | 30/36 [00:05<00:00,  7.35it/s] 86%|████████▌ | 31/36 [00:05<00:00,  6.55it/s] 89%|████████▉ | 32/36 [00:06<00:00,  5.99it/s] 92%|█████████▏| 33/36 [00:06<00:00,  5.44it/s] 97%|█████████▋| 35/36 [00:06<00:00,  6.33it/s]100%|██████████| 36/36 [00:06<00:00,  6.02it/s]100%|██████████| 36/36 [00:06<00:00,  5.27it/s]
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+Evaluating c2st
+['adult', 'forest_diffusion n_t=50 n_t_sampling=50 model=xgboost diffusion=mixed-flow duplicate_K=100 ycond=False depth=7 n_trees=100 eta=0.3  quantile=False ', 0.0, 0.0, 0.0, 0.0, 0.0, np.float64(0.7894619917581123), np.float64(0.7799255121152389), np.float64(0.7844945457111926), np.float64(0.7255817286528874), np.float64(0.8582806133939356), 0.0, 0.0, 0.0, [np.float64(0.38014238012074564), np.float64(0.386474137867058), np.float64(0.3837610774059442)], 38903.76815152168, np.float64(0.9519008766452026), np.float64(0.9790775341587663), np.float64(0.9654892054019846), np.float64(0.9108030505377835), np.float64(0.9885445358671678), 0.0, 0.0, 0.0, np.float64(0.7632229786204203), np.float64(0.7541452744056723), np.float64(0.7423202401582679), 0.0, 0.0, 0.0, np.float64(0.7924613935756186), np.float64(0.7927840800085556), np.float64(0.7931397184951383), 0.0, 0.0, 0.0, np.float64(0.7901436634883656), np.float64(0.7844720750159305), np.float64(0.7934690500592189), 0.0, 0.0, 0.0, np.float64(0.8120199313480447), np.float64(0.7883006190307974), np.float64(0.8090491741321453)]
+news
+method=forest_diffusion
+0
+Evaluating density
+Generating report ...
+
+|          | 0/48 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/48 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |█▉        | 9/48 [00:00<00:00, 84.10it/s]|(1/2) Evaluating Column Shapes: |████▍     | 21/48 [00:00<00:00, 103.52it/s]|(1/2) Evaluating Column Shapes: |██████▋   | 32/48 [00:00<00:00, 97.43it/s]| (1/2) Evaluating Column Shapes: |█████████▊| 47/48 [00:00<00:00, 114.63it/s]|(1/2) Evaluating Column Shapes: |██████████| 48/48 [00:00<00:00, 108.52it/s]|
+Column Shapes Score: 88.07%
+
+|          | 0/1128 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/1128 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 7/1128 [00:00<00:16, 68.37it/s]|(2/2) Evaluating Column Pair Trends: |▎         | 35/1128 [00:00<00:05, 190.89it/s]|(2/2) Evaluating Column Pair Trends: |▌         | 66/1128 [00:00<00:04, 244.29it/s]|(2/2) Evaluating Column Pair Trends: |▊         | 96/1128 [00:00<00:03, 261.68it/s]|(2/2) Evaluating Column Pair Trends: |█         | 124/1128 [00:00<00:03, 268.00it/s]|(2/2) Evaluating Column Pair Trends: |█▎        | 151/1128 [00:00<00:03, 268.33it/s]|(2/2) Evaluating Column Pair Trends: |█▌        | 178/1128 [00:00<00:03, 247.39it/s]|(2/2) Evaluating Column Pair Trends: |█▊        | 204/1128 [00:00<00:03, 250.22it/s]|(2/2) Evaluating Column Pair Trends: |██        | 230/1128 [00:00<00:03, 249.34it/s]|(2/2) Evaluating Column Pair Trends: |██▎       | 256/1128 [00:01<00:03, 240.51it/s]|(2/2) Evaluating Column Pair Trends: |██▌       | 284/1128 [00:01<00:03, 251.37it/s]|(2/2) Evaluating Column Pair Trends: |██▊       | 314/1128 [00:01<00:03, 264.36it/s]|(2/2) Evaluating Column Pair Trends: |███       | 343/1128 [00:01<00:02, 269.33it/s]|(2/2) Evaluating Column Pair Trends: |███▎      | 373/1128 [00:01<00:02, 275.62it/s]|(2/2) Evaluating Column Pair Trends: |███▌      | 403/1128 [00:01<00:02, 280.36it/s]|(2/2) Evaluating Column Pair Trends: |███▊      | 432/1128 [00:01<00:02, 279.15it/s]|(2/2) Evaluating Column Pair Trends: |████      | 460/1128 [00:01<00:02, 252.99it/s]|(2/2) Evaluating Column Pair Trends: |████▍     | 503/1128 [00:01<00:02, 298.47it/s]|(2/2) Evaluating Column Pair Trends: |████▋     | 534/1128 [00:02<00:02, 294.22it/s]|(2/2) Evaluating Column Pair Trends: |█████     | 564/1128 [00:02<00:02, 276.15it/s]|(2/2) Evaluating Column Pair Trends: |█████▎    | 593/1128 [00:02<00:02, 260.36it/s]|(2/2) Evaluating Column Pair Trends: |█████▍    | 620/1128 [00:02<00:01, 256.74it/s]|(2/2) Evaluating Column Pair Trends: |█████▋    | 647/1128 [00:02<00:01, 259.92it/s]|(2/2) Evaluating Column Pair Trends: |█████▉    | 674/1128 [00:02<00:01, 257.67it/s]|(2/2) Evaluating Column Pair Trends: |██████▏   | 700/1128 [00:02<00:01, 246.32it/s]|(2/2) Evaluating Column Pair Trends: |██████▍   | 725/1128 [00:02<00:01, 240.98it/s]|(2/2) Evaluating Column Pair Trends: |██████▋   | 750/1128 [00:02<00:01, 237.26it/s]|(2/2) Evaluating Column Pair Trends: |██████▊   | 774/1128 [00:03<00:01, 229.49it/s]|(2/2) Evaluating Column Pair Trends: |███████   | 799/1128 [00:03<00:01, 234.21it/s]|(2/2) Evaluating Column Pair Trends: |███████▎  | 824/1128 [00:03<00:01, 238.05it/s]|(2/2) Evaluating Column Pair Trends: |███████▌  | 849/1128 [00:03<00:01, 238.70it/s]|(2/2) Evaluating Column Pair Trends: |███████▋  | 873/1128 [00:03<00:01, 233.81it/s]|(2/2) Evaluating Column Pair Trends: |███████▉  | 897/1128 [00:03<00:00, 231.66it/s]|(2/2) Evaluating Column Pair Trends: |████████▏ | 921/1128 [00:03<00:00, 226.86it/s]|(2/2) Evaluating Column Pair Trends: |████████▎ | 944/1128 [00:03<00:00, 225.10it/s]|(2/2) Evaluating Column Pair Trends: |████████▌ | 967/1128 [00:03<00:00, 222.93it/s]|(2/2) Evaluating Column Pair Trends: |████████▊ | 990/1128 [00:03<00:00, 224.19it/s]|(2/2) Evaluating Column Pair Trends: |████████▉ | 1015/1128 [00:04<00:00, 231.44it/s]|(2/2) Evaluating Column Pair Trends: |█████████▏| 1042/1128 [00:04<00:00, 240.80it/s]|(2/2) Evaluating Column Pair Trends: |█████████▍| 1068/1128 [00:04<00:00, 245.42it/s]|(2/2) Evaluating Column Pair Trends: |█████████▋| 1096/1128 [00:04<00:00, 254.24it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 1128/1128 [00:04<00:00, 251.00it/s]|
+Column Pair Trends Score: 97.21%
+
+Overall Score (Average): 92.64%
+
+Generating report ...
+
+|          | 0/48 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/48 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 48/48 [00:00<00:00, 659.70it/s]|
+Data Validity Score: 100.0%
+
+|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 1054.91it/s]|
+Data Structure Score: 100.0%
+
+Overall Score (Average): 100.0%
+
+Evaluating mle
+  0%|          | 0/36 [00:00<?, ?it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:28] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:28] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+  6%|▌         | 2/36 [00:00<00:03,  8.81it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:28] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+  8%|▊         | 3/36 [00:00<00:06,  5.27it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:28] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:28] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 14%|█▍        | 5/36 [00:00<00:04,  7.17it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:28] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 17%|█▋        | 6/36 [00:00<00:05,  5.66it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:28] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 19%|█▉        | 7/36 [00:01<00:04,  5.93it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:29] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 22%|██▏       | 8/36 [00:01<00:07,  3.76it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:29] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 25%|██▌       | 9/36 [00:02<00:12,  2.12it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:30] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 28%|██▊       | 10/36 [00:02<00:09,  2.76it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:30] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 31%|███       | 11/36 [00:03<00:09,  2.77it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:31] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 33%|███▎      | 12/36 [00:03<00:10,  2.21it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:31] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 36%|███▌      | 13/36 [00:05<00:18,  1.21it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:33] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 39%|███▉      | 14/36 [00:09<00:38,  1.73s/it]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:37] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 42%|████▏     | 15/36 [00:13<00:49,  2.36s/it]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:41] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 44%|████▍     | 16/36 [00:13<00:36,  1.82s/it]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:41] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 47%|████▋     | 17/36 [00:15<00:31,  1.68s/it]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:43] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 50%|█████     | 18/36 [00:17<00:33,  1.85s/it]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:45] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:45] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 56%|█████▌    | 20/36 [00:17<00:16,  1.04s/it]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:45] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 58%|█████▊    | 21/36 [00:17<00:12,  1.21it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:45] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:45] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 64%|██████▍   | 23/36 [00:17<00:06,  1.92it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:45] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 67%|██████▋   | 24/36 [00:18<00:05,  2.27it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:46] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:46] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 72%|███████▏  | 26/36 [00:18<00:03,  3.16it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:46] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 75%|███████▌  | 27/36 [00:18<00:02,  3.47it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:46] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:46] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 81%|████████  | 29/36 [00:18<00:01,  4.40it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:46] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 83%|████████▎ | 30/36 [00:18<00:01,  4.46it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:46] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 86%|████████▌ | 31/36 [00:19<00:01,  4.15it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:47] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 89%|████████▉ | 32/36 [00:19<00:01,  3.68it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:47] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 92%|█████████▏| 33/36 [00:19<00:00,  3.25it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:47] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 94%|█████████▍| 34/36 [00:20<00:00,  3.39it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:48] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 97%|█████████▋| 35/36 [00:20<00:00,  3.27it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:48] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+100%|██████████| 36/36 [00:21<00:00,  2.90it/s]100%|██████████| 36/36 [00:21<00:00,  1.71it/s]
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:49] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:49] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:50] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:16:54] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+Evaluating c2st
+Evaluating density
+Generating report ...
+
+|          | 0/48 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/48 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |█▉        | 9/48 [00:00<00:00, 85.63it/s]|(1/2) Evaluating Column Shapes: |████▍     | 21/48 [00:00<00:00, 104.49it/s]|(1/2) Evaluating Column Shapes: |██████▋   | 32/48 [00:00<00:00, 98.23it/s]| (1/2) Evaluating Column Shapes: |█████████▊| 47/48 [00:00<00:00, 115.06it/s]|(1/2) Evaluating Column Shapes: |██████████| 48/48 [00:00<00:00, 109.20it/s]|
+Column Shapes Score: 88.07%
+
+|          | 0/1128 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/1128 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |▏         | 16/1128 [00:00<00:07, 158.80it/s]|(2/2) Evaluating Column Pair Trends: |▍         | 44/1128 [00:00<00:04, 228.01it/s]|(2/2) Evaluating Column Pair Trends: |▋         | 75/1128 [00:00<00:03, 263.31it/s]|(2/2) Evaluating Column Pair Trends: |▉         | 106/1128 [00:00<00:03, 281.16it/s]|(2/2) Evaluating Column Pair Trends: |█▏        | 135/1128 [00:00<00:03, 278.89it/s]|(2/2) Evaluating Column Pair Trends: |█▍        | 163/1128 [00:00<00:03, 263.07it/s]|(2/2) Evaluating Column Pair Trends: |█▋        | 190/1128 [00:00<00:03, 257.53it/s]|(2/2) Evaluating Column Pair Trends: |█▉        | 216/1128 [00:00<00:03, 252.41it/s]|(2/2) Evaluating Column Pair Trends: |██▏       | 242/1128 [00:00<00:03, 254.07it/s]|(2/2) Evaluating Column Pair Trends: |██▍       | 268/1128 [00:01<00:03, 248.37it/s]|(2/2) Evaluating Column Pair Trends: |██▋       | 297/1128 [00:01<00:03, 259.80it/s]|(2/2) Evaluating Column Pair Trends: |██▉       | 328/1128 [00:01<00:02, 272.69it/s]|(2/2) Evaluating Column Pair Trends: |███▏      | 359/1128 [00:01<00:02, 281.48it/s]|(2/2) Evaluating Column Pair Trends: |███▍      | 388/1128 [00:01<00:02, 283.61it/s]|(2/2) Evaluating Column Pair Trends: |███▋      | 417/1128 [00:01<00:02, 282.80it/s]|(2/2) Evaluating Column Pair Trends: |███▉      | 446/1128 [00:01<00:02, 267.25it/s]|(2/2) Evaluating Column Pair Trends: |████▏     | 477/1128 [00:01<00:02, 277.62it/s]|(2/2) Evaluating Column Pair Trends: |████▌     | 513/1128 [00:01<00:02, 300.35it/s]|(2/2) Evaluating Column Pair Trends: |████▊     | 544/1128 [00:02<00:01, 292.58it/s]|(2/2) Evaluating Column Pair Trends: |█████     | 574/1128 [00:02<00:02, 275.59it/s]|(2/2) Evaluating Column Pair Trends: |█████▎    | 602/1128 [00:02<00:02, 261.92it/s]|(2/2) Evaluating Column Pair Trends: |█████▌    | 629/1128 [00:02<00:01, 257.46it/s]|(2/2) Evaluating Column Pair Trends: |█████▊    | 657/1128 [00:02<00:01, 263.43it/s]|(2/2) Evaluating Column Pair Trends: |██████    | 684/1128 [00:02<00:01, 251.42it/s]|(2/2) Evaluating Column Pair Trends: |██████▎   | 710/1128 [00:02<00:01, 243.63it/s]|(2/2) Evaluating Column Pair Trends: |██████▌   | 735/1128 [00:02<00:01, 239.14it/s]|(2/2) Evaluating Column Pair Trends: |██████▋   | 760/1128 [00:02<00:01, 235.29it/s]|(2/2) Evaluating Column Pair Trends: |██████▉   | 784/1128 [00:03<00:01, 233.94it/s]|(2/2) Evaluating Column Pair Trends: |███████▏  | 809/1128 [00:03<00:01, 237.68it/s]|(2/2) Evaluating Column Pair Trends: |███████▍  | 834/1128 [00:03<00:01, 239.10it/s]|(2/2) Evaluating Column Pair Trends: |███████▌  | 858/1128 [00:03<00:01, 237.06it/s]|(2/2) Evaluating Column Pair Trends: |███████▊  | 882/1128 [00:03<00:01, 230.92it/s]|(2/2) Evaluating Column Pair Trends: |████████  | 906/1128 [00:03<00:00, 228.36it/s]|(2/2) Evaluating Column Pair Trends: |████████▏ | 929/1128 [00:03<00:00, 225.34it/s]|(2/2) Evaluating Column Pair Trends: |████████▍ | 952/1128 [00:03<00:00, 224.72it/s]|(2/2) Evaluating Column Pair Trends: |████████▋ | 976/1128 [00:03<00:00, 227.08it/s]|(2/2) Evaluating Column Pair Trends: |████████▊ | 1000/1128 [00:03<00:00, 228.30it/s]|(2/2) Evaluating Column Pair Trends: |█████████ | 1026/1128 [00:04<00:00, 236.53it/s]|(2/2) Evaluating Column Pair Trends: |█████████▎| 1053/1128 [00:04<00:00, 244.54it/s]|(2/2) Evaluating Column Pair Trends: |█████████▌| 1080/1128 [00:04<00:00, 250.18it/s]|(2/2) Evaluating Column Pair Trends: |█████████▊| 1109/1128 [00:04<00:00, 260.76it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 1128/1128 [00:04<00:00, 254.95it/s]|
+Column Pair Trends Score: 97.38%
+
+Overall Score (Average): 92.72%
+
+Generating report ...
+
+|          | 0/48 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/48 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 48/48 [00:00<00:00, 664.59it/s]|
+Data Validity Score: 100.0%
+
+|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 1143.17it/s]|
+Data Structure Score: 100.0%
+
+Overall Score (Average): 100.0%
+
+Evaluating mle
+  0%|          | 0/36 [00:00<?, ?it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:27:51] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:27:51] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+  6%|▌         | 2/36 [00:00<00:03,  9.98it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:27:51] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+  8%|▊         | 3/36 [00:00<00:06,  5.44it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:27:51] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:27:51] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 14%|█▍        | 5/36 [00:00<00:04,  7.50it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:27:51] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 17%|█▋        | 6/36 [00:00<00:05,  5.88it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:27:52] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 19%|█▉        | 7/36 [00:01<00:04,  6.32it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:27:52] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 22%|██▏       | 8/36 [00:01<00:07,  3.97it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:27:52] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 25%|██▌       | 9/36 [00:02<00:12,  2.23it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:27:53] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 28%|██▊       | 10/36 [00:02<00:09,  2.88it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:27:53] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 31%|███       | 11/36 [00:02<00:08,  2.84it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:27:54] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 33%|███▎      | 12/36 [00:03<00:10,  2.20it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:27:54] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 36%|███▌      | 13/36 [00:05<00:18,  1.23it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:27:56] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 39%|███▉      | 14/36 [00:09<00:37,  1.69s/it]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:28:00] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 42%|████▏     | 15/36 [00:12<00:49,  2.35s/it]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:28:04] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 44%|████▍     | 16/36 [00:13<00:36,  1.83s/it]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:28:04] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 47%|████▋     | 17/36 [00:14<00:31,  1.68s/it]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:28:06] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 50%|█████     | 18/36 [00:16<00:32,  1.79s/it]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:28:08] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:28:08] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 56%|█████▌    | 20/36 [00:17<00:16,  1.01s/it]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:28:08] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 58%|█████▊    | 21/36 [00:17<00:11,  1.26it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:28:08] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:28:08] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 64%|██████▍   | 23/36 [00:17<00:06,  1.99it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:28:08] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 67%|██████▋   | 24/36 [00:17<00:05,  2.32it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:28:08] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 69%|██████▉   | 25/36 [00:17<00:03,  2.84it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:28:09] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 72%|███████▏  | 26/36 [00:17<00:03,  3.27it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:28:09] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 75%|███████▌  | 27/36 [00:18<00:02,  3.63it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:28:09] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:28:09] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 81%|████████  | 29/36 [00:18<00:01,  4.74it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:28:09] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 83%|████████▎ | 30/36 [00:18<00:01,  4.81it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:28:09] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 86%|████████▌ | 31/36 [00:18<00:01,  4.32it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:28:10] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 89%|████████▉ | 32/36 [00:19<00:01,  3.78it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:28:10] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 92%|█████████▏| 33/36 [00:19<00:00,  3.33it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:28:10] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 94%|█████████▍| 34/36 [00:19<00:00,  3.35it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:28:11] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 97%|█████████▋| 35/36 [00:20<00:00,  3.22it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:28:11] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+100%|██████████| 36/36 [00:20<00:00,  3.04it/s]100%|██████████| 36/36 [00:20<00:00,  1.74it/s]
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:28:11] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:28:12] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:28:13] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:28:17] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+Evaluating c2st
+Evaluating density
+Generating report ...
+
+|          | 0/48 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/48 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |█▉        | 9/48 [00:00<00:00, 84.87it/s]|(1/2) Evaluating Column Shapes: |████▍     | 21/48 [00:00<00:00, 103.23it/s]|(1/2) Evaluating Column Shapes: |██████▋   | 32/48 [00:00<00:00, 98.18it/s]| (1/2) Evaluating Column Shapes: |█████████▊| 47/48 [00:00<00:00, 114.92it/s]|(1/2) Evaluating Column Shapes: |██████████| 48/48 [00:00<00:00, 108.89it/s]|
+Column Shapes Score: 88.01%
+
+|          | 0/1128 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/1128 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 14/1128 [00:00<00:08, 138.23it/s]|(2/2) Evaluating Column Pair Trends: |▎         | 42/1128 [00:00<00:04, 219.92it/s]|(2/2) Evaluating Column Pair Trends: |▋         | 73/1128 [00:00<00:04, 260.51it/s]|(2/2) Evaluating Column Pair Trends: |▉         | 104/1128 [00:00<00:03, 279.73it/s]|(2/2) Evaluating Column Pair Trends: |█▏        | 132/1128 [00:00<00:03, 278.19it/s]|(2/2) Evaluating Column Pair Trends: |█▍        | 160/1128 [00:00<00:03, 266.60it/s]|(2/2) Evaluating Column Pair Trends: |█▋        | 187/1128 [00:00<00:03, 257.03it/s]|(2/2) Evaluating Column Pair Trends: |█▉        | 213/1128 [00:00<00:03, 253.74it/s]|(2/2) Evaluating Column Pair Trends: |██▏       | 240/1128 [00:00<00:03, 255.63it/s]|(2/2) Evaluating Column Pair Trends: |██▎       | 266/1128 [00:01<00:03, 247.04it/s]|(2/2) Evaluating Column Pair Trends: |██▌       | 296/1128 [00:01<00:03, 261.61it/s]|(2/2) Evaluating Column Pair Trends: |██▉       | 327/1128 [00:01<00:02, 275.13it/s]|(2/2) Evaluating Column Pair Trends: |███▏      | 358/1128 [00:01<00:02, 283.21it/s]|(2/2) Evaluating Column Pair Trends: |███▍      | 388/1128 [00:01<00:02, 285.22it/s]|(2/2) Evaluating Column Pair Trends: |███▋      | 417/1128 [00:01<00:02, 284.92it/s]|(2/2) Evaluating Column Pair Trends: |███▉      | 446/1128 [00:01<00:02, 269.34it/s]|(2/2) Evaluating Column Pair Trends: |████▏     | 477/1128 [00:01<00:02, 279.35it/s]|(2/2) Evaluating Column Pair Trends: |████▌     | 514/1128 [00:01<00:02, 302.08it/s]|(2/2) Evaluating Column Pair Trends: |████▊     | 545/1128 [00:02<00:01, 293.95it/s]|(2/2) Evaluating Column Pair Trends: |█████     | 575/1128 [00:02<00:01, 278.38it/s]|(2/2) Evaluating Column Pair Trends: |█████▎    | 604/1128 [00:02<00:01, 264.22it/s]|(2/2) Evaluating Column Pair Trends: |█████▌    | 631/1128 [00:02<00:01, 261.38it/s]|(2/2) Evaluating Column Pair Trends: |█████▊    | 659/1128 [00:02<00:01, 265.97it/s]|(2/2) Evaluating Column Pair Trends: |██████    | 686/1128 [00:02<00:01, 251.26it/s]|(2/2) Evaluating Column Pair Trends: |██████▎   | 712/1128 [00:02<00:01, 244.16it/s]|(2/2) Evaluating Column Pair Trends: |██████▌   | 737/1128 [00:02<00:01, 239.78it/s]|(2/2) Evaluating Column Pair Trends: |██████▊   | 762/1128 [00:02<00:01, 235.40it/s]|(2/2) Evaluating Column Pair Trends: |██████▉   | 786/1128 [00:03<00:01, 234.86it/s]|(2/2) Evaluating Column Pair Trends: |███████▏  | 811/1128 [00:03<00:01, 238.99it/s]|(2/2) Evaluating Column Pair Trends: |███████▍  | 836/1128 [00:03<00:01, 241.28it/s]|(2/2) Evaluating Column Pair Trends: |███████▋  | 861/1128 [00:03<00:01, 239.05it/s]|(2/2) Evaluating Column Pair Trends: |███████▊  | 885/1128 [00:03<00:01, 232.89it/s]|(2/2) Evaluating Column Pair Trends: |████████  | 909/1128 [00:03<00:00, 227.05it/s]|(2/2) Evaluating Column Pair Trends: |████████▎ | 932/1128 [00:03<00:00, 225.54it/s]|(2/2) Evaluating Column Pair Trends: |████████▍ | 955/1128 [00:03<00:00, 225.31it/s]|(2/2) Evaluating Column Pair Trends: |████████▋ | 979/1128 [00:03<00:00, 226.61it/s]|(2/2) Evaluating Column Pair Trends: |████████▉ | 1003/1128 [00:03<00:00, 229.71it/s]|(2/2) Evaluating Column Pair Trends: |█████████ | 1029/1128 [00:04<00:00, 238.51it/s]|(2/2) Evaluating Column Pair Trends: |█████████▎| 1056/1128 [00:04<00:00, 245.70it/s]|(2/2) Evaluating Column Pair Trends: |█████████▌| 1084/1128 [00:04<00:00, 255.02it/s]|(2/2) Evaluating Column Pair Trends: |█████████▊| 1113/1128 [00:04<00:00, 265.19it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 1128/1128 [00:04<00:00, 256.01it/s]|
+Column Pair Trends Score: 96.98%
+
+Overall Score (Average): 92.49%
+
+Generating report ...
+
+|          | 0/48 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/48 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 48/48 [00:00<00:00, 665.56it/s]|
+Data Validity Score: 100.0%
+
+|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 1151.02it/s]|
+Data Structure Score: 100.0%
+
+Overall Score (Average): 100.0%
+
+Evaluating mle
+  0%|          | 0/36 [00:00<?, ?it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:13] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:13] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+  6%|▌         | 2/36 [00:00<00:03, 10.86it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:13] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:14] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 11%|█         | 4/36 [00:00<00:04,  7.93it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:14] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 14%|█▍        | 5/36 [00:00<00:04,  7.10it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:14] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 17%|█▋        | 6/36 [00:00<00:05,  5.04it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:14] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 19%|█▉        | 7/36 [00:01<00:05,  5.71it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:14] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 22%|██▏       | 8/36 [00:01<00:07,  3.85it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:15] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 25%|██▌       | 9/36 [00:02<00:12,  2.23it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:16] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:16] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 31%|███       | 11/36 [00:02<00:08,  2.86it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:16] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 33%|███▎      | 12/36 [00:03<00:10,  2.29it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:17] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 36%|███▌      | 13/36 [00:05<00:20,  1.15it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:19] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 39%|███▉      | 14/36 [00:09<00:37,  1.71s/it]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:23] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 42%|████▏     | 15/36 [00:13<00:49,  2.36s/it]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:27] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 44%|████▍     | 16/36 [00:14<00:36,  1.85s/it]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:27] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 47%|████▋     | 17/36 [00:15<00:32,  1.69s/it]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:29] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 50%|█████     | 18/36 [00:17<00:33,  1.85s/it]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:31] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:31] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 56%|█████▌    | 20/36 [00:17<00:16,  1.05s/it]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:31] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 58%|█████▊    | 21/36 [00:18<00:12,  1.21it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:31] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:31] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 64%|██████▍   | 23/36 [00:18<00:06,  1.91it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:31] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 67%|██████▋   | 24/36 [00:18<00:05,  2.26it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:32] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 69%|██████▉   | 25/36 [00:18<00:04,  2.74it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:32] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 72%|███████▏  | 26/36 [00:19<00:04,  2.09it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:33] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 75%|███████▌  | 27/36 [00:19<00:03,  2.39it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:33] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:33] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 81%|████████  | 29/36 [00:19<00:02,  3.46it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:33] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 83%|████████▎ | 30/36 [00:20<00:01,  3.79it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:33] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 86%|████████▌ | 31/36 [00:20<00:01,  3.72it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:34] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 89%|████████▉ | 32/36 [00:20<00:01,  3.44it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:34] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 92%|█████████▏| 33/36 [00:21<00:01,  2.87it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:34] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 94%|█████████▍| 34/36 [00:21<00:00,  3.07it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:35] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 97%|█████████▋| 35/36 [00:22<00:00,  2.48it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:35] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+100%|██████████| 36/36 [00:22<00:00,  2.55it/s]100%|██████████| 36/36 [00:22<00:00,  1.60it/s]
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:36] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:40] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:40] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [13:39:43] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+Evaluating c2st
+['news', 'forest_diffusion n_t=50 n_t_sampling=50 model=xgboost diffusion=mixed-flow duplicate_K=100 ycond=False depth=7 n_trees=100 eta=0.3  quantile=False ', 0.0, 0.0, -1.4190442645498857, -1.8259400748101868, -1.2690308428459005, 0.0, 0.0, 0.0, np.float64(0.7139587245531919), np.float64(0.9836065573770492), np.float64(230.79162958275072), np.float64(0.40350877192982454), np.float64(1513.2335731642313), [np.float64(0.47939439447629845), np.float64(0.47531891900667833), np.float64(0.48089755132419143)], 17441.166785478592, np.float64(0.8804731852848392), np.float64(0.9718659491483714), np.float64(0.9261695672166053), np.float64(0.8773848414421082), np.float64(0.94533414237909), 0.024235237659385733, 0.01795472577085585, 0.02341843643521091, 0.0, 0.0, 0.0, -5.054473144151729, -7.14310642592354, -4.802981793309783, 0.0, 0.0, 0.0, -0.07377970660696676, -0.018896476988655226, -0.07354430858012706, 0.0, 0.0, 0.0, -0.5721594451002323, -0.1597121220994077, -0.22301570592890396, 0.0, 0.0, 0.0]
+beijing
+method=forest_diffusion
+0
+Evaluating density
+Generating report ...
+
+|          | 0/12 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/12 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 12/12 [00:00<00:00, 118.79it/s]|(1/2) Evaluating Column Shapes: |██████████| 12/12 [00:00<00:00, 117.82it/s]|
+Column Shapes Score: 96.9%
+
+|          | 0/66 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/66 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |████▍     | 29/66 [00:00<00:00, 289.39it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 66/66 [00:00<00:00, 352.56it/s]|
+Column Pair Trends Score: 95.57%
+
+Overall Score (Average): 96.24%
+
+Generating report ...
+
+|          | 0/12 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/12 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 12/12 [00:00<00:00, 798.38it/s]|
+Data Validity Score: 100.0%
+
+|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 1541.46it/s]|
+Data Structure Score: 100.0%
+
+Overall Score (Average): 100.0%
+
+Evaluating mle
+  0%|          | 0/36 [00:00<?, ?it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:41] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:41] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+  6%|▌         | 2/36 [00:00<00:02, 14.81it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:41] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:41] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 11%|█         | 4/36 [00:00<00:02, 11.20it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:41] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:41] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 17%|█▋        | 6/36 [00:00<00:03,  8.86it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:41] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:42] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 22%|██▏       | 8/36 [00:00<00:03,  7.87it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:42] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 25%|██▌       | 9/36 [00:01<00:05,  5.03it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:42] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:42] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 31%|███       | 11/36 [00:01<00:04,  5.10it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:43] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 33%|███▎      | 12/36 [00:02<00:05,  4.17it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:43] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 36%|███▌      | 13/36 [00:02<00:07,  3.06it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:44] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 39%|███▉      | 14/36 [00:04<00:14,  1.48it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:45] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 42%|████▏     | 15/36 [00:07<00:26,  1.27s/it]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:48] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 44%|████▍     | 16/36 [00:07<00:19,  1.03it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:48] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 47%|████▋     | 17/36 [00:08<00:18,  1.01it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:49] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 50%|█████     | 18/36 [00:09<00:18,  1.01s/it]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:51] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:51] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 56%|█████▌    | 20/36 [00:09<00:09,  1.71it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:51] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 58%|█████▊    | 21/36 [00:09<00:07,  2.10it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:51] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:51] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 64%|██████▍   | 23/36 [00:10<00:04,  3.24it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:51] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 67%|██████▋   | 24/36 [00:10<00:03,  3.70it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:51] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:51] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 72%|███████▏  | 26/36 [00:10<00:01,  5.03it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:51] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 75%|███████▌  | 27/36 [00:10<00:01,  5.32it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:51] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:51] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 81%|████████  | 29/36 [00:10<00:01,  6.68it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:52] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 83%|████████▎ | 30/36 [00:10<00:00,  6.67it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:52] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 86%|████████▌ | 31/36 [00:10<00:00,  7.11it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:52] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 89%|████████▉ | 32/36 [00:11<00:00,  6.99it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:52] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 92%|█████████▏| 33/36 [00:11<00:00,  6.51it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:52] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 94%|█████████▍| 34/36 [00:11<00:00,  7.18it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:52] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 97%|█████████▋| 35/36 [00:11<00:00,  7.01it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:52] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+100%|██████████| 36/36 [00:11<00:00,  6.61it/s]100%|██████████| 36/36 [00:11<00:00,  3.06it/s]
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:53] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:53] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:54] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:27:54] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+Evaluating c2st
+Evaluating density
+Generating report ...
+
+|          | 0/12 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/12 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |████████▎ | 10/12 [00:00<00:00, 97.54it/s]|(1/2) Evaluating Column Shapes: |██████████| 12/12 [00:00<00:00, 102.38it/s]|
+Column Shapes Score: 96.84%
+
+|          | 0/66 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/66 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |████▌     | 30/66 [00:00<00:00, 296.34it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 66/66 [00:00<00:00, 354.16it/s]|
+Column Pair Trends Score: 94.94%
+
+Overall Score (Average): 95.89%
+
+Generating report ...
+
+|          | 0/12 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/12 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 12/12 [00:00<00:00, 816.42it/s]|
+Data Validity Score: 100.0%
+
+|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 1613.19it/s]|
+Data Structure Score: 100.0%
+
+Overall Score (Average): 100.0%
+
+Evaluating mle
+  0%|          | 0/36 [00:00<?, ?it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:29:53] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:29:53] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+  6%|▌         | 2/36 [00:00<00:02, 14.58it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:29:53] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:29:54] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 11%|█         | 4/36 [00:00<00:02, 11.30it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:29:54] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:29:54] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 17%|█▋        | 6/36 [00:00<00:03,  9.11it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:29:54] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:29:54] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 22%|██▏       | 8/36 [00:00<00:03,  8.03it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:29:54] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 25%|██▌       | 9/36 [00:01<00:05,  5.05it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:29:55] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:29:55] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 31%|███       | 11/36 [00:01<00:04,  5.21it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:29:55] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 33%|███▎      | 12/36 [00:02<00:05,  4.20it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:29:55] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 36%|███▌      | 13/36 [00:02<00:07,  3.08it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:29:56] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 39%|███▉      | 14/36 [00:04<00:16,  1.35it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:29:58] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 42%|████▏     | 15/36 [00:07<00:27,  1.29s/it]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:30:01] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 44%|████▍     | 16/36 [00:07<00:19,  1.01it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:30:01] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 47%|████▋     | 17/36 [00:08<00:16,  1.16it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:30:02] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 50%|█████     | 18/36 [00:09<00:16,  1.12it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:30:03] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:30:03] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 56%|█████▌    | 20/36 [00:09<00:08,  1.91it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:30:03] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 58%|█████▊    | 21/36 [00:09<00:06,  2.33it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:30:03] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:30:03] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 64%|██████▍   | 23/36 [00:09<00:03,  3.58it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:30:03] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 67%|██████▋   | 24/36 [00:09<00:02,  4.06it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:30:03] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:30:03] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 72%|███████▏  | 26/36 [00:09<00:01,  5.46it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:30:03] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 75%|███████▌  | 27/36 [00:10<00:01,  5.76it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:30:03] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:30:04] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 81%|████████  | 29/36 [00:10<00:00,  7.00it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:30:04] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 83%|████████▎ | 30/36 [00:10<00:00,  6.94it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:30:04] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 86%|████████▌ | 31/36 [00:10<00:00,  7.18it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:30:04] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 89%|████████▉ | 32/36 [00:10<00:00,  6.88it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:30:04] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 92%|█████████▏| 33/36 [00:10<00:00,  6.42it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:30:04] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 94%|█████████▍| 34/36 [00:10<00:00,  7.12it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:30:04] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 97%|█████████▋| 35/36 [00:11<00:00,  5.98it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:30:05] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+100%|██████████| 36/36 [00:11<00:00,  5.80it/s]100%|██████████| 36/36 [00:11<00:00,  3.15it/s]
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:30:05] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:30:06] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:30:06] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:30:07] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+Evaluating c2st
+Evaluating density
+Generating report ...
+
+|          | 0/12 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/12 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 12/12 [00:00<00:00, 119.30it/s]|
+Column Shapes Score: 96.89%
+
+|          | 0/66 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/66 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |████▌     | 30/66 [00:00<00:00, 297.37it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 66/66 [00:00<00:00, 356.35it/s]|
+Column Pair Trends Score: 96.2%
+
+Overall Score (Average): 96.55%
+
+Generating report ...
+
+|          | 0/12 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/12 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 12/12 [00:00<00:00, 789.36it/s]|
+Data Validity Score: 100.0%
+
+|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 1550.00it/s]|
+Data Structure Score: 100.0%
+
+Overall Score (Average): 100.0%
+
+Evaluating mle
+  0%|          | 0/36 [00:00<?, ?it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:08] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+  3%|▎         | 1/36 [00:00<00:07,  4.77it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:08] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+  6%|▌         | 2/36 [00:00<00:08,  4.18it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:08] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+  8%|▊         | 3/36 [00:00<00:07,  4.63it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:08] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:08] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 14%|█▍        | 5/36 [00:00<00:04,  7.65it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:08] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 17%|█▋        | 6/36 [00:00<00:04,  6.89it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:09] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:09] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 22%|██▏       | 8/36 [00:01<00:04,  6.40it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:09] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 25%|██▌       | 9/36 [00:01<00:06,  4.47it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:09] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:09] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 31%|███       | 11/36 [00:01<00:04,  5.45it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:10] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 33%|███▎      | 12/36 [00:02<00:05,  4.52it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:10] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 36%|███▌      | 13/36 [00:03<00:07,  3.03it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:11] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 39%|███▉      | 14/36 [00:04<00:14,  1.47it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:12] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 42%|████▏     | 15/36 [00:07<00:26,  1.24s/it]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:15] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 44%|████▍     | 16/36 [00:07<00:18,  1.06it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:15] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 47%|████▋     | 17/36 [00:08<00:15,  1.20it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:16] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 50%|█████     | 18/36 [00:09<00:15,  1.13it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:17] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:17] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 56%|█████▌    | 20/36 [00:09<00:08,  1.94it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:17] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 58%|█████▊    | 21/36 [00:09<00:06,  2.37it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:17] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:17] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 64%|██████▍   | 23/36 [00:09<00:03,  3.61it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:17] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 67%|██████▋   | 24/36 [00:09<00:02,  4.09it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:17] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:17] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 72%|███████▏  | 26/36 [00:09<00:01,  5.55it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:18] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 75%|███████▌  | 27/36 [00:10<00:01,  5.90it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:18] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:18] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 81%|████████  | 29/36 [00:10<00:00,  7.39it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:18] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:18] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 86%|████████▌ | 31/36 [00:10<00:00,  7.67it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:18] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 89%|████████▉ | 32/36 [00:10<00:00,  7.41it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:18] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 92%|█████████▏| 33/36 [00:10<00:00,  6.05it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:19] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:19] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+ 97%|█████████▋| 35/36 [00:11<00:00,  6.82it/s]/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:19] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+100%|██████████| 36/36 [00:11<00:00,  6.64it/s]100%|██████████| 36/36 [00:11<00:00,  3.20it/s]
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:19] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:19] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:20] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/xgboost/training.py:200: UserWarning: [22:32:20] WARNING: /__w/xgboost/xgboost/src/objective/regression_obj.cu:277: reg:linear is now deprecated in favor of reg:squarederror.
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+Evaluating c2st
+['beijing', 'forest_diffusion n_t=50 n_t_sampling=50 model=xgboost diffusion=mixed-flow duplicate_K=100 ycond=False depth=7 n_trees=100 eta=0.3  quantile=False ', 0.0, 0.0, 0.31586195166259934, 0.3228050072258106, 0.4596920901175274, 0.0, 0.0, 0.0, np.float64(0.44528706882023716), np.float64(0.9328703703703702), np.float64(53.303166198041744), np.float64(0.5897435897435898), np.float64(11.723481461048568), [np.float64(0.4571122150041282), np.float64(0.4560906837871243), np.float64(0.4551891682772027)], 31022.78440475464, np.float64(0.9687630274163361), np.float64(0.9557164729514), np.float64(0.9622397501838682), np.float64(0.6514590382575989), np.float64(0.9475551853082183), 0.4058440015748974, 0.38718971254333345, 0.4003976691681549, 0.0, 0.0, 0.0, -0.7529268825185267, -0.1361853433662476, -0.05344243863312711, 0.0, 0.0, 0.0, 0.8486419400502402, 0.5252901405618537, 0.7965199822424545, 0.0, 0.0, 0.0, 0.7618887475437865, 0.5149255191643028, 0.6952931476926274, 0.0, 0.0, 0.0]
+2026-03-05 22:34:26.687727: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-03-05 22:34:26.730689: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-03-05 22:34:27.657128: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/torch/__init__.py:1305: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at /pytorch/torch/csrc/tensor/python_tensor.cpp:434.)
+  _C._set_default_tensor_type(t)

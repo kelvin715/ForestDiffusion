@@ -60,13 +60,17 @@ parser.add_argument('--n_tries', type=int, default=1,
                     help='number of models trained with different seeds in the metrics')
 # parser.add_argument('--datasets', nargs='+', type=str, default=['iris', 'wine', 'parkinsons', 'climate_model_crashes', 'concrete_compression', 'yacht_hydrodynamics', 'airfoil_self_noise', 'connectionist_bench_sonar', 'ionosphere', 'qsar_biodegradation', 'seeds', 'glass', 'ecoli', 'yeast', 'libras', 'planning_relax', 'blood_transfusion', 'breast_cancer_diagnostic', 'connectionist_bench_vowel', 'concrete_slump', 'wine_quality_red', 'wine_quality_white', 'california', 'bean', 'tictactoe','congress','car'],
 #                     help='datasets on which to run the experiments')
-parser.add_argument('--datasets', nargs='+', type=str, default=['tictactoe', 'congress', 'car'],
+parser.add_argument('--datasets', nargs='+', type=str, default=['default', 'adult', 'news', 'beijing'],
                     help='datasets on which to run the experiments')
 
 # Setting for Missingness if used
 parser.add_argument('--add_missing_data', type=str2bool, default=False)
 parser.add_argument('--p', type=float, default=0.2, help='Proportion of missing')
 parser.add_argument('--imputation_method', type=str, default='MissForest', help='miceforest or MissForest or none (MissForest is better and the one used in the paper for the non-ForestDiffusion methods; ForestDiffusion is the only method that can handle none)')
+
+# Quantile pre-processing (optional, to mimic ef-vfm)
+parser.add_argument('--use_quantile', type=str2bool, default=False, help='If True, apply QuantileTransformer on numerical columns before training/generation and inverse-transform fake samples before evaluation.')
+parser.add_argument('--n_quantiles', type=int, default=None, help='Number of quantiles for QuantileTransformer (None uses ef-vfm heuristic).')
 
 # Forest hyperparameters
 parser.add_argument('--forest_model', type=str, default='xgboost', help='xgboost, random_forest, lgbm, catboost')
@@ -216,8 +220,37 @@ if __name__ == "__main__":
                         random_state=n,
                         stratify=y if bin_y or cat_y else None,
                     )
+
+                # Build joint matrices and keep an untouched copy for evaluation
                 Xy_train = np.concatenate((X_train, np.expand_dims(y_train, axis=1)), axis=1)
                 Xy_test = np.concatenate((X_test, np.expand_dims(y_test, axis=1)), axis=1)
+                X_train_orig = X_train.copy()
+                X_test_orig = X_test.copy()
+                y_train_orig = y_train.copy()
+                y_test_orig = y_test.copy()
+                Xy_train_orig = Xy_train.copy()
+                Xy_test_orig = Xy_test.copy()
+
+                # Optional quantile preprocessing on numerical columns
+                qt = None
+                num_col_idx = None
+                if args.use_quantile:
+                    all_indices = set(range(Xy_train.shape[1]))
+                    cat_bin_set = set(bin_indexes + cat_indexes)
+                    num_col_idx = sorted(list(all_indices - cat_bin_set))
+                    if len(num_col_idx) > 0:
+                        Xy_train, Xy_test, qt = apply_quantile_fit_transform(
+                            Xy_train,
+                            Xy_test,
+                            num_col_idx,
+                            n_quantiles=args.n_quantiles,
+                            random_state=n,
+                        )
+                        # Update X_train / X_test / y_train / y_test for training/generation
+                        X_train = Xy_train[:, :-1]
+                        y_train = Xy_train[:, -1]
+                        X_test = Xy_test[:, :-1]
+                        y_test = Xy_test[:, -1]
 
                 if args.add_missing_data:
                     print("Adding missing data")
@@ -468,6 +501,11 @@ if __name__ == "__main__":
                 time_taken[method] += (end - start) / args.nexp
                 assert Xy_fake.shape[0] == args.ngen and Xy_fake.shape[1] == Xy_train_used.shape[0] and Xy_fake.shape[2] == Xy_train_used.shape[1]
 
+                # If we used quantile preprocessing, bring fake samples back to the original space
+                if args.use_quantile and qt is not None and num_col_idx is not None and len(num_col_idx) > 0:
+                    for gen_i in range(args.ngen):
+                        Xy_fake[gen_i] = apply_quantile_inverse_transform(Xy_fake[gen_i], num_col_idx, qt)
+
                 for gen_i in range(args.ngen):
 
                     #np.set_printoptions(threshold=np.inf)
@@ -479,7 +517,7 @@ if __name__ == "__main__":
                     # New metrics calculation (density, mle, c2st)
                     # Construct info object
                     if gen_i == 0: # Do it once per experiment to save time on metadata detection
-                        data_pd = pd.DataFrame(Xy_train, columns = [str(i) for i in range(Xy_train.shape[1])])
+                        data_pd = pd.DataFrame(Xy_train_orig if args.use_quantile else Xy_train, columns = [str(i) for i in range(Xy_train.shape[1])])
                         # indicate which column is categorical
                         for column_k in bin_indexes + cat_indexes:
                             if str(column_k) in data_pd.columns:
@@ -515,8 +553,8 @@ if __name__ == "__main__":
                         }
                         
                         # Prepare DataFrames for TabMetrics
-                        df_train = pd.DataFrame(Xy_train, columns=range(Xy_train.shape[1]))
-                        df_test = pd.DataFrame(Xy_test, columns=range(Xy_test.shape[1]))
+                        df_train = pd.DataFrame(Xy_train_orig if args.use_quantile else Xy_train, columns=range(Xy_train.shape[1]))
+                        df_test = pd.DataFrame(Xy_test_orig if args.use_quantile else Xy_test, columns=range(Xy_test.shape[1]))
 
                     # Evaluate
                     # Xy_fake_i is numpy array
@@ -539,8 +577,10 @@ if __name__ == "__main__":
                     # Continuous: we do min-max normalization (to use Gower |x1-x2|/(max-min) as distance)
                     # Categorical: We one-hot and then divide by 2 (e.g., 0 0 0.5 with 0.5 0 0 will have distance 0.5 + 0.5 = 1)
                     # After these transformations, taking the L1 (City-block / Manhattan distance) norm distance will give the Gower distance
-                    Xy_train_scaled, Xy_fake_scaled, _, _, _ = minmax_scale_dummy(Xy_train, Xy_fake_i, cat_indexes, divide_by=2)
-                    _, Xy_test_scaled, _, _, _ = minmax_scale_dummy(Xy_train, Xy_test, cat_indexes, divide_by=2)
+                    base_train = Xy_train_orig if args.use_quantile else Xy_train
+                    base_test = Xy_test_orig if args.use_quantile else Xy_test
+                    Xy_train_scaled, Xy_fake_scaled, _, _, _ = minmax_scale_dummy(base_train, Xy_fake_i, cat_indexes, divide_by=2)
+                    _, Xy_test_scaled, _, _, _ = minmax_scale_dummy(base_train, base_test, cat_indexes, divide_by=2)
 
                     assert Xy_train_scaled.shape[1] == Xy_fake_scaled.shape[1] == Xy_test_scaled.shape[1], f"Xy_train_scaled.shape: {Xy_train_scaled.shape}, Xy_fake_scaled.shape: {Xy_fake_scaled.shape}, Xy_test_scaled.shape: {Xy_test_scaled.shape}"
 
@@ -551,16 +591,21 @@ if __name__ == "__main__":
 
                     X_fake, y_fake = Xy_fake_i[:,:-1], Xy_fake_i[:,-1]
 
-                    # Trained on real data
-                    f1_real, R2_real = test_on_multiple_models(X_train, y_train, X_test, y_test, classifier=cat_y or bin_y, cat_indexes=cat_indexes_no_y, nexp=args.n_tries)
+                    # Trained on real data (always original space)
+                    base_X_train = X_train_orig if args.use_quantile else X_train
+                    base_y_train = y_train_orig if args.use_quantile else y_train
+                    base_X_test = X_test_orig if args.use_quantile else X_test
+                    base_y_test = y_test_orig if args.use_quantile else y_test
+
+                    f1_real, R2_real = test_on_multiple_models(base_X_train, base_y_train, base_X_test, base_y_test, classifier=cat_y or bin_y, cat_indexes=cat_indexes_no_y, nexp=args.n_tries)
 
                     # Trained on fake data
-                    f1_fake, R2_fake = test_on_multiple_models(X_fake, y_fake, X_test, y_test, classifier=cat_y or bin_y, cat_indexes=cat_indexes_no_y, nexp=args.n_tries)
+                    f1_fake, R2_fake = test_on_multiple_models(X_fake, y_fake, base_X_test, base_y_test, classifier=cat_y or bin_y, cat_indexes=cat_indexes_no_y, nexp=args.n_tries)
 
                     # Trained on real data and fake data
-                    X_both = np.concatenate((X_train,X_fake), axis=0)
-                    y_both = np.concatenate((y_train,y_fake))
-                    f1_both, R2_both = test_on_multiple_models(X_both, y_both, X_test, y_test, classifier=cat_y or bin_y, cat_indexes=cat_indexes_no_y, nexp=args.n_tries)
+                    X_both = np.concatenate((base_X_train, X_fake), axis=0)
+                    y_both = np.concatenate((base_y_train, y_fake))
+                    f1_both, R2_both = test_on_multiple_models(X_both, y_both, base_X_test, base_y_test, classifier=cat_y or bin_y, cat_indexes=cat_indexes_no_y, nexp=args.n_tries)
                     
                     for key in['mean', 'lin', 'linboost', 'tree', 'treeboost']:
                         f1[method]['real'][key] += f1_real[key] / (args.nexp*args.ngen)
@@ -573,7 +618,8 @@ if __name__ == "__main__":
                     # Get another different fake data for use as test fake-data
                     Xy_fake_j = Xy_fake[(gen_i + 1) % args.ngen] # 0 -> 1, 1-> 2, n -> 0
                     # Classifier comparing real to fake data, the less it classify fake data as fake = the better
-                    f1_class[method] += [test_on_multiple_models_classifier(X_train_real=Xy_train, X_train_fake=Xy_fake_i, X_test_fake=Xy_fake_j, cat_indexes=cat_indexes, nexp=args.n_tries)]
+                    Xy_train_real = Xy_train_orig if args.use_quantile else Xy_train
+                    f1_class[method] += [test_on_multiple_models_classifier(X_train_real=Xy_train_real, X_train_fake=Xy_fake_i, X_test_fake=Xy_fake_j, cat_indexes=cat_indexes, nexp=args.n_tries)]
 
                     # coverage based on L1 cost (after scaling)
                     coverage[method] += compute_coverage(Xy_train_scaled, Xy_fake_scaled, None) / (args.nexp*args.ngen)
@@ -590,7 +636,9 @@ if __name__ == "__main__":
                 # Too unstable with classification due toquasi-seperation with logistic regression
                 # dataset=ecoli with missing data is removed because it has near-constant variables, and the non-constant parts can be lost when adding missing data making it perfectly multicorrelated which will give regression errors
                 if not cat_y and not bin_y and not (dataset == 'ecoli' and args.add_missing_data):
-                    percent_bias_, coverage_rate_, AW_ = test_imputation_regression(X_train, y_train, X_fake, y_fake, 
+                    base_X_train = X_train_orig if args.use_quantile else X_train
+                    base_y_train = y_train_orig if args.use_quantile else y_train
+                    percent_bias_, coverage_rate_, AW_ = test_imputation_regression(base_X_train, base_y_train, X_fake, y_fake,
                         cat_indexes=cat_indexes_no_y, type_model='regression')
                 else: 
                     percent_bias_, coverage_rate_, AW_ = 0.0, 0.0, 0.0
@@ -612,6 +660,8 @@ if __name__ == "__main__":
                     method_str += f"num_leaves={args.num_leaves} n_trees={args.n_estimators} lr={args.eta} "
             else:
                 method_str = f"{method} "
+            # Mark whether quantile preprocessing was used
+            method_str += f" quantile={args.use_quantile} "
             header_cols = ["dataset"]
             if args.add_missing_data:
                 header_cols.append("mask")

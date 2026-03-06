@@ -6,7 +6,7 @@ import copy
 import numpy as np
 import pandas as pd
 from scipy.spatial.distance import cdist
-from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from sklearn.preprocessing import MinMaxScaler, StandardScaler, QuantileTransformer
 from scipy import optimize
 import statsmodels.api as sm
 
@@ -302,3 +302,72 @@ def minmax_scale(X_train, X_test, cat_indexes=[]):
         X_test_[:, not_cat_indexes] = scaler.transform(X_test_[:, not_cat_indexes])
 
     return X_train_, X_test_, scaler
+
+
+def apply_quantile_fit_transform(X_train, X_test, num_col_idx, n_quantiles=None, random_state=None):
+    """
+    Fit a QuantileTransformer on the numerical columns of X_train and
+    transform both X_train and X_test. Other columns are left unchanged.
+
+    Parameters
+    ----------
+    X_train, X_test : np.ndarray, shape (n, d)
+        Input data (typically Xy_train / Xy_test).
+    num_col_idx : list[int]
+        Indices of numerical columns to be transformed.
+    n_quantiles : Optional[int]
+        Number of quantiles to use. If None, uses the ef-vfm heuristic:
+        max(min(n_train // 30, 1000), 10).
+    random_state : Optional[int]
+        Random state for the transformer.
+    """
+    if X_train is None or X_test is None or len(num_col_idx) == 0:
+        return X_train, X_test, None
+
+    X_train_q = X_train.copy()
+    X_test_q = X_test.copy()
+
+    n_train = X_train.shape[0]
+    if n_quantiles is None:
+        n_quantiles_eff = max(min(n_train // 30, 1000), 10)
+    else:
+        n_quantiles_eff = n_quantiles
+
+    qt = QuantileTransformer(
+        output_distribution='normal',
+        n_quantiles=n_quantiles_eff,
+        subsample=int(1e9),
+        random_state=random_state,
+    )
+
+    X_train_sub = X_train[:, num_col_idx]
+    X_test_sub = X_test[:, num_col_idx]
+
+    qt.fit(X_train_sub)
+    X_train_q[:, num_col_idx] = qt.transform(X_train_sub)
+    X_test_q[:, num_col_idx] = qt.transform(X_test_sub)
+
+    return X_train_q, X_test_q, qt
+
+
+def apply_quantile_inverse_transform(X, num_col_idx, quantile_transformer):
+    """
+    Apply the inverse transform of a fitted QuantileTransformer on the
+    specified numerical columns of X. Other columns are left unchanged.
+
+    Parameters
+    ----------
+    X : np.ndarray, shape (n, d)
+        Data in quantile-transformed space.
+    num_col_idx : list[int]
+        Indices of numerical columns that were transformed.
+    quantile_transformer : Optional[QuantileTransformer]
+        Fitted transformer. If None, X is returned unchanged.
+    """
+    if quantile_transformer is None or X is None or len(num_col_idx) == 0:
+        return X
+
+    X_inv = X.copy()
+    X_sub = X[:, num_col_idx]
+    X_inv[:, num_col_idx] = quantile_transformer.inverse_transform(X_sub)
+    return X_inv

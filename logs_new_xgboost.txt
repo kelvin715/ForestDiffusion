@@ -1,417 +1,77 @@
-2026-02-27 13:53:21.844856: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2026-02-27 13:53:21.884244: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+2026-02-27 14:33:29.629709: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-27 14:33:29.671224: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
 To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-2026-02-27 13:53:22.792254: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/torch/__init__.py:1305: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at /pytorch/torch/csrc/tensor/python_tensor.cpp:434.)
+2026-02-27 14:33:30.649508: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/torch/__init__.py:1305: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at /pytorch/torch/csrc/tensor/python_tensor.cpp:434.)
   _C._set_default_tensor_type(t)
 tictactoe
 method=forest_diffusion
 0
-Evaluating density
-Generating report ...
-
-|          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 10/10 [00:00<00:00, 2496.31it/s]|
-Column Shapes Score: 97.92%
-
-|          | 0/45 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/45 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 45/45 [00:00<00:00, 785.21it/s]|
-Column Pair Trends Score: 97.91%
-
-Overall Score (Average): 97.92%
-
-Generating report ...
-
-|          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 10/10 [00:00<00:00, 5665.68it/s]|
-Data Validity Score: 100.0%
-
-|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 910.82it/s]|
-Data Structure Score: 100.0%
-
-Overall Score (Average): 100.0%
-
-Evaluating mle
-  0%|          | 0/36 [00:00<?, ?it/s]  6%|▌         | 2/36 [00:00<00:05,  6.78it/s]  8%|▊         | 3/36 [00:00<00:08,  4.05it/s] 14%|█▍        | 5/36 [00:00<00:05,  5.62it/s] 17%|█▋        | 6/36 [00:01<00:07,  3.97it/s] 19%|█▉        | 7/36 [00:01<00:06,  4.73it/s] 22%|██▏       | 8/36 [00:01<00:07,  3.68it/s] 25%|██▌       | 9/36 [00:02<00:11,  2.33it/s] 31%|███       | 11/36 [00:03<00:07,  3.19it/s] 33%|███▎      | 12/36 [00:04<00:11,  2.04it/s] 36%|███▌      | 13/36 [00:04<00:09,  2.34it/s] 39%|███▉      | 14/36 [00:05<00:11,  1.99it/s] 42%|████▏     | 15/36 [00:06<00:14,  1.45it/s] 47%|████▋     | 17/36 [00:06<00:08,  2.19it/s] 50%|█████     | 18/36 [00:07<00:10,  1.66it/s] 53%|█████▎    | 19/36 [00:07<00:08,  2.08it/s] 56%|█████▌    | 20/36 [00:07<00:06,  2.57it/s] 58%|█████▊    | 21/36 [00:08<00:06,  2.43it/s] 61%|██████    | 22/36 [00:08<00:04,  3.04it/s] 64%|██████▍   | 23/36 [00:08<00:03,  3.73it/s] 67%|██████▋   | 24/36 [00:08<00:03,  3.91it/s] 69%|██████▉   | 25/36 [00:08<00:02,  4.65it/s] 72%|███████▏  | 26/36 [00:09<00:01,  5.22it/s] 75%|███████▌  | 27/36 [00:09<00:02,  4.29it/s] 78%|███████▊  | 28/36 [00:09<00:01,  4.88it/s] 81%|████████  | 29/36 [00:09<00:01,  4.77it/s] 83%|████████▎ | 30/36 [00:10<00:01,  3.63it/s] 86%|████████▌ | 31/36 [00:10<00:01,  4.42it/s] 89%|████████▉ | 32/36 [00:10<00:00,  4.73it/s] 92%|█████████▏| 33/36 [00:10<00:00,  4.28it/s] 94%|█████████▍| 34/36 [00:10<00:00,  4.60it/s] 97%|█████████▋| 35/36 [00:11<00:00,  4.95it/s]100%|██████████| 36/36 [00:11<00:00,  4.88it/s]100%|██████████| 36/36 [00:11<00:00,  3.18it/s]
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+Info: mixed-flow with n_batch>0 will use iterator training for regression and multi:softprob boosters for categorical groups.
+2026-02-27 14:35:35.878765: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-27 14:35:35.930938: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-27 14:35:37.270819: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/torch/__init__.py:1305: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at /pytorch/torch/csrc/tensor/python_tensor.cpp:434.)
+  _C._set_default_tensor_type(t)
+tictactoe
+method=forest_diffusion
+0
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/externals/loky/backend/resource_tracker.py:359: UserWarning: resource_tracker: There appear to be 14 leaked semlock objects to clean up at shutdown
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/externals/loky/backend/resource_tracker.py:359: UserWarning: resource_tracker: There appear to be 2 leaked folder objects to clean up at shutdown
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/externals/loky/backend/resource_tracker.py:359: UserWarning: resource_tracker: There appear to be 14 leaked semlock objects to clean up at shutdown
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/externals/loky/backend/resource_tracker.py:359: UserWarning: resource_tracker: There appear to be 2 leaked folder objects to clean up at shutdown
+  warnings.warn(
+2026-02-27 14:37:18.265155: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-27 14:37:18.309394: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-27 14:37:19.223736: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/torch/__init__.py:1305: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at /pytorch/torch/csrc/tensor/python_tensor.cpp:434.)
+  _C._set_default_tensor_type(t)
+beijing
+method=forest_diffusion
+0
+2026-02-27 14:37:36.899529: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-27 14:37:36.947876: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-27 14:37:38.066890: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/torch/__init__.py:1305: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at /pytorch/torch/csrc/tensor/python_tensor.cpp:434.)
+  _C._set_default_tensor_type(t)
+2026-02-27 14:38:37.334279: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-02-27 14:38:37.393882: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-02-27 14:38:38.962279: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/torch/__init__.py:1305: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at /pytorch/torch/csrc/tensor/python_tensor.cpp:434.)
+  _C._set_default_tensor_type(t)
+beijing
+method=forest_diffusion
+0
+Info: mixed-flow with n_batch>0 will use iterator training for regression and multi:softprob boosters for categorical groups.
+beijing
+method=forest_diffusion
+0
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/externals/loky/process_executor.py:782: UserWarning: A worker stopped while some jobs were given to the executor. This can be caused by a too short worker timeout or by a memory leak.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/externals/loky/process_executor.py:782: UserWarning: A worker stopped while some jobs were given to the executor. This can be caused by a too short worker timeout or by a memory leak.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/externals/loky/backend/resource_tracker.py:359: UserWarning: resource_tracker: There appear to be 2 leaked file objects to clean up at shutdown
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/externals/loky/backend/resource_tracker.py:359: UserWarning: resource_tracker: There appear to be 14 leaked semlock objects to clean up at shutdown
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/externals/loky/backend/resource_tracker.py:359: UserWarning: resource_tracker: There appear to be 2 leaked folder objects to clean up at shutdown
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/externals/loky/backend/resource_tracker.py:359: UserWarning: resource_tracker: There appear to be 2 leaked file objects to clean up at shutdown
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/externals/loky/backend/resource_tracker.py:359: UserWarning: resource_tracker: There appear to be 14 leaked semlock objects to clean up at shutdown
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/externals/loky/backend/resource_tracker.py:359: UserWarning: resource_tracker: There appear to be 2 leaked folder objects to clean up at shutdown
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/externals/loky/backend/resource_tracker.py:359: UserWarning: resource_tracker: There appear to be 111 leaked file objects to clean up at shutdown
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/externals/loky/backend/resource_tracker.py:359: UserWarning: resource_tracker: There appear to be 14 leaked semlock objects to clean up at shutdown
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/joblib/externals/loky/backend/resource_tracker.py:359: UserWarning: resource_tracker: There appear to be 2 leaked folder objects to clean up at shutdown
   warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-Evaluating c2st
-Evaluating density
-Generating report ...
-
-|          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 10/10 [00:00<00:00, 1515.89it/s]|
-Column Shapes Score: 97.86%
-
-|          | 0/45 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/45 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 45/45 [00:00<00:00, 672.99it/s]|
-Column Pair Trends Score: 96.48%
-
-Overall Score (Average): 97.17%
-
-Generating report ...
-
-|          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 10/10 [00:00<00:00, 5871.09it/s]|
-Data Validity Score: 100.0%
-
-|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 1646.12it/s]|
-Data Structure Score: 100.0%
-
-Overall Score (Average): 100.0%
-
-Evaluating mle
-  0%|          | 0/36 [00:00<?, ?it/s]  6%|▌         | 2/36 [00:00<00:03,  8.64it/s]  8%|▊         | 3/36 [00:00<00:08,  3.76it/s] 14%|█▍        | 5/36 [00:00<00:06,  5.01it/s] 17%|█▋        | 6/36 [00:01<00:07,  3.81it/s] 22%|██▏       | 8/36 [00:01<00:06,  4.15it/s] 25%|██▌       | 9/36 [00:02<00:09,  2.91it/s] 31%|███       | 11/36 [00:02<00:06,  3.76it/s] 33%|███▎      | 12/36 [00:03<00:07,  3.40it/s] 39%|███▉      | 14/36 [00:03<00:06,  3.61it/s] 42%|████▏     | 15/36 [00:04<00:07,  2.63it/s] 47%|████▋     | 17/36 [00:04<00:05,  3.52it/s] 50%|█████     | 18/36 [00:05<00:05,  3.08it/s] 56%|█████▌    | 20/36 [00:05<00:03,  4.11it/s] 58%|█████▊    | 21/36 [00:05<00:03,  4.48it/s] 64%|██████▍   | 23/36 [00:05<00:02,  5.89it/s] 67%|██████▋   | 24/36 [00:05<00:01,  6.12it/s] 72%|███████▏  | 26/36 [00:06<00:01,  7.35it/s] 75%|███████▌  | 27/36 [00:06<00:01,  7.13it/s] 81%|████████  | 29/36 [00:06<00:00,  8.86it/s] 83%|████████▎ | 30/36 [00:06<00:00,  8.33it/s] 89%|████████▉ | 32/36 [00:06<00:00,  8.92it/s] 92%|█████████▏| 33/36 [00:06<00:00,  7.88it/s] 97%|█████████▋| 35/36 [00:07<00:00,  9.35it/s]100%|██████████| 36/36 [00:07<00:00,  8.80it/s]100%|██████████| 36/36 [00:07<00:00,  5.03it/s]
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-Evaluating c2st
-Evaluating density
-Generating report ...
-
-|          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 10/10 [00:00<00:00, 1284.70it/s]|
-Column Shapes Score: 97.9%
-
-|          | 0/45 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/45 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 45/45 [00:00<00:00, 657.40it/s]|
-Column Pair Trends Score: 97.13%
-
-Overall Score (Average): 97.51%
-
-Generating report ...
-
-|          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 10/10 [00:00<00:00, 5827.85it/s]|
-Data Validity Score: 100.0%
-
-|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 1651.95it/s]|
-Data Structure Score: 100.0%
-
-Overall Score (Average): 100.0%
-
-Evaluating mle
-  0%|          | 0/36 [00:00<?, ?it/s]  6%|▌         | 2/36 [00:00<00:04,  7.74it/s]  8%|▊         | 3/36 [00:00<00:08,  3.99it/s] 14%|█▍        | 5/36 [00:01<00:06,  4.48it/s] 17%|█▋        | 6/36 [00:01<00:09,  3.10it/s] 19%|█▉        | 7/36 [00:01<00:07,  3.78it/s] 22%|██▏       | 8/36 [00:02<00:09,  2.80it/s] 25%|██▌       | 9/36 [00:03<00:14,  1.90it/s] 31%|███       | 11/36 [00:03<00:09,  2.70it/s] 33%|███▎      | 12/36 [00:04<00:10,  2.21it/s] 36%|███▌      | 13/36 [00:04<00:08,  2.69it/s] 39%|███▉      | 14/36 [00:05<00:08,  2.46it/s] 42%|████▏     | 15/36 [00:05<00:10,  1.96it/s] 44%|████▍     | 16/36 [00:05<00:07,  2.51it/s] 47%|████▋     | 17/36 [00:06<00:06,  2.77it/s] 50%|█████     | 18/36 [00:06<00:07,  2.51it/s] 56%|█████▌    | 20/36 [00:06<00:04,  3.92it/s] 58%|█████▊    | 21/36 [00:06<00:03,  4.33it/s] 64%|██████▍   | 23/36 [00:07<00:02,  5.99it/s] 67%|██████▋   | 24/36 [00:07<00:01,  6.20it/s] 72%|███████▏  | 26/36 [00:07<00:01,  7.67it/s] 75%|███████▌  | 27/36 [00:07<00:01,  7.42it/s] 81%|████████  | 29/36 [00:07<00:00,  8.99it/s] 83%|████████▎ | 30/36 [00:07<00:00,  8.17it/s] 89%|████████▉ | 32/36 [00:08<00:00,  9.28it/s] 92%|█████████▏| 33/36 [00:08<00:00,  8.54it/s] 97%|█████████▋| 35/36 [00:08<00:00,  8.41it/s]100%|██████████| 36/36 [00:08<00:00,  6.83it/s]100%|██████████| 36/36 [00:08<00:00,  4.13it/s]
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-Evaluating c2st
-Evaluating density
-Generating report ...
-
-|          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 10/10 [00:00<00:00, 2552.37it/s]|
-Column Shapes Score: 98.26%
-
-|          | 0/45 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/45 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 45/45 [00:00<00:00, 788.54it/s]|
-Column Pair Trends Score: 96.34%
-
-Overall Score (Average): 97.3%
-
-Generating report ...
-
-|          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 10/10 [00:00<00:00, 5653.46it/s]|
-Data Validity Score: 100.0%
-
-|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 1684.46it/s]|
-Data Structure Score: 100.0%
-
-Overall Score (Average): 100.0%
-
-Evaluating mle
-  0%|          | 0/36 [00:00<?, ?it/s]  6%|▌         | 2/36 [00:00<00:10,  3.37it/s]  8%|▊         | 3/36 [00:01<00:15,  2.07it/s] 14%|█▍        | 5/36 [00:01<00:09,  3.13it/s] 17%|█▋        | 6/36 [00:02<00:13,  2.29it/s] 19%|█▉        | 7/36 [00:02<00:10,  2.76it/s] 22%|██▏       | 8/36 [00:03<00:11,  2.40it/s] 25%|██▌       | 9/36 [00:04<00:19,  1.36it/s] 28%|██▊       | 10/36 [00:04<00:14,  1.82it/s] 31%|███       | 11/36 [00:05<00:13,  1.91it/s] 33%|███▎      | 12/36 [00:06<00:15,  1.57it/s] 36%|███▌      | 13/36 [00:06<00:11,  2.04it/s] 39%|███▉      | 14/36 [00:06<00:11,  1.85it/s] 42%|████▏     | 15/36 [00:07<00:13,  1.59it/s] 47%|████▋     | 17/36 [00:08<00:07,  2.47it/s] 50%|█████     | 18/36 [00:08<00:07,  2.43it/s] 56%|█████▌    | 20/36 [00:08<00:04,  3.60it/s] 58%|█████▊    | 21/36 [00:08<00:03,  4.02it/s] 64%|██████▍   | 23/36 [00:08<00:02,  5.46it/s] 67%|██████▋   | 24/36 [00:09<00:02,  5.50it/s] 72%|███████▏  | 26/36 [00:09<00:01,  6.54it/s] 75%|███████▌  | 27/36 [00:09<00:01,  6.09it/s] 81%|████████  | 29/36 [00:09<00:01,  6.81it/s] 83%|████████▎ | 30/36 [00:10<00:01,  5.42it/s] 86%|████████▌ | 31/36 [00:10<00:00,  5.32it/s] 89%|████████▉ | 32/36 [00:10<00:00,  5.22it/s] 92%|█████████▏| 33/36 [00:11<00:00,  3.73it/s] 94%|█████████▍| 34/36 [00:11<00:00,  4.43it/s] 97%|█████████▋| 35/36 [00:11<00:00,  4.91it/s]100%|██████████| 36/36 [00:11<00:00,  4.55it/s]100%|██████████| 36/36 [00:11<00:00,  3.12it/s]
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-Evaluating c2st
-Evaluating density
-Generating report ...
-
-|          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 10/10 [00:00<00:00, 880.31it/s]|
-Column Shapes Score: 97.83%
-
-|          | 0/45 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/45 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 45/45 [00:00<00:00, 532.14it/s]|
-Column Pair Trends Score: 97.78%
-
-Overall Score (Average): 97.81%
-
-Generating report ...
-
-|          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 10/10 [00:00<00:00, 4378.19it/s]|
-Data Validity Score: 100.0%
-
-|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 1610.72it/s]|
-Data Structure Score: 100.0%
-
-Overall Score (Average): 100.0%
-
-Evaluating mle
-  0%|          | 0/36 [00:00<?, ?it/s]  6%|▌         | 2/36 [00:00<00:04,  8.33it/s]  8%|▊         | 3/36 [00:00<00:09,  3.46it/s] 14%|█▍        | 5/36 [00:01<00:09,  3.39it/s] 17%|█▋        | 6/36 [00:02<00:12,  2.44it/s] 19%|█▉        | 7/36 [00:02<00:09,  3.08it/s] 22%|██▏       | 8/36 [00:03<00:13,  2.02it/s] 25%|██▌       | 9/36 [00:04<00:17,  1.57it/s] 28%|██▊       | 10/36 [00:04<00:12,  2.05it/s] 31%|███       | 11/36 [00:04<00:13,  1.92it/s] 33%|███▎      | 12/36 [00:05<00:15,  1.58it/s] 36%|███▌      | 13/36 [00:05<00:11,  2.01it/s] 39%|███▉      | 14/36 [00:06<00:12,  1.77it/s] 42%|████▏     | 15/36 [00:07<00:16,  1.26it/s] 44%|████▍     | 16/36 [00:08<00:11,  1.70it/s] 47%|████▋     | 17/36 [00:08<00:09,  1.92it/s] 50%|█████     | 18/36 [00:09<00:10,  1.69it/s] 56%|█████▌    | 20/36 [00:09<00:05,  2.71it/s] 58%|█████▊    | 21/36 [00:09<00:05,  2.98it/s] 64%|██████▍   | 23/36 [00:09<00:03,  4.04it/s] 67%|██████▋   | 24/36 [00:10<00:02,  4.17it/s] 72%|███████▏  | 26/36 [00:10<00:01,  5.09it/s] 75%|███████▌  | 27/36 [00:10<00:01,  4.89it/s] 78%|███████▊  | 28/36 [00:10<00:01,  5.49it/s] 81%|████████  | 29/36 [00:10<00:01,  5.81it/s] 83%|████████▎ | 30/36 [00:11<00:01,  4.95it/s] 89%|████████▉ | 32/36 [00:11<00:00,  6.63it/s] 92%|█████████▏| 33/36 [00:11<00:00,  5.51it/s] 97%|█████████▋| 35/36 [00:11<00:00,  6.79it/s]100%|██████████| 36/36 [00:11<00:00,  6.27it/s]100%|██████████| 36/36 [00:11<00:00,  3.01it/s]
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-Evaluating c2st
-1
-Evaluating density
-Generating report ...
-
-|          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 10/10 [00:00<00:00, 2719.16it/s]|
-Column Shapes Score: 98.07%
-
-|          | 0/45 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/45 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 45/45 [00:00<00:00, 877.14it/s]|
-Column Pair Trends Score: 97.91%
-
-Overall Score (Average): 97.99%
-
-Generating report ...
-
-|          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 10/10 [00:00<00:00, 5828.66it/s]|
-Data Validity Score: 100.0%
-
-|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 1673.70it/s]|
-Data Structure Score: 100.0%
-
-Overall Score (Average): 100.0%
-
-Evaluating mle
-  0%|          | 0/36 [00:00<?, ?it/s]  6%|▌         | 2/36 [00:00<00:06,  5.43it/s]  8%|▊         | 3/36 [00:01<00:13,  2.36it/s] 11%|█         | 4/36 [00:01<00:10,  3.06it/s] 14%|█▍        | 5/36 [00:01<00:10,  3.07it/s] 17%|█▋        | 6/36 [00:02<00:13,  2.31it/s] 19%|█▉        | 7/36 [00:02<00:09,  3.04it/s] 22%|██▏       | 8/36 [00:03<00:12,  2.24it/s] 25%|██▌       | 9/36 [00:04<00:17,  1.51it/s] 31%|███       | 11/36 [00:04<00:11,  2.21it/s] 33%|███▎      | 12/36 [00:05<00:12,  1.87it/s] 36%|███▌      | 13/36 [00:05<00:09,  2.32it/s] 39%|███▉      | 14/36 [00:06<00:10,  2.17it/s] 42%|████▏     | 15/36 [00:07<00:12,  1.62it/s] 44%|████▍     | 16/36 [00:07<00:09,  2.13it/s] 47%|████▋     | 17/36 [00:07<00:08,  2.25it/s] 50%|█████     | 18/36 [00:08<00:11,  1.60it/s] 56%|█████▌    | 20/36 [00:08<00:06,  2.53it/s] 58%|█████▊    | 21/36 [00:09<00:05,  2.85it/s] 64%|██████▍   | 23/36 [00:09<00:03,  4.01it/s] 67%|██████▋   | 24/36 [00:09<00:02,  4.25it/s] 72%|███████▏  | 26/36 [00:09<00:01,  5.41it/s] 75%|███████▌  | 27/36 [00:09<00:01,  5.45it/s] 81%|████████  | 29/36 [00:10<00:01,  6.62it/s] 83%|████████▎ | 30/36 [00:10<00:01,  5.02it/s] 86%|████████▌ | 31/36 [00:10<00:00,  5.55it/s] 89%|████████▉ | 32/36 [00:10<00:00,  4.80it/s] 92%|█████████▏| 33/36 [00:11<00:00,  4.58it/s] 97%|█████████▋| 35/36 [00:11<00:00,  5.98it/s]100%|██████████| 36/36 [00:11<00:00,  4.71it/s]100%|██████████| 36/36 [00:11<00:00,  3.07it/s]
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-/home/zhihan/miniconda3/envs/forestflow/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
-  warnings.warn(
-Evaluating c2st
-Evaluating density
-Generating report ...
-
-|          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 10/10 [00:00<00:00, 2509.46it/s]|
-Column Shapes Score: 97.94%
-
-|          | 0/45 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/45 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 45/45 [00:00<00:00, 776.26it/s]|
-Column Pair Trends Score: 95.3%
-
-Overall Score (Average): 96.62%
-
-Generating report ...
-
-|          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/10 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 10/10 [00:00<00:00, 5525.36it/s]|
-Data Validity Score: 100.0%
-
-|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 1639.04it/s]|
-Data Structure Score: 100.0%
-
-Overall Score (Average): 100.0%
-
-Evaluating mle
-  0%|          | 0/36 [00:00<?, ?it/s]  6%|▌         | 2/36 [00:00<00:05,  6.75it/s]  8%|▊         | 3/36 [00:00<00:09,  3.57it/s] 14%|█▍        | 5/36 [00:01<00:06,  4.77it/s] 17%|█▋        | 6/36 [00:01<00:08,  3.37it/s] 19%|█▉        | 7/36 [00:01<00:07,  3.88it/s] 22%|██▏       | 8/36 [00:02<00:11,  2.42it/s] 25%|██▌       | 9/36 [00:03<00:18,  1.47it/s] 31%|███       | 11/36 [00:04<00:11,  2.15it/s] 33%|███▎      | 12/36 [00:05<00:12,  1.86it/s] 36%|███▌      | 13/36 [00:05<00:10,  2.27it/s] 39%|███▉      | 14/36 [00:05<00:09,  2.21it/s] 42%|████▏     | 15/36 [00:06<00:11,  1.80it/s] 44%|████▍     | 16/36 [00:06<00:09,  2.21it/s] 47%|████▋     | 17/36 [00:07<00:08,  2.24it/s] 50%|█████     | 18/36 [00:07<00:09,  1.82it/s] 56%|█████▌    | 20/36 [00:08<00:05,  2.85it/s] 58%|█████▊    | 21/36 [00:08<00:05,  2.91it/s] 61%|██████    | 22/36 [00:08<00:03,  3.50it/s] 64%|██████▍   | 23/36 [00:08<00:03,  3.92it/s] 67%|██████▋   | 24/36 [00:08<00:02,  4.22it/s] 72%|███████▏  | 26/36 [00:09<00:01,  5.33it/s] 75%|███████▌  | 27/36 [00:09<00:01,  5.28it/s] 81%|████████  | 29/36 [00:09<00:01,  6.99it/s] 83%|████████▎ | 30/36 [00:09<00:00,  6.85it/s] 89%|████████▉ | 32/36 [00:09<00:00,  7.84it/s]
