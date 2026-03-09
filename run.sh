@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-cd /home/zhihan/tabular_gen/ForestDiffusion
+# if don't use iterator training, we need to specify the temporary folder with large space for joblib to avoid out of memory errors
+# export JOBLIB_TEMP_FOLDER="/srv/data/zhihan/joblib_tmp"
 
-# 为 joblib 指定临时目录，避免默认临时分区空间不足
-export JOBLIB_TEMP_FOLDER="/srv/data/zhihan/joblib_tmp"
-out_path="/home/zhihan/tabular_gen/ForestDiffusion/results_quantile_no_batch.csv"
-log_path="/home/zhihan/tabular_gen/ForestDiffusion/logs_quantile_no_batch.txt"
+out_path="./results.csv"
+log_path="./logs.txt"
 
 DATASETS=${DATASETS:-tictactoe}
 if [[ -z "${DATASETS}" ]]; then
@@ -15,11 +14,11 @@ if [[ -z "${DATASETS}" ]]; then
 fi
 
 run_case() {
-  local diffusion_type=$1
-  local ycond=$2
-  local n_batch=$3
-  local device=$4
-  local use_quantile=$5
+  local diffusion_type=$1 # flow (flow-matching), mixed-flow (VFM)
+  local ycond=$2 # if True, use ycond for training/generation.
+  local n_batch=$3 # 0: no batch, 1: use iterator training
+  local device=$4 
+  local use_quantile=$5 # if True, apply QuantileTransformer on numerical columns before training/generation and inverse-transform fake samples before evaluation.
   
   CUDA_VISIBLE_DEVICES=${device} python script_generation.py \
     --methods forest_diffusion \
@@ -36,16 +35,5 @@ run_case() {
     --ycond "${ycond}" >> "${log_path}" 2>&1 
 }
 
-# run_case mixed-flow False 1 3 False
-# run_case flow False 1 3 False
-# run_case mixed-flow False 1 3 True
-run_case mixed-flow False 0 2 False
-run_case mixed-flow False 0 2 True
-
-
-# wait
-# run_case vp True 1 0
-# run_case flow True 1 1
-# wait
-# run_case vp False 1 1
-# wait
+run_case mixed-flow False 1 0 False
+run_case flow False 1 0 False

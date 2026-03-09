@@ -1167,3 +1167,114 @@ To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_V
 2026-03-05 22:34:27.657128: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
 /home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/torch/__init__.py:1305: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at /pytorch/torch/csrc/tensor/python_tensor.cpp:434.)
   _C._set_default_tensor_type(t)
+default
+method=forest_diffusion
+0
+Evaluating density
+Generating report ...
+
+|          | 0/24 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/24 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 24/24 [00:00<00:00, 317.47it/s]|
+Column Shapes Score: 87.4%
+
+|          | 0/276 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/276 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |█▏        | 34/276 [00:00<00:00, 339.64it/s]|(2/2) Evaluating Column Pair Trends: |██▋       | 73/276 [00:00<00:00, 364.70it/s]|(2/2) Evaluating Column Pair Trends: |████      | 112/276 [00:00<00:00, 376.06it/s]|(2/2) Evaluating Column Pair Trends: |█████▌    | 155/276 [00:00<00:00, 395.46it/s]|(2/2) Evaluating Column Pair Trends: |███████▏  | 200/276 [00:00<00:00, 411.27it/s]|(2/2) Evaluating Column Pair Trends: |█████████▏| 252/276 [00:00<00:00, 447.78it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 276/276 [00:00<00:00, 406.28it/s]|
+Column Pair Trends Score: 96.75%
+
+Overall Score (Average): 92.07%
+
+Generating report ...
+
+|          | 0/24 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/24 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 24/24 [00:00<00:00, 1076.66it/s]|
+Data Validity Score: 100.0%
+
+|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 660.52it/s]|
+Data Structure Score: 100.0%
+
+Overall Score (Average): 100.0%
+
+Evaluating mle
+  0%|          | 0/36 [00:00<?, ?it/s]  6%|▌         | 2/36 [00:00<00:02, 13.84it/s] 11%|█         | 4/36 [00:00<00:03,  8.46it/s] 14%|█▍        | 5/36 [00:00<00:03,  8.65it/s] 17%|█▋        | 6/36 [00:00<00:04,  7.19it/s] 22%|██▏       | 8/36 [00:01<00:03,  7.29it/s] 25%|██▌       | 9/36 [00:01<00:05,  4.95it/s] 31%|███       | 11/36 [00:01<00:04,  5.89it/s] 33%|███▎      | 12/36 [00:02<00:05,  4.56it/s] 36%|███▌      | 13/36 [00:02<00:04,  4.97it/s] 39%|███▉      | 14/36 [00:02<00:06,  3.54it/s] 42%|████▏     | 15/36 [00:03<00:09,  2.23it/s] 47%|████▋     | 17/36 [00:04<00:06,  2.75it/s] 50%|█████     | 18/36 [00:04<00:08,  2.20it/s] 56%|█████▌    | 20/36 [00:04<00:04,  3.39it/s] 58%|█████▊    | 21/36 [00:05<00:03,  3.97it/s] 64%|██████▍   | 23/36 [00:05<00:02,  5.65it/s] 69%|██████▉   | 25/36 [00:05<00:01,  6.96it/s] 75%|███████▌  | 27/36 [00:05<00:01,  7.50it/s] 81%|████████  | 29/36 [00:05<00:00,  8.79it/s] 86%|████████▌ | 31/36 [00:05<00:00,  8.87it/s] 92%|█████████▏| 33/36 [00:06<00:00,  7.60it/s] 97%|█████████▋| 35/36 [00:06<00:00,  8.03it/s]100%|██████████| 36/36 [00:06<00:00,  7.80it/s]100%|██████████| 36/36 [00:06<00:00,  5.39it/s]
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+Evaluating c2st
+Evaluating density
+Generating report ...
+
+|          | 0/24 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/24 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 24/24 [00:00<00:00, 321.98it/s]|
+Column Shapes Score: 87.45%
+
+|          | 0/276 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/276 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |█▎        | 35/276 [00:00<00:00, 342.81it/s]|(2/2) Evaluating Column Pair Trends: |██▋       | 73/276 [00:00<00:00, 363.19it/s]|(2/2) Evaluating Column Pair Trends: |████      | 112/276 [00:00<00:00, 371.73it/s]|(2/2) Evaluating Column Pair Trends: |█████▌    | 155/276 [00:00<00:00, 391.51it/s]|(2/2) Evaluating Column Pair Trends: |███████▏  | 199/276 [00:00<00:00, 408.07it/s]|(2/2) Evaluating Column Pair Trends: |█████████ | 250/276 [00:00<00:00, 440.21it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 276/276 [00:00<00:00, 402.06it/s]|
+Column Pair Trends Score: 96.76%
+
+Overall Score (Average): 92.11%
+
+Generating report ...
+
+|          | 0/24 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/24 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 24/24 [00:00<00:00, 1081.20it/s]|
+Data Validity Score: 100.0%
+
+|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 1383.80it/s]|
+Data Structure Score: 100.0%
+
+Overall Score (Average): 100.0%
+
+Evaluating mle
+  0%|          | 0/36 [00:00<?, ?it/s]  6%|▌         | 2/36 [00:00<00:03,  9.76it/s]  8%|▊         | 3/36 [00:00<00:04,  6.82it/s] 14%|█▍        | 5/36 [00:00<00:03,  8.16it/s] 17%|█▋        | 6/36 [00:00<00:04,  6.61it/s] 22%|██▏       | 8/36 [00:01<00:04,  6.73it/s] 25%|██▌       | 9/36 [00:01<00:05,  4.68it/s] 31%|███       | 11/36 [00:01<00:04,  5.57it/s] 33%|███▎      | 12/36 [00:02<00:05,  4.41it/s] 36%|███▌      | 13/36 [00:02<00:04,  4.80it/s] 39%|███▉      | 14/36 [00:02<00:06,  3.54it/s] 42%|████▏     | 15/36 [00:03<00:09,  2.19it/s] 47%|████▋     | 17/36 [00:04<00:06,  2.76it/s] 50%|█████     | 18/36 [00:05<00:08,  2.21it/s] 56%|█████▌    | 20/36 [00:05<00:04,  3.38it/s] 58%|█████▊    | 21/36 [00:05<00:03,  3.93it/s] 64%|██████▍   | 23/36 [00:05<00:02,  5.66it/s] 69%|██████▉   | 25/36 [00:05<00:01,  6.63it/s] 75%|███████▌  | 27/36 [00:05<00:01,  7.09it/s] 81%|████████  | 29/36 [00:05<00:00,  8.22it/s] 86%|████████▌ | 31/36 [00:06<00:00,  5.94it/s] 89%|████████▉ | 32/36 [00:06<00:00,  6.10it/s] 92%|█████████▏| 33/36 [00:06<00:00,  6.06it/s] 97%|█████████▋| 35/36 [00:07<00:00,  6.92it/s]100%|██████████| 36/36 [00:07<00:00,  6.11it/s]100%|██████████| 36/36 [00:07<00:00,  4.95it/s]
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+Evaluating c2st
+Evaluating density
+Generating report ...
+
+|          | 0/24 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/24 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 24/24 [00:00<00:00, 323.83it/s]|
+Column Shapes Score: 87.57%
+
+|          | 0/276 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/276 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |█▎        | 35/276 [00:00<00:00, 348.23it/s]|(2/2) Evaluating Column Pair Trends: |██▋       | 74/276 [00:00<00:00, 369.66it/s]|(2/2) Evaluating Column Pair Trends: |████▏     | 114/276 [00:00<00:00, 380.72it/s]|(2/2) Evaluating Column Pair Trends: |█████▋    | 157/276 [00:00<00:00, 398.03it/s]|(2/2) Evaluating Column Pair Trends: |███████▏  | 200/276 [00:00<00:00, 408.85it/s]|(2/2) Evaluating Column Pair Trends: |█████████▏| 252/276 [00:00<00:00, 443.90it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 276/276 [00:00<00:00, 406.11it/s]|
+Column Pair Trends Score: 96.63%
+
+Overall Score (Average): 92.1%
+
+Generating report ...
+
+|          | 0/24 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |          | 0/24 [00:00<?, ?it/s]|(1/2) Evaluating Data Validity: |██████████| 24/24 [00:00<00:00, 1076.61it/s]|
+Data Validity Score: 100.0%
+
+|          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |          | 0/1 [00:00<?, ?it/s]|(2/2) Evaluating Data Structure: |██████████| 1/1 [00:00<00:00, 1427.61it/s]|
+Data Structure Score: 100.0%
+
+Overall Score (Average): 100.0%
+
+Evaluating mle
+  0%|          | 0/36 [00:00<?, ?it/s]  3%|▎         | 1/36 [00:00<00:13,  2.69it/s]  6%|▌         | 2/36 [00:00<00:08,  3.89it/s]  8%|▊         | 3/36 [00:00<00:07,  4.35it/s] 14%|█▍        | 5/36 [00:00<00:04,  6.95it/s] 17%|█▋        | 6/36 [00:01<00:04,  6.09it/s] 22%|██▏       | 8/36 [00:01<00:04,  6.54it/s] 25%|██▌       | 9/36 [00:01<00:05,  4.62it/s] 31%|███       | 11/36 [00:02<00:04,  5.49it/s] 33%|███▎      | 12/36 [00:02<00:05,  4.30it/s] 36%|███▌      | 13/36 [00:02<00:04,  4.61it/s] 39%|███▉      | 14/36 [00:03<00:07,  3.08it/s] 42%|████▏     | 15/36 [00:04<00:10,  1.94it/s] 47%|████▋     | 17/36 [00:04<00:07,  2.51it/s] 50%|█████     | 18/36 [00:05<00:08,  2.04it/s] 56%|█████▌    | 20/36 [00:05<00:05,  3.16it/s] 58%|█████▊    | 21/36 [00:05<00:04,  3.71it/s] 64%|██████▍   | 23/36 [00:05<00:02,  5.35it/s] 69%|██████▉   | 25/36 [00:06<00:01,  6.64it/s] 75%|███████▌  | 27/36 [00:06<00:01,  7.25it/s] 81%|████████  | 29/36 [00:06<00:00,  8.48it/s] 86%|████████▌ | 31/36 [00:06<00:00,  8.09it/s] 89%|████████▉ | 32/36 [00:06<00:00,  7.64it/s] 92%|█████████▏| 33/36 [00:07<00:00,  7.12it/s] 97%|█████████▋| 35/36 [00:07<00:00,  7.70it/s]100%|██████████| 36/36 [00:07<00:00,  7.47it/s]100%|██████████| 36/36 [00:07<00:00,  4.82it/s]
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+/home/zhihan/tabular_gen/venv/lib/python3.10/site-packages/sklearn/ensemble/_weight_boosting.py:527: FutureWarning: The SAMME.R algorithm (the default) is deprecated and will be removed in 1.6. Use the SAMME algorithm to circumvent this warning.
+  warnings.warn(
+Evaluating c2st
+['default', 'forest_diffusion n_t=50 n_t_sampling=50 model=xgboost diffusion=mixed-flow duplicate_K=100 ycond=False depth=7 n_trees=100 eta=0.3  quantile=True ', 0.0, 0.0, 0.0, 0.0, 0.0, np.float64(0.6505359937006442), np.float64(0.63995664533898), np.float64(0.6466628086622068), np.float64(0.44065432098765434), np.float64(0.8113333333333332), 0.0, 0.0, 0.0, [np.float64(0.466031664477229), np.float64(0.4654366502879248), np.float64(0.7158026822817445)], 27211.016584157944, np.float64(0.8747340534979424), np.float64(0.9671533039835392), np.float64(0.9209436787407409), np.float64(0.7572380762040755), np.float64(0.9519612345679013), 0.0, 0.0, 0.0, np.float64(0.5880331952530229), np.float64(0.5793523122994083), np.float64(0.5805753776062755), 0.0, 0.0, 0.0, np.float64(0.6694145675610773), np.float64(0.6641696001532362), np.float64(0.6626782138826873), 0.0, 0.0, 0.0, np.float64(0.6730820051577864), np.float64(0.6523531045978226), np.float64(0.6734642919142814), 0.0, 0.0, 0.0, np.float64(0.6716142068306901), np.float64(0.6639515643054529), np.float64(0.6699333512455827)]
+adult
+method=forest_diffusion
+0
+Traceback (most recent call last):
+  File "/home/zhihan/tabular_gen/ForestDiffusion/script_generation.py", line 482, in <module>
+    forest_model = ForestDiffusionModel(X=Xy_train_used,
+  File "/home/zhihan/tabular_gen/ForestDiffusion/Python-Package/base-ForestDiffusion/ForestDiffusion/diffusion_with_trees_class.py", line 247, in __init__
+    target = self.get_train_target(y_train.reshape(self.b*self.duplicate_K, self.c)[self.mask_y[j], :], k)
+  File "/home/zhihan/tabular_gen/ForestDiffusion/Python-Package/base-ForestDiffusion/ForestDiffusion/diffusion_with_trees_class.py", line 349, in get_train_target
+    def get_train_target(self, y_matrix, k):
+KeyboardInterrupt
