@@ -371,3 +371,78 @@ def apply_quantile_inverse_transform(X, num_col_idx, quantile_transformer):
     X_sub = X[:, num_col_idx]
     X_inv[:, num_col_idx] = quantile_transformer.inverse_transform(X_sub)
     return X_inv
+
+
+def apply_int_inverse_transform(X, int_col_idx):
+    """
+    Round integer columns to integers (ef-vfm-aligned int_inverse step).
+    Apply after quantile inverse so the full reverse pipeline matches ef-vfm:
+    quantile inverse -> int inverse (round).
+
+    Parameters
+    ----------
+    X : np.ndarray, shape (n, d)
+        Data (e.g. after quantile inverse).
+    int_col_idx : list[int]
+        Indices of integer columns (including target if integer). If None or empty, X is returned unchanged.
+    """
+    if X is None or int_col_idx is None or len(int_col_idx) == 0:
+        return X
+    X_out = X.copy()
+    for i in int_col_idx:
+        if i < X.shape[1]:
+            X_out[:, i] = np.rint(X[:, i])
+    return X_out
+
+
+def efvfm_style_impute_train_test(X_train, X_test, num_col_idx, cat_col_idx):
+    """
+    Imitate ef-vfm missing value handling:
+    - Numerical columns: replace NaN with train-column mean.
+    - Categorical columns: replace missing with train-column most_frequent (mode).
+
+    Parameters
+    ----------
+    X_train, X_test : np.ndarray
+        Joint matrices (e.g., Xy_train / Xy_test) in the same column space.
+    num_col_idx : list[int]
+        Indices of numerical columns.
+    cat_col_idx : list[int]
+        Indices of categorical columns.
+    """
+    if X_train is None or X_test is None:
+        return X_train, X_test
+
+    X_train_imp = X_train.copy()
+    X_test_imp = X_test.copy()
+
+    # Numerical: mean imputation based on train
+    if num_col_idx is not None and len(num_col_idx) > 0:
+        for j in num_col_idx:
+            col_train = X_train_imp[:, j]
+            mask_nan_train = np.isnan(col_train)
+            if np.any(~mask_nan_train):
+                mean_val = np.nanmean(col_train)
+                X_train_imp[mask_nan_train, j] = mean_val
+                mask_nan_test = np.isnan(X_test_imp[:, j])
+                X_test_imp[mask_nan_test, j] = mean_val
+
+    # Categorical: most_frequent (mode) based on train, ignoring NaNs
+    if cat_col_idx is not None and len(cat_col_idx) > 0:
+        df_train = pd.DataFrame(X_train_imp[:, cat_col_idx])
+        df_test = pd.DataFrame(X_test_imp[:, cat_col_idx])
+        for local_idx, col in enumerate(cat_col_idx):
+            s_train = df_train.iloc[:, local_idx]
+            # dropna=True imitates SimpleImputer(strategy='most_frequent')
+            modes = s_train.mode(dropna=True)
+            if len(modes) == 0:
+                continue
+            fill_val = modes.iloc[0]
+            mask_nan_train = s_train.isna()
+            mask_nan_test = df_test.iloc[:, local_idx].isna()
+            if mask_nan_train.any():
+                X_train_imp[mask_nan_train.values, col] = fill_val
+            if mask_nan_test.any():
+                X_test_imp[mask_nan_test.values, col] = fill_val
+
+    return X_train_imp, X_test_imp

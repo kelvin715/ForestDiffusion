@@ -1,0 +1,111 @@
+{
+    "name": "shoppers_categorical_only",
+    "task_type": "binclass",
+    "header": "infer",
+    "column_names": [
+        "Month",
+        "OperatingSystems",
+        "Browser",
+        "Region",
+        "TrafficType",
+        "VisitorType",
+        "Weekend",
+        "Revenue"
+    ],
+    "num_col_idx": [],
+    "cat_col_idx": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+    ],
+    "target_col_idx": [
+        7
+    ],
+    "file_type": "csv",
+    "data_path": "data/shoppers_categorical_only/train.csv",
+    "val_path": null,
+    "test_path": "data/shoppers_categorical_only/test.csv",
+    "column_info": {
+        "0": {},
+        "type": "categorical",
+        "categorizes": [
+            false,
+            true
+        ],
+        "1": {},
+        "2": {},
+        "3": {},
+        "4": {},
+        "5": {},
+        "6": {},
+        "7": {}
+    },
+    "train_num": 11097,
+    "test_num": 1233,
+    "val_num": 0,
+    "int_col_idx": [],
+    "int_columns": [],
+    "int_col_idx_wrt_num": [],
+    "idx_mapping": {
+        "0": 0,
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4,
+        "5": 5,
+        "6": 6,
+        "7": 7
+    },
+    "inverse_idx_mapping": {
+        "0": 0,
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4,
+        "5": 5,
+        "6": 6,
+        "7": 7
+    },
+    "idx_name_mapping": {
+        "0": "Month",
+        "1": "OperatingSystems",
+        "2": "Browser",
+        "3": "Region",
+        "4": "TrafficType",
+        "5": "VisitorType",
+        "6": "Weekend",
+        "7": "Revenue"
+    },
+    "metadata": {
+        "columns": {
+            "0": {
+                "sdtype": "categorical"
+            },
+            "1": {
+                "sdtype": "categorical"
+            },
+            "2": {
+                "sdtype": "categorical"
+            },
+            "3": {
+                "sdtype": "categorical"
+            },
+            "4": {
+                "sdtype": "categorical"
+            },
+            "5": {
+                "sdtype": "categorical"
+            },
+            "6": {
+                "sdtype": "categorical"
+            },
+            "7": {
+                "sdtype": "categorical"
+            }
+        }
+    }
+}

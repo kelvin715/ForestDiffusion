@@ -1,0 +1,119 @@
+{
+    "name": "beijing_numerical_only",
+    "task_type": "regression",
+    "header": "infer",
+    "column_names": [
+        "DEWP",
+        "TEMP",
+        "PRES",
+        "Iws",
+        "Is",
+        "Ir",
+        "pm2.5"
+    ],
+    "num_col_idx": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+    ],
+    "cat_col_idx": [],
+    "target_col_idx": [
+        6
+    ],
+    "file_type": "csv",
+    "data_path": "data/beijing_numerical_only/train.csv",
+    "val_path": null,
+    "test_path": "data/beijing_numerical_only/test.csv",
+    "column_info": {
+        "0": {},
+        "type": "numerical",
+        "max": 994.0,
+        "min": 0.0,
+        "1": {},
+        "2": {},
+        "3": {},
+        "4": {},
+        "5": {},
+        "6": {}
+    },
+    "train_num": 37581,
+    "test_num": 4176,
+    "val_num": 0,
+    "int_col_idx": [
+        0,
+        4,
+        5
+    ],
+    "int_columns": [
+        "DEWP",
+        "Is",
+        "Ir"
+    ],
+    "int_col_idx_wrt_num": [
+        0,
+        4,
+        5
+    ],
+    "idx_mapping": {
+        "0": 0,
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4,
+        "5": 5,
+        "6": 6
+    },
+    "inverse_idx_mapping": {
+        "0": 0,
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4,
+        "5": 5,
+        "6": 6
+    },
+    "idx_name_mapping": {
+        "0": "DEWP",
+        "1": "TEMP",
+        "2": "PRES",
+        "3": "Iws",
+        "4": "Is",
+        "5": "Ir",
+        "6": "pm2.5"
+    },
+    "metadata": {
+        "columns": {
+            "0": {
+                "sdtype": "numerical",
+                "computer_representation": "Float"
+            },
+            "1": {
+                "sdtype": "numerical",
+                "computer_representation": "Float"
+            },
+            "2": {
+                "sdtype": "numerical",
+                "computer_representation": "Float"
+            },
+            "3": {
+                "sdtype": "numerical",
+                "computer_representation": "Float"
+            },
+            "4": {
+                "sdtype": "numerical",
+                "computer_representation": "Float"
+            },
+            "5": {
+                "sdtype": "numerical",
+                "computer_representation": "Float"
+            },
+            "6": {
+                "sdtype": "numerical",
+                "computer_representation": "Float"
+            }
+        }
+    }
+}

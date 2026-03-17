@@ -1,0 +1,120 @@
+{
+    "name": "adult_categorical_only",
+    "task_type": "binclass",
+    "header": "infer",
+    "column_names": [
+        "workclass",
+        "education",
+        "marital.status",
+        "occupation",
+        "relationship",
+        "race",
+        "sex",
+        "native.country",
+        "income"
+    ],
+    "num_col_idx": [],
+    "cat_col_idx": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+    ],
+    "target_col_idx": [
+        8
+    ],
+    "file_type": "csv",
+    "data_path": "data/adult_categorical_only/train.csv",
+    "val_path": null,
+    "test_path": "data/adult_categorical_only/test.csv",
+    "column_info": {
+        "0": {},
+        "type": "categorical",
+        "categorizes": [
+            " <=50K",
+            " >50K"
+        ],
+        "1": {},
+        "2": {},
+        "3": {},
+        "4": {},
+        "5": {},
+        "6": {},
+        "7": {},
+        "8": {}
+    },
+    "train_num": 32561,
+    "test_num": 16281,
+    "val_num": 0,
+    "int_col_idx": [],
+    "int_columns": [],
+    "int_col_idx_wrt_num": [],
+    "idx_mapping": {
+        "0": 0,
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4,
+        "5": 5,
+        "6": 6,
+        "7": 7,
+        "8": 8
+    },
+    "inverse_idx_mapping": {
+        "0": 0,
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4,
+        "5": 5,
+        "6": 6,
+        "7": 7,
+        "8": 8
+    },
+    "idx_name_mapping": {
+        "0": "workclass",
+        "1": "education",
+        "2": "marital.status",
+        "3": "occupation",
+        "4": "relationship",
+        "5": "race",
+        "6": "sex",
+        "7": "native.country",
+        "8": "income"
+    },
+    "metadata": {
+        "columns": {
+            "0": {
+                "sdtype": "categorical"
+            },
+            "1": {
+                "sdtype": "categorical"
+            },
+            "2": {
+                "sdtype": "categorical"
+            },
+            "3": {
+                "sdtype": "categorical"
+            },
+            "4": {
+                "sdtype": "categorical"
+            },
+            "5": {
+                "sdtype": "categorical"
+            },
+            "6": {
+                "sdtype": "categorical"
+            },
+            "7": {
+                "sdtype": "categorical"
+            },
+            "8": {
+                "sdtype": "categorical"
+            }
+        }
+    }
+}

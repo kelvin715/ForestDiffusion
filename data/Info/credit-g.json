@@ -1,0 +1,60 @@
+{
+    "name": "credit-g",
+    "task_type": "binclass",
+    "header": "infer",
+    "column_names": [
+        "checking_status",
+        "duration",
+        "credit_history",
+        "purpose",
+        "credit_amount",
+        "savings_status",
+        "employment",
+        "installment_commitment",
+        "personal_status",
+        "other_parties",
+        "residence_since",
+        "property_magnitude",
+        "age",
+        "other_payment_plans",
+        "housing",
+        "existing_credits",
+        "job",
+        "num_dependents",
+        "own_telephone",
+        "foreign_worker",
+        "class"
+    ],
+    "num_col_idx": [
+        1,
+        4,
+        7,
+        10,
+        12,
+        15,
+        17
+    ],
+    "cat_col_idx": [
+        0,
+        2,
+        3,
+        5,
+        6,
+        8,
+        9,
+        11,
+        13,
+        14,
+        16,
+        18,
+        19
+    ],
+    "target_col_idx": [
+        20
+    ],
+    "file_type": "csv",
+    "raw_data_path": "data/credit-g/german.data",
+    "data_path": "data/credit-g/credit-g.csv",
+    "val_path": null,
+    "test_path": null
+}

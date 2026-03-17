@@ -1,0 +1,32 @@
+{
+    "name": "shoppers_categorical_only",
+    "task_type": "binclass",
+    "header": "infer",
+    "column_names": [
+        "Month",
+        "OperatingSystems",
+        "Browser",
+        "Region",
+        "TrafficType",
+        "VisitorType",
+        "Weekend",
+        "Revenue"
+    ],
+    "num_col_idx": [],
+    "cat_col_idx": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+    ],
+    "target_col_idx": [
+        7
+    ],
+    "file_type": "csv",
+    "data_path": "data/shoppers_categorical_only/train.csv",
+    "val_path": null,
+    "test_path": "data/shoppers_categorical_only/test.csv"
+}

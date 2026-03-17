@@ -1,0 +1,26 @@
+{
+    "name": "iris",
+    "task_type": "multiclass",
+    "header": "infer",
+    "column_names": [
+        "sepal length (cm)",
+        "sepal width (cm)",
+        "petal length (cm)",
+        "petal width (cm)",
+        "target"
+    ],
+    "num_col_idx": [
+        0,
+        1,
+        2,
+        3
+    ],
+    "cat_col_idx": [],
+    "target_col_idx": [
+        4
+    ],
+    "file_type": "csv",
+    "data_path": "data/iris/iris.csv",
+    "val_path": null,
+    "test_path": null
+}

@@ -1,0 +1,263 @@
+{
+    "name": "credit-g",
+    "task_type": "binclass",
+    "header": "infer",
+    "column_names": [
+        "checking_status",
+        "duration",
+        "credit_history",
+        "purpose",
+        "credit_amount",
+        "savings_status",
+        "employment",
+        "installment_commitment",
+        "personal_status",
+        "other_parties",
+        "residence_since",
+        "property_magnitude",
+        "age",
+        "other_payment_plans",
+        "housing",
+        "existing_credits",
+        "job",
+        "num_dependents",
+        "own_telephone",
+        "foreign_worker",
+        "class"
+    ],
+    "num_col_idx": [
+        1,
+        4,
+        7,
+        10,
+        12,
+        15,
+        17
+    ],
+    "cat_col_idx": [
+        0,
+        2,
+        3,
+        5,
+        6,
+        8,
+        9,
+        11,
+        13,
+        14,
+        16,
+        18,
+        19
+    ],
+    "target_col_idx": [
+        20
+    ],
+    "file_type": "csv",
+    "raw_data_path": "data/credit-g/german.data",
+    "data_path": "data/credit-g/credit-g.csv",
+    "val_path": null,
+    "test_path": null,
+    "int_col_idx": [
+        1,
+        4,
+        7,
+        10,
+        12,
+        15,
+        17
+    ],
+    "int_columns": [
+        "duration",
+        "credit_amount",
+        "installment_commitment",
+        "residence_since",
+        "age",
+        "existing_credits",
+        "num_dependents"
+    ],
+    "int_col_idx_wrt_num": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+    ],
+    "column_info": {
+        "1": {},
+        "type": "categorical",
+        "max": 2.0,
+        "min": 1.0,
+        "4": {},
+        "7": {},
+        "10": {},
+        "12": {},
+        "15": {},
+        "17": {},
+        "0": {},
+        "categorizes": [
+            1,
+            2
+        ],
+        "2": {},
+        "3": {},
+        "5": {},
+        "6": {},
+        "8": {},
+        "9": {},
+        "11": {},
+        "13": {},
+        "14": {},
+        "16": {},
+        "18": {},
+        "19": {},
+        "20": {}
+    },
+    "train_num": 900,
+    "test_num": 100,
+    "val_num": 0,
+    "idx_mapping": {
+        "0": 7,
+        "1": 0,
+        "2": 8,
+        "3": 9,
+        "4": 1,
+        "5": 10,
+        "6": 11,
+        "7": 2,
+        "8": 12,
+        "9": 13,
+        "10": 3,
+        "11": 14,
+        "12": 4,
+        "13": 15,
+        "14": 16,
+        "15": 5,
+        "16": 17,
+        "17": 6,
+        "18": 18,
+        "19": 19,
+        "20": 20
+    },
+    "inverse_idx_mapping": {
+        "7": 0,
+        "0": 1,
+        "8": 2,
+        "9": 3,
+        "1": 4,
+        "10": 5,
+        "11": 6,
+        "2": 7,
+        "12": 8,
+        "13": 9,
+        "3": 10,
+        "14": 11,
+        "4": 12,
+        "15": 13,
+        "16": 14,
+        "5": 15,
+        "17": 16,
+        "6": 17,
+        "18": 18,
+        "19": 19,
+        "20": 20
+    },
+    "idx_name_mapping": {
+        "0": "checking_status",
+        "1": "duration",
+        "2": "credit_history",
+        "3": "purpose",
+        "4": "credit_amount",
+        "5": "savings_status",
+        "6": "employment",
+        "7": "installment_commitment",
+        "8": "personal_status",
+        "9": "other_parties",
+        "10": "residence_since",
+        "11": "property_magnitude",
+        "12": "age",
+        "13": "other_payment_plans",
+        "14": "housing",
+        "15": "existing_credits",
+        "16": "job",
+        "17": "num_dependents",
+        "18": "own_telephone",
+        "19": "foreign_worker",
+        "20": "class"
+    },
+    "metadata": {
+        "columns": {
+            "1": {
+                "sdtype": "numerical",
+                "computer_representation": "Float"
+            },
+            "4": {
+                "sdtype": "numerical",
+                "computer_representation": "Float"
+            },
+            "7": {
+                "sdtype": "numerical",
+                "computer_representation": "Float"
+            },
+            "10": {
+                "sdtype": "numerical",
+                "computer_representation": "Float"
+            },
+            "12": {
+                "sdtype": "numerical",
+                "computer_representation": "Float"
+            },
+            "15": {
+                "sdtype": "numerical",
+                "computer_representation": "Float"
+            },
+            "17": {
+                "sdtype": "numerical",
+                "computer_representation": "Float"
+            },
+            "0": {
+                "sdtype": "categorical"
+            },
+            "2": {
+                "sdtype": "categorical"
+            },
+            "3": {
+                "sdtype": "categorical"
+            },
+            "5": {
+                "sdtype": "categorical"
+            },
+            "6": {
+                "sdtype": "categorical"
+            },
+            "8": {
+                "sdtype": "categorical"
+            },
+            "9": {
+                "sdtype": "categorical"
+            },
+            "11": {
+                "sdtype": "categorical"
+            },
+            "13": {
+                "sdtype": "categorical"
+            },
+            "14": {
+                "sdtype": "categorical"
+            },
+            "16": {
+                "sdtype": "categorical"
+            },
+            "18": {
+                "sdtype": "categorical"
+            },
+            "19": {
+                "sdtype": "categorical"
+            },
+            "20": {
+                "sdtype": "categorical"
+            }
+        }
+    }
+}

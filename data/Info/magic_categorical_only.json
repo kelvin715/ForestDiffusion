@@ -1,0 +1,17 @@
+{
+    "name": "magic_categorical_only",
+    "task_type": "binclass",
+    "header": "infer",
+    "column_names": [
+        "class"
+    ],
+    "num_col_idx": [],
+    "cat_col_idx": [],
+    "target_col_idx": [
+        0
+    ],
+    "file_type": "csv",
+    "data_path": "data/magic_categorical_only/train.csv",
+    "val_path": null,
+    "test_path": "data/magic_categorical_only/test.csv"
+}

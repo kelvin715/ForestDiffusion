@@ -1,0 +1,30 @@
+{
+    "name": "beijing_numerical_only",
+    "task_type": "regression",
+    "header": "infer",
+    "column_names": [
+        "DEWP",
+        "TEMP",
+        "PRES",
+        "Iws",
+        "Is",
+        "Ir",
+        "pm2.5"
+    ],
+    "num_col_idx": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+    ],
+    "cat_col_idx": [],
+    "target_col_idx": [
+        6
+    ],
+    "file_type": "csv",
+    "data_path": "data/beijing_numerical_only/train.csv",
+    "val_path": null,
+    "test_path": "data/beijing_numerical_only/test.csv"
+}

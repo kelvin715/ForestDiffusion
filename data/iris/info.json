@@ -1,0 +1,106 @@
+{
+    "name": "iris",
+    "task_type": "multiclass",
+    "header": "infer",
+    "column_names": [
+        "sepal length (cm)",
+        "sepal width (cm)",
+        "petal length (cm)",
+        "petal width (cm)",
+        "target"
+    ],
+    "num_col_idx": [
+        0,
+        1,
+        2,
+        3
+    ],
+    "cat_col_idx": [],
+    "target_col_idx": [
+        4
+    ],
+    "file_type": "csv",
+    "data_path": "data/iris/train.csv",
+    "val_path": null,
+    "test_path": "data/iris/test.csv",
+    "column_info": {
+        "0": {
+            "type": "numerical",
+            "max": 7.9,
+            "min": 4.3
+        },
+        "1": {
+            "type": "numerical",
+            "max": 4.4,
+            "min": 2.0
+        },
+        "2": {
+            "type": "numerical",
+            "max": 6.9,
+            "min": 1.0
+        },
+        "3": {
+            "type": "numerical",
+            "max": 2.5,
+            "min": 0.1
+        },
+        "4": {
+            "type": "categorical",
+            "categorizes": [
+                0,
+                1,
+                2
+            ]
+        }
+    },
+    "train_num": 135,
+    "test_num": 15,
+    "val_num": 0,
+    "int_col_idx": [],
+    "int_columns": [],
+    "int_col_idx_wrt_num": [],
+    "idx_mapping": {
+        "0": 0,
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4
+    },
+    "inverse_idx_mapping": {
+        "0": 0,
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4
+    },
+    "idx_name_mapping": {
+        "0": "sepal length (cm)",
+        "1": "sepal width (cm)",
+        "2": "petal length (cm)",
+        "3": "petal width (cm)",
+        "4": "target"
+    },
+    "metadata": {
+        "columns": {
+            "0": {
+                "sdtype": "numerical",
+                "computer_representation": "Float"
+            },
+            "1": {
+                "sdtype": "numerical",
+                "computer_representation": "Float"
+            },
+            "2": {
+                "sdtype": "numerical",
+                "computer_representation": "Float"
+            },
+            "3": {
+                "sdtype": "numerical",
+                "computer_representation": "Float"
+            },
+            "4": {
+                "sdtype": "categorical"
+            }
+        }
+    }
+}

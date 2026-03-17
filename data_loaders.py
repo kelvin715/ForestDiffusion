@@ -9,6 +9,7 @@ import numpy as np
 import wget
 import json
 import gzip
+import shutil
 
 DATASETS = ['iris', 'wine', 'california', 'parkinsons', \
             'climate_model_crashes', 'concrete_compression', \
@@ -19,10 +20,10 @@ DATASETS = ['iris', 'wine', 'california', 'parkinsons', \
             'connectionist_bench_vowel', 'concrete_slump', \
             'wine_quality_red', 'wine_quality_white', \
             'bean', 'tictactoe','congress','car', 'adult', 'higgs', \
-            'beijing', 'default', 'magic', 'news', 'shoppers']
+            'beijing', 'default', 'magic', 'news', 'shoppers', 'credit-g']
 
-# Datasets that should be loaded from ef-vfm-dev-mixed using train/test splits
-EFVFM_DATASETS = ['adult', 'shoppers', 'magic', 'news', 'beijing', 'default']
+# Datasets that should be loaded from local data directory using train/test splits
+EFVFM_DATASETS = ['adult', 'shoppers', 'magic', 'news', 'beijing', 'default', 'credit-g']
 
 # Will be populated by load_from_ef_vfm and can be reused by scripts
 EFVFM_SPLITS = {}
@@ -49,10 +50,11 @@ def dataset_loader(dataset):
     assert dataset in DATASETS , f"Dataset not supported: {dataset}"
 
     # For ef-vfm datasets, we use the dedicated loader that respects
-    # the predefined train/test splits in ef-vfm-dev-mixed.
+    # the predefined train/test splits.
     if dataset in EFVFM_DATASETS:
         X, bin_x, cat_x, int_x, y, bin_y, cat_y, int_y = load_from_ef_vfm(dataset)
-        return X, bin_x, cat_x, int_x, y, bin_y, cat_y, int_y
+        column_names = get_efvfm_splits(dataset)['info'].get('column_names') if get_efvfm_splits(dataset) else None
+        return X, bin_x, cat_x, int_x, y, bin_y, cat_y, int_y, column_names
 
     if not os.path.isdir('datasets'):
         os.mkdir('datasets')
@@ -157,8 +159,13 @@ def dataset_loader(dataset):
         else:
             raise Exception('dataset does not exists')
         X, y = my_data['data'], my_data['target']
+        # 列名：sklearn 有 feature_names；否则用 feature_0, ..., target
+        if hasattr(my_data, 'feature_names') and my_data.feature_names is not None:
+            column_names = list(my_data.feature_names) + ['target']
+        else:
+            column_names = [f'feature_{i}' for i in range(X.shape[1])] + ['target']
 
-        return X, bin_x, cat_x, int_x, y, bin_y, cat_y, int_y
+        return X, bin_x, cat_x, int_x, y, bin_y, cat_y, int_y, column_names
 
 def fetch_parkinsons():
     if not os.path.isdir('datasets/parkinsons'):
@@ -550,7 +557,7 @@ def fetch_higgs():
 
 def load_from_ef_vfm(dataset: str):
     """
-    Load dataset from ef-vfm-dev-mixed using its train/test split and info.json.
+    Load dataset from local data directory using its train/test split and info.json.
 
     This function:
     - reads train.csv and test.csv
@@ -566,9 +573,8 @@ def load_from_ef_vfm(dataset: str):
     """
     assert dataset in EFVFM_DATASETS, f"Dataset {dataset} is not configured as an ef-vfm dataset."
 
-    # Resolve ef-vfm-dev-mixed path relative to project root (one level above this file's dir)
-    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    base_dir = os.path.join(project_root, 'ef-vfm-dev-mixed', 'data', dataset)
+    # Resolve path relative to this file's dir
+    base_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', dataset)
     info_path = os.path.join(base_dir, 'info.json')
 
     with open(info_path, 'r') as f:
@@ -601,13 +607,15 @@ def load_from_ef_vfm(dataset: str):
         f"Expected a single target_col_idx for {dataset}, got {target_col_idx_list}"
     target_idx = target_col_idx_list[0]
 
-    # Encode categorical feature columns jointly on train+test
+    # Encode categorical feature columns jointly on train+test; keep uniques for later inverse (samples save)
+    cat_labels = {}
     for idx in cat_col_idx:
         if idx == target_idx:
-            # target is handled separately below
             continue
         col = df_all.columns[idx]
-        df_all[col], _ = pd.factorize(df_all[col])
+        codes, uniques = pd.factorize(df_all[col])
+        df_all[col] = codes
+        cat_labels[idx] = uniques.tolist()
 
     # Decide whether target is categorical from ef-vfm metadata
     metadata_cols = (info.get('metadata') or {}).get('columns', {})
@@ -615,7 +623,9 @@ def load_from_ef_vfm(dataset: str):
     target_is_categorical = target_idx in cat_col_idx or target_meta.get('sdtype') == 'categorical'
 
     if target_is_categorical:
-        df_all[target_idx], _ = pd.factorize(df_all[target_idx])
+        codes, uniques = pd.factorize(df_all[target_idx])
+        df_all[target_idx] = codes
+        cat_labels[target_idx] = uniques.tolist()
 
     # Build feature matrix and target vector with target removed from X
     feature_indices = [i for i in range(df_all.shape[1]) if i != target_idx]
@@ -645,17 +655,6 @@ def load_from_ef_vfm(dataset: str):
         int_y = True
     else:
         raise ValueError(f"Unknown task type: {task_type}")
-        # # Fallback: infer from target metadata
-        # if target_is_categorical:
-        #     # Assume binary if only two unique values
-        #     n_unique = df_all[target_idx].nunique()
-        #     bin_y = n_unique == 2
-        #     cat_y = n_unique > 2
-        #     int_y = False
-        # else:
-        #     bin_y = False
-        #     cat_y = False
-        #     int_y = True
 
     if bin_y or cat_y or target_is_categorical:
         y_all = df_all[target_idx].astype('int').to_numpy()
@@ -670,6 +669,10 @@ def load_from_ef_vfm(dataset: str):
     y_train = y_all[:n_train]
     y_test = y_all[n_train:]
 
+    # FIXME: set int_x to an empty list, int_y to False, in order to align with ef-vfm (don't do round opertaion for integer features before computing quality score)   
+    int_x = []
+    int_y = False
+    
     EFVFM_SPLITS[dataset] = {
         'X_train': X_train,
         'X_test': X_test,
@@ -680,6 +683,7 @@ def load_from_ef_vfm(dataset: str):
         'int_x': int_x,
         'target_idx': target_idx,
         'feature_indices': feature_indices,
+        'cat_labels': cat_labels,
     }
 
     return X_all, bin_x, cat_x if cat_x else None, int_x if int_x else None, y_all, bin_y, cat_y, int_y
@@ -691,5 +695,5 @@ def get_efvfm_splits(dataset: str):
 
 
 if __name__ == "__main__":
-    dataset = 'magic'
+    dataset = 'credit-g'
     _ = load_from_ef_vfm(dataset)
